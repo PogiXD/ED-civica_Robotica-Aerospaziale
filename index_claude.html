@@ -1,0 +1,2394 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotica Aerospaziale - Cyber Explorer</title>
+    
+    <!-- Font Awesome per icone futuristiche -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Font gaming futuristici -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Audiowide&family=Russo+One&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           VARIABILI CSS PER TEMA CHIARO/SCURO GAMING
+           ============================================ */
+        :root {
+            /* Tema Chiaro Gaming */
+            --bg-primary: #0a0e27;
+            --bg-secondary: #151932;
+            --bg-sidebar: #0d1127;
+            --text-primary: #ffffff;
+            --text-secondary: #b8c5d6;
+            --text-sidebar: #e0e7ff;
+            --accent-primary: #00d4ff;
+            --accent-secondary: #b400ff;
+            --accent-tertiary: #00ff88;
+            --border-color: #1e2845;
+            --shadow-color: rgba(0, 212, 255, 0.3);
+            --hover-bg: rgba(0, 212, 255, 0.15);
+            --card-bg: rgba(21, 25, 50, 0.85);
+            --gradient-start: #00d4ff;
+            --gradient-end: #b400ff;
+            --glow-primary: #00d4ff;
+            --glow-secondary: #b400ff;
+            --glow-tertiary: #00ff88;
+        }
+
+        /* Tema Scuro Gaming (più intenso) */
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #0a0a0a;
+            --bg-sidebar: #050505;
+            --text-primary: #00ff88;
+            --text-secondary: #00d4ff;
+            --text-sidebar: #ffffff;
+            --accent-primary: #ff00ff;
+            --accent-secondary: #00ffff;
+            --accent-tertiary: #ffff00;
+            --border-color: #00d4ff;
+            --shadow-color: rgba(255, 0, 255, 0.5);
+            --hover-bg: rgba(255, 0, 255, 0.2);
+            --card-bg: rgba(0, 0, 0, 0.9);
+            --gradient-start: #ff00ff;
+            --gradient-end: #00ffff;
+            --glow-primary: #ff00ff;
+            --glow-secondary: #00ffff;
+            --glow-tertiary: #ffff00;
+        }
+
+        /* ============================================
+           RESET E STILI GLOBALI
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ============================================
+           SFONDO ANIMATO - STELLE E PARTICELLE
+           ============================================ */
+        .stars-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        /* Stelle piccole */
+        .stars {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: white;
+            box-shadow: 
+                0 0 2px white,
+                100px 200px white, 200px 300px white, 300px 100px white,
+                400px 450px white, 500px 150px white, 600px 350px white,
+                700px 250px white, 800px 400px white, 900px 180px white,
+                1000px 300px white, 1100px 450px white, 1200px 220px white,
+                50px 450px white, 150px 350px white, 250px 180px white,
+                350px 280px white, 450px 120px white, 550px 420px white,
+                650px 300px white, 750px 150px white, 850px 380px white,
+                950px 250px white, 1050px 400px white, 1150px 100px white;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Particelle luminose animate */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 20s infinite;
+        }
+
+        .particle:nth-child(1) {
+            width: 4px;
+            height: 4px;
+            background: var(--glow-primary);
+            box-shadow: 0 0 10px var(--glow-primary);
+            top: 10%;
+            left: 20%;
+            animation-duration: 15s;
+        }
+
+        .particle:nth-child(2) {
+            width: 6px;
+            height: 6px;
+            background: var(--glow-secondary);
+            box-shadow: 0 0 15px var(--glow-secondary);
+            top: 60%;
+            left: 80%;
+            animation-duration: 20s;
+            animation-delay: -5s;
+        }
+
+        .particle:nth-child(3) {
+            width: 3px;
+            height: 3px;
+            background: var(--glow-tertiary);
+            box-shadow: 0 0 8px var(--glow-tertiary);
+            top: 40%;
+            left: 50%;
+            animation-duration: 18s;
+            animation-delay: -10s;
+        }
+
+        .particle:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            background: var(--glow-primary);
+            box-shadow: 0 0 12px var(--glow-primary);
+            top: 80%;
+            left: 30%;
+            animation-duration: 22s;
+            animation-delay: -15s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+            }
+            25% {
+                transform: translate(100px, -100px) scale(1.2);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50px, -200px) scale(0.8);
+                opacity: 0.6;
+            }
+            75% {
+                transform: translate(150px, -150px) scale(1.1);
+                opacity: 0.9;
+            }
+        }
+
+        /* Gradiente animato */
+        .gradient-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(0, 212, 255, 0.1), 
+                rgba(180, 0, 255, 0.1), 
+                rgba(0, 255, 136, 0.1));
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Contenuto sopra lo sfondo */
+        header, .sidebar, .main-content, footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ============================================
+           HEADER GAMING CON GLOW
+           ============================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+            box-shadow: 0 4px 20px var(--shadow-color), 0 0 40px rgba(0, 212, 255, 0.2);
+            border-bottom: 2px solid var(--glow-primary);
+        }
+
+        .header-title {
+            font-family: 'Audiowide', cursive;
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 
+                0 0 10px var(--glow-primary),
+                0 0 20px var(--glow-primary),
+                0 0 30px var(--glow-primary);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                text-shadow: 
+                    0 0 10px var(--glow-primary),
+                    0 0 20px var(--glow-primary),
+                    0 0 30px var(--glow-primary);
+            }
+            50% {
+                text-shadow: 
+                    0 0 20px var(--glow-primary),
+                    0 0 40px var(--glow-primary),
+                    0 0 60px var(--glow-primary);
+            }
+        }
+
+        .header-title i {
+            font-size: 36px;
+            animation: rotate360 10s linear infinite;
+            filter: drop-shadow(0 0 10px var(--glow-tertiary));
+        }
+
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Controlli header (tema + lingua) */
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        /* Toggle Switch Gaming Style */
+        .theme-toggle, .lang-toggle {
+            position: relative;
+            width: 65px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+            border: 2px solid var(--glow-primary);
+            box-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        .theme-toggle:hover, .lang-toggle:hover {
+            box-shadow: 0 0 25px var(--glow-primary);
+            transform: scale(1.05);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            background: linear-gradient(135deg, var(--glow-primary), var(--glow-secondary));
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(33px);
+            background: linear-gradient(135deg, var(--glow-secondary), var(--glow-tertiary));
+        }
+
+        /* Toggle Lingua */
+        .lang-toggle {
+            width: 80px;
+        }
+
+        .lang-slider {
+            position: absolute;
+            width: 35px;
+            height: 26px;
+            background: linear-gradient(135deg, var(--glow-primary), var(--glow-secondary));
+            border-radius: 13px;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            color: white;
+            box-shadow: 0 0 15px var(--glow-primary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        [data-lang="en"] .lang-slider {
+            transform: translateX(42px);
+        }
+
+        /* ============================================
+           SIDEBAR MENU GAMING
+           ============================================ */
+        .sidebar {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            width: 300px;
+            height: calc(100vh - 80px);
+            background: var(--bg-sidebar);
+            border-right: 2px solid var(--glow-primary);
+            overflow-y: auto;
+            padding: 20px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            z-index: 999;
+            box-shadow: 5px 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        /* Scrollbar gaming */
+        .sidebar::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-sidebar);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--glow-primary), var(--glow-secondary));
+            border-radius: 4px;
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        /* Menu Items Gaming */
+        .menu-item {
+            padding: 14px 25px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 500;
+            border-left: 4px solid transparent;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-item:hover {
+            background: var(--hover-bg);
+            border-left-color: var(--glow-primary);
+            padding-left: 35px;
+            color: var(--glow-primary);
+            text-shadow: 0 0 10px var(--glow-primary);
+            box-shadow: inset 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+
+        .menu-item.active {
+            background: var(--hover-bg);
+            border-left-color: var(--glow-tertiary);
+            font-weight: 700;
+            color: var(--glow-tertiary);
+            text-shadow: 0 0 15px var(--glow-tertiary);
+            box-shadow: inset 0 0 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .menu-item i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        /* Sottomenu */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .submenu.open {
+            max-height: 600px;
+        }
+
+        .submenu-item {
+            padding: 12px 25px 12px 70px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 13px;
+            opacity: 0.9;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        .submenu-item:hover {
+            opacity: 1;
+            padding-left: 75px;
+            color: var(--glow-secondary);
+            text-shadow: 0 0 8px var(--glow-secondary);
+        }
+
+        .submenu-item i {
+            font-size: 14px;
+        }
+
+        .menu-arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+            font-size: 14px;
+        }
+
+        .menu-arrow.open {
+            transform: rotate(90deg);
+        }
+
+        /* ============================================
+           CONTENUTO PRINCIPALE GAMING
+           ============================================ */
+        .main-content {
+            margin-left: 300px;
+            margin-top: 80px;
+            padding: 40px;
+            min-height: calc(100vh - 80px);
+            transition: margin-left 0.3s ease;
+        }
+
+        .page {
+            display: none;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           TITOLI GAMING CON GLOW
+           ============================================ */
+        h1 {
+            font-family: 'Audiowide', cursive;
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 20px var(--glow-primary);
+            animation: titleGlow 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px var(--glow-primary));
+            }
+            50% {
+                filter: drop-shadow(0 0 30px var(--glow-primary));
+            }
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--glow-primary);
+            margin: 35px 0 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-shadow: 0 0 15px var(--glow-primary);
+        }
+
+        h2 i {
+            color: var(--glow-tertiary);
+            filter: drop-shadow(0 0 10px var(--glow-tertiary));
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 26px;
+            font-weight: 500;
+            color: var(--glow-secondary);
+            margin: 25px 0 15px;
+            text-shadow: 0 0 10px var(--glow-secondary);
+        }
+
+        /* Paragrafi */
+        p {
+            margin-bottom: 20px;
+            line-height: 1.9;
+            color: var(--text-secondary);
+            font-size: 17px;
+            font-weight: 400;
+        }
+
+        /* ============================================
+           CARD GAMING 3D
+           ============================================ */
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 35px;
+            margin-bottom: 35px;
+            box-shadow: 
+                0 8px 25px var(--shadow-color),
+                inset 0 0 50px rgba(0, 212, 255, 0.05);
+            border: 2px solid var(--glow-primary);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 
+                0 15px 40px var(--shadow-color),
+                0 0 50px rgba(0, 212, 255, 0.3),
+                inset 0 0 80px rgba(0, 212, 255, 0.1);
+            border-color: var(--glow-tertiary);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        /* Hero Section Gaming */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 20px;
+            padding: 70px 40px;
+            text-align: center;
+            margin-bottom: 45px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px var(--shadow-color),
+                0 0 60px rgba(0, 212, 255, 0.4);
+            border: 3px solid var(--glow-primary);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 255, 255, 0.03) 2px,
+                    rgba(255, 255, 255, 0.03) 4px
+                );
+            animation: scanlines 10s linear infinite;
+        }
+
+        @keyframes scanlines {
+            from { transform: translateY(0); }
+            to { transform: translateY(20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: #ffffff;
+            font-size: 56px;
+            -webkit-text-fill-color: #ffffff;
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.8),
+                0 0 40px var(--glow-primary);
+            margin-bottom: 25px;
+            animation: heroFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 35px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Immagini */
+        .hero-image, .image-container {
+            width: 100%;
+            max-width: 700px;
+            margin: 30px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 
+                0 10px 40px rgba(0, 0, 0, 0.6),
+                0 0 30px var(--glow-primary);
+            border: 3px solid var(--glow-primary);
+            transition: all 0.4s ease;
+        }
+
+        .hero-image:hover, .image-container:hover {
+            transform: scale(1.05);
+            box-shadow: 
+                0 15px 60px rgba(0, 0, 0, 0.8),
+                0 0 50px var(--glow-tertiary);
+            border-color: var(--glow-tertiary);
+        }
+
+        .hero-image img, .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: brightness(0.9) contrast(1.1);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-size: 15px;
+        }
+
+        /* Lista con icone */
+        .icon-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .icon-list li {
+            padding: 14px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+
+        .icon-list li:hover {
+            color: var(--glow-primary);
+            transform: translateX(10px);
+            text-shadow: 0 0 5px var(--glow-primary);
+        }
+
+        .icon-list li i {
+            color: var(--glow-primary);
+            font-size: 22px;
+            margin-top: 3px;
+            filter: drop-shadow(0 0 8px var(--glow-primary));
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 35px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+            gap: 25px;
+            margin: 35px 0;
+        }
+
+        /* Tech Card 3D Gaming */
+        .tech-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 28px;
+            border: 2px solid var(--border-color);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--glow-primary), var(--glow-secondary));
+            transition: width 0.4s ease;
+        }
+
+        .tech-card:hover {
+            transform: translateX(10px) scale(1.03);
+            border-color: var(--glow-tertiary);
+            box-shadow: 
+                0 8px 30px var(--shadow-color),
+                0 0 40px rgba(0, 212, 255, 0.3);
+        }
+
+        .tech-card:hover::before {
+            width: 100%;
+            opacity: 0.15;
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .tech-card i {
+            font-size: 32px;
+            color: var(--glow-primary);
+            filter: drop-shadow(0 0 10px var(--glow-primary));
+        }
+
+        /* Quote Gaming */
+        .quote {
+            background: var(--card-bg);
+            border-left: 5px solid var(--glow-primary);
+            padding: 30px 35px;
+            margin: 35px 0;
+            font-style: italic;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 
+                0 5px 20px rgba(0, 0, 0, 0.5),
+                inset 0 0 30px rgba(0, 212, 255, 0.1);
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 70px;
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            color: var(--glow-primary);
+            opacity: 0.4;
+            font-family: 'Georgia', serif;
+            text-shadow: 0 0 20px var(--glow-primary);
+        }
+
+        .quote p {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 19px;
+            color: var(--text-primary);
+        }
+
+        /* Badge Gaming */
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            margin: 6px 6px 6px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px var(--shadow-color);
+            border: 1px solid var(--glow-primary);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px var(--shadow-color);
+        }
+
+        /* Pro/Con Boxes */
+        .pro-con-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+            margin: 35px 0;
+        }
+
+        .pro-box, .con-box {
+            padding: 30px;
+            border-radius: 15px;
+            border: 3px solid;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .pro-box {
+            background: rgba(0, 255, 136, 0.08);
+            border-color: var(--glow-tertiary);
+            box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
+        }
+
+        .con-box {
+            background: rgba(255, 68, 68, 0.08);
+            border-color: #ff4444;
+            box-shadow: 0 5px 20px rgba(255, 68, 68, 0.3);
+        }
+
+        .pro-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(0, 255, 136, 0.5);
+        }
+
+        .con-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(255, 68, 68, 0.5);
+        }
+
+        .pro-box h3 {
+            color: var(--glow-tertiary);
+        }
+
+        .con-box h3 {
+            color: #ff4444;
+        }
+
+        .pro-box i {
+            color: var(--glow-tertiary);
+        }
+
+        .con-box i {
+            color: #ff4444;
+        }
+
+        /* Link sitografia */
+        .link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-list li {
+            margin: 18px 0;
+        }
+
+        .link-list a {
+            color: var(--glow-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .link-list a:hover {
+            background: var(--hover-bg);
+            transform: translateX(10px);
+            color: var(--glow-tertiary);
+            text-shadow: 0 0 10px var(--glow-tertiary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .link-list a i {
+            font-size: 18px;
+            filter: drop-shadow(0 0 5px currentColor);
+        }
+
+        /* Footer Gaming */
+        footer {
+            margin-left: 300px;
+            background: var(--bg-secondary);
+            border-top: 2px solid var(--glow-primary);
+            padding: 35px 40px;
+            text-align: center;
+            color: var(--text-secondary);
+            box-shadow: 0 -5px 20px rgba(0, 212, 255, 0.2);
+        }
+
+        footer p {
+            margin: 12px 0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--glow-primary), transparent);
+            margin: 45px 0;
+            box-shadow: 0 0 10px var(--glow-primary);
+        }
+
+        /* Tabella */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 35px 0;
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid var(--glow-primary);
+        }
+
+        th, td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 15px;
+            letter-spacing: 1px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        tr:hover {
+            background: var(--hover-bg);
+        }
+
+        /* ============================================
+           SCROLL TO TOP BUTTON GAMING
+           ============================================ */
+        .scroll-top {
+            position: fixed;
+            bottom: 35px;
+            right: 35px;
+            width: 55px;
+            height: 55px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            border: 3px solid var(--glow-primary);
+            border-radius: 50%;
+            font-size: 26px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 
+                0 5px 20px var(--shadow-color),
+                0 0 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 
+                0 10px 35px var(--shadow-color),
+                0 0 50px rgba(0, 212, 255, 0.6);
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+
+        /* Menu mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 90px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            border: 3px solid var(--glow-primary);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 
+                0 5px 20px var(--shadow-color),
+                0 0 30px rgba(0, 212, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 8px 30px var(--shadow-color),
+                0 0 50px rgba(0, 212, 255, 0.6);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 25px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .header-title {
+                font-size: 20px;
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            h2 {
+                font-size: 28px;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0 15px;
+                height: 70px;
+            }
+
+            .header-title {
+                font-size: 16px;
+                letter-spacing: 1px;
+            }
+
+            .header-title i {
+                font-size: 28px;
+            }
+
+            .main-content {
+                padding: 20px;
+                margin-top: 70px;
+            }
+
+            .sidebar {
+                top: 70px;
+                height: calc(100vh - 70px);
+            }
+
+            .menu-toggle {
+                top: 80px;
+            }
+
+            .hero {
+                padding: 50px 25px;
+            }
+
+            .card {
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+        }
+
+        /* ============================================
+           ANIMAZIONI EXTRA GAMING
+           ============================================ */
+        @keyframes neonPulse {
+            0%, 100% {
+                box-shadow: 0 0 10px var(--glow-primary);
+            }
+            50% {
+                box-shadow: 0 0 30px var(--glow-primary);
+            }
+        }
+
+        .glow-effect {
+            animation: neonPulse 2s infinite;
+        }
+    </style>
+</head>
+<body data-lang="it">
+
+    <!-- ============================================
+         SFONDO ANIMATO CON STELLE E PARTICELLE
+         ============================================ -->
+    <div class="stars-background">
+        <div class="stars"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    <div class="gradient-overlay"></div>
+
+    <!-- ============================================
+         HEADER CON TOGGLE TEMA E LINGUA
+         ============================================ -->
+    <header>
+        <div class="header-title">
+            <i class="fas fa-robot"></i>
+            <span data-translate="header-title">Robotica Aerospaziale</span>
+        </div>
+        <div class="header-controls">
+            <!-- Toggle Tema -->
+            <div class="theme-toggle" id="themeToggle">
+                <div class="toggle-slider">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </div>
+            </div>
+            <!-- Toggle Lingua IT/EN -->
+            <div class="lang-toggle" id="langToggle">
+                <div class="lang-slider" id="langSlider">IT</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         SIDEBAR MENU LATERALE
+         ============================================ -->
+    <aside class="sidebar" id="sidebar">
+        <div class="menu-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span data-translate="menu-home">Home</span>
+        </div>
+
+        <div class="menu-item" data-page="about">
+            <i class="fas fa-rocket"></i>
+            <span data-translate="menu-about">Cos'è</span>
+        </div>
+
+        <div class="menu-item" id="techMenu">
+            <i class="fas fa-microchip"></i>
+            <span data-translate="menu-tech">Tecnologie</span>
+            <i class="fas fa-chevron-right menu-arrow" id="techArrow"></i>
+        </div>
+        <div class="submenu" id="techSubmenu">
+            <div class="submenu-item" data-page="tech-sensori">
+                <i class="fas fa-satellite-dish"></i>
+                <span data-translate="submenu-sensors">Sensori</span>
+            </div>
+            <div class="submenu-item" data-page="tech-attuatori">
+                <i class="fas fa-cogs"></i>
+                <span data-translate="submenu-actuators">Attuatori</span>
+            </div>
+            <div class="submenu-item" data-page="tech-navigazione">
+                <i class="fas fa-compass"></i>
+                <span data-translate="submenu-navigation">Navigazione</span>
+            </div>
+            <div class="submenu-item" data-page="tech-ia">
+                <i class="fas fa-brain"></i>
+                <span data-translate="submenu-ai">IA</span>
+            </div>
+            <div class="submenu-item" data-page="tech-materiali">
+                <i class="fas fa-atom"></i>
+                <span data-translate="submenu-materials">Materiali</span>
+            </div>
+        </div>
+
+        <div class="menu-item" data-page="applications">
+            <i class="fas fa-space-shuttle"></i>
+            <span data-translate="menu-applications">Applicazioni</span>
+        </div>
+
+        <div class="menu-item" data-page="advantages">
+            <i class="fas fa-check-circle"></i>
+            <span data-translate="menu-advantages">Vantaggi</span>
+        </div>
+
+        <div class="menu-item" data-page="disadvantages">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span data-translate="menu-disadvantages">Svantaggi</span>
+        </div>
+
+        <div class="menu-item" data-page="future">
+            <i class="fas fa-satellite"></i>
+            <span data-translate="menu-future">Futuro</span>
+        </div>
+
+        <div class="menu-item" data-page="work">
+            <i class="fas fa-user-astronaut"></i>
+            <span data-translate="menu-work">Lavoro</span>
+        </div>
+
+        <div class="menu-item" data-page="conclusion">
+            <i class="fas fa-flag-checkered"></i>
+            <span data-translate="menu-conclusion">Conclusione</span>
+        </div>
+
+        <div class="menu-item" data-page="sitography">
+            <i class="fas fa-link"></i>
+            <span data-translate="menu-sitography">Sitografia</span>
+        </div>
+    </aside>
+
+    <!-- Toggle menu mobile -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- ============================================
+         CONTENUTO PRINCIPALE
+         ============================================ -->
+    <main class="main-content">
+
+        <!-- ========== HOMEPAGE ========== -->
+        <div class="page active" id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="float" data-translate="hero-title">Robotica Aerospaziale</h1>
+                    <p data-translate="hero-subtitle">Portare l'umanità oltre la Terra attraverso la tecnologia robotica avanzata</p>
+                    
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&h=500&fit=crop" alt="Mars Rover Perseverance">
+                    </div>
+                    
+                    <div class="image-caption" data-translate="hero-caption">
+                        Mars Rover Perseverance - Un esempio di eccellenza nella robotica aerospaziale
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> <span data-translate="home-intro-title">Introduzione Generale</span></h2>
+                <p data-translate="home-intro-p1">
+                    La <strong>robotica aerospaziale</strong> porta i robot oltre la Terra, in ambienti dove l'uomo non può sopravvivere. 
+                    È la tecnologia che rende possibili missioni su Marte, manutenzione di satelliti, e attività sulla Stazione Spaziale Internazionale (ISS).
+                </p>
+                <p data-translate="home-intro-p2">
+                    Questa disciplina nasce per rispondere a due esigenze fondamentali:
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong data-translate="home-need1-title">Ridurre i rischi per gli astronauti:</strong> <span data-translate="home-need1-desc">Operare in ambienti ostili senza mettere a repentaglio vite umane</span></span>
+                    </li>
+                    <li>
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span><strong data-translate="home-need2-title">Estendere le capacità umane:</strong> <span data-translate="home-need2-desc">Raggiungere luoghi e compiere operazioni impossibili per l'uomo</span></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <p data-translate="home-quote">
+                    "Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3><i class="fas fa-globe"></i> <span data-translate="home-why-title">Perché è importante?</span></h3>
+                    <p data-translate="home-why-text">
+                        L'esplorazione spaziale rappresenta il futuro dell'umanità. La robotica aerospaziale ci permette di esplorare 
+                        pianeti lontani, studiare fenomeni cosmici, e sviluppare tecnologie che migliorano anche la vita sulla Terra.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> <span data-translate="home-applications-title">Applicazioni Concrete</span></h3>
+                    <p data-translate="home-applications-text">
+                        Dalla manutenzione di satelliti in orbita alla ricerca di forme di vita su Marte, dalla costruzione di 
+                        strutture lunari all'assistenza agli astronauti sulla ISS, la robotica aerospaziale è già realtà.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== COS'È LA ROBOTICA AEROSPAZIALE ========== -->
+        <div class="page" id="about">
+            <h1 data-translate="about-title">Cos'è la Robotica Aerospaziale</h1>
+            
+            <div class="card">
+                <p data-translate="about-intro">
+                    La <strong>robotica aerospaziale</strong> è un ramo specializzato dell'ingegneria che progetta, sviluppa e implementa 
+                    sistemi robotici destinati all'esplorazione e alle operazioni nello spazio. Questi robot devono operare in condizioni 
+                    estreme: temperature che variano da -150°C a +120°C, radiazioni intense, vuoto assoluto, e comunicazioni con ritardi di 
+                    diversi minuti.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> <span data-translate="about-characteristics-title">Caratteristiche Fondamentali</span></h2>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-robot"></i> <span data-translate="about-autonomy-title">Autonomia</span></h3>
+                        <p data-translate="about-autonomy-text">
+                            I robot spaziali devono essere in grado di prendere decisioni autonome a causa dei ritardi nelle comunicazioni 
+                            con la Terra (fino a 22 minuti per Marte).
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-virus"></i> <span data-translate="about-resistance-title">Resistenza</span></h3>
+                        <p data-translate="about-resistance-text">
+                            Materiali e componenti devono resistere a radiazioni cosmiche, micro-meteoriti, variazioni termiche estreme 
+                            e assenza di atmosfera.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-battery-full"></i> <span data-translate="about-efficiency-title">Efficienza Energetica</span></h3>
+                        <p data-translate="about-efficiency-text">
+                            Utilizzo ottimizzato dell'energia proveniente da pannelli solari o generatori termoelettrici a radioisotopi 
+                            (RTG) per missioni di lunga durata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&h=600&fit=crop" alt="Space Station">
+                <div class="image-caption" data-translate="about-image-caption">Stazione Spaziale Internazionale - Un laboratorio orbitante dove la robotica è essenziale</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: SENSORI ========== -->
+        <div class="page" id="tech-sensori">
+            <h1 data-translate="sensors-title">Sensori Avanzati</h1>
+            
+            <div class="card">
+                <p data-translate="sensors-intro">
+                    I <strong>sensori</strong> sono gli "occhi e le orecchie" dei robot spaziali. Permettono di raccogliere dati 
+                    sull'ambiente circostante, navigare autonomamente, e compiere analisi scientifiche dettagliate.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="tech-card">
+                    <h3><i class="fas fa-camera"></i> <span data-translate="sensors-cameras-title">Telecamere HD e Multispettrali</span></h3>
+                    <p data-translate="sensors-cameras-text">
+                        Telecamere ad alta definizione catturano immagini dettagliate del terreno. 
+                        Le telecamere multispettrali analizzano la luce in diverse bande dello spettro elettromagnetico.
+                    </p>
+                    <span class="badge">Perseverance</span>
+                    <span class="badge">Mastcam-Z</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-broadcast-tower"></i> <span data-translate="sensors-lidar-title">LIDAR</span></h3>
+                    <p data-translate="sensors-lidar-text">
+                        Il LIDAR utilizza impulsi laser per misurare distanze e creare mappe 3D precise dell'ambiente.
+                    </p>
+                    <span class="badge">Navigazione</span>
+                    <span class="badge">Mapping 3D</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-thermometer-half"></i> <span data-translate="sensors-thermal-title">Sensori Termici</span></h3>
+                    <p data-translate="sensors-thermal-text">
+                        Misurano la temperatura superficiale di rocce, terreno e atmosfera.
+                    </p>
+                    <span class="badge">THEMIS</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-vial"></i> <span data-translate="sensors-spectrometers-title">Spettrometri</span></h3>
+                    <p data-translate="sensors-spectrometers-text">
+                        Analizzano la composizione chimica di rocce, suolo e atmosfera.
+                    </p>
+                    <span class="badge">SHERLOC</span>
+                    <span class="badge">PIXL</span>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&h=600&fit=crop" alt="Sensors">
+                <div class="image-caption" data-translate="sensors-image-caption">Sensori avanzati per l'esplorazione spaziale</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: ATTUATORI ========== -->
+        <div class="page" id="tech-attuatori">
+            <h1 data-translate="actuators-title">Attuatori e Bracci Robotici</h1>
+            
+            <div class="card">
+                <p data-translate="actuators-intro">
+                    Gli <strong>attuatori</strong> sono i "muscoli" dei robot spaziali. Convertono energia elettrica in movimento meccanico.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-hand-rock"></i> <span data-translate="actuators-robotic-arms-title">Bracci Robotici Spaziali</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-satellite"></i> Canadarm2</h3>
+                        <p data-translate="actuators-canadarm-text">
+                            Il Canadarm2 sulla ISS è lungo 17,6 metri e può manipolare carichi fino a 116.000 kg.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> <span data-translate="actuators-canadarm-dof">7 gradi di libertà</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="actuators-canadarm-precision">Precisione millimetrica</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-wrench"></i> Dextre</h3>
+                        <p data-translate="actuators-dextre-text">
+                            Robot "tuttofare" a due bracci che esegue riparazioni e manutenzione esterna della ISS.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> <span data-translate="actuators-dextre-arms">Due bracci a 7 gradi di libertà</span></li>
+                            <li><i class="fas fa-check"></i> <span data-translate="actuators-dextre-cameras">Telecamere integrate</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&h=600&fit=crop" alt="Robotic Arm">
+                <div class="image-caption" data-translate="actuators-image-caption">Braccio robotico nello spazio</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: NAVIGAZIONE ========== -->
+        <div class="page" id="tech-navigazione">
+            <h1 data-translate="navigation-title">Navigazione Autonoma</h1>
+            
+            <div class="card">
+                <p data-translate="navigation-intro">
+                    La <strong>navigazione autonoma</strong> permette ai robot spaziali di muoversi ed esplorare senza controllo umano costante.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-route"></i> <span data-translate="navigation-systems-title">Sistemi di Navigazione</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-eye"></i> Visual Odometry</h3>
+                        <p data-translate="navigation-visual-text">
+                            Analisi continua di immagini per stimare la posizione del robot.
+                        </p>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-map-marked-alt"></i> SLAM</h3>
+                        <p data-translate="navigation-slam-text">
+                            Algoritmi che permettono al robot di costruire una mappa dell'ambiente sconosciuto.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: IA ========== -->
+        <div class="page" id="tech-ia">
+            <h1 data-translate="ai-title">Intelligenza Artificiale</h1>
+            
+            <div class="card">
+                <p data-translate="ai-intro">
+                    L'<strong>Intelligenza Artificiale</strong> è il cervello dei robot spaziali moderni.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-robot"></i> <span data-translate="ai-applications-title">Applicazioni dell'IA</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-image"></i> Computer Vision</h3>
+                        <p data-translate="ai-vision-text">
+                            Analisi automatica di immagini per identificare rocce interessanti e formazioni geologiche.
+                        </p>
+                        <span class="badge">Deep Learning</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-lightbulb"></i> Decision Making</h3>
+                        <p data-translate="ai-decision-text">
+                            Sistemi di IA che prendono decisioni complesse in modo autonomo.
+                        </p>
+                        <span class="badge">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop" alt="AI">
+                <div class="image-caption" data-translate="ai-image-caption">Intelligenza Artificiale - Il futuro dell'esplorazione autonoma</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: MATERIALI ========== -->
+        <div class="page" id="tech-materiali">
+            <h1 data-translate="materials-title">Materiali Avanzati</h1>
+            
+            <div class="card">
+                <p data-translate="materials-intro">
+                    I <strong>materiali avanzati</strong> sono essenziali per garantire che i robot spaziali sopravvivano in ambienti estremi.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-atom"></i> <span data-translate="materials-key-title">Materiali Chiave</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-alt"></i> <span data-translate="materials-titanium-title">Titanio</span></h3>
+                        <p data-translate="materials-titanium-text">
+                            Eccellente rapporto resistenza/peso, resistenza alla corrosione e alle temperature estreme.
+                        </p>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-feather"></i> <span data-translate="materials-carbon-title">Fibra di Carbonio</span></h3>
+                        <p data-translate="materials-carbon-text">
+                            Materiale composito ultra-leggero e resistente.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== APPLICAZIONI ========== -->
+        <div class="page" id="applications">
+            <h1 data-translate="applications-title">Applicazioni nello Spazio</h1>
+            
+            <div class="card">
+                <h2><i class="fas fa-mars"></i> <span data-translate="applications-rovers-title">Rover su Marte</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-microscope"></i> Curiosity</h3>
+                        <p data-translate="applications-curiosity-text">
+                            Atterrato nel 2012, ha percorso oltre 28 km sul cratere Gale.
+                        </p>
+                        <span class="badge" data-translate="applications-curiosity-badge1">Attivo dal 2012</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-dna"></i> Perseverance</h3>
+                        <p data-translate="applications-perseverance-text">
+                            Atterrato nel 2021, rappresenta il culmine della tecnologia robotica.
+                        </p>
+                        <span class="badge" data-translate="applications-perseverance-badge1">Attivo dal 2021</span>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1200&h=600&fit=crop" alt="Mars Rover">
+                    <div class="image-caption" data-translate="applications-image-caption">Rover marziano sul Pianeta Rosso</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== VANTAGGI ========== -->
+        <div class="page" id="advantages">
+            <h1 data-translate="advantages-title">Vantaggi della Robotica Aerospaziale</h1>
+            
+            <div class="pro-con-container">
+                <div class="pro-box">
+                    <h3><i class="fas fa-shield-alt"></i> <span data-translate="advantages-safety-title">Sicurezza degli Astronauti</span></h3>
+                    <p data-translate="advantages-safety-text">
+                        I robot possono operare in ambienti letali per l'uomo: radiazioni intense, vuoto assoluto, temperature estreme.
+                    </p>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-clock"></i> <span data-translate="advantages-247-title">Operazioni Continue 24/7</span></h3>
+                    <p data-translate="advantages-247-text">
+                        I robot non necessitano di riposo, cibo, o aria. Possono lavorare ininterrottamente per anni.
+                    </p>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-crosshairs"></i> <span data-translate="advantages-precision-title">Precisione Estrema</span></h3>
+                    <p data-translate="advantages-precision-text">
+                        I bracci robotici possono eseguire operazioni con precisione millimetrica.
+                    </p>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-dollar-sign"></i> <span data-translate="advantages-cost-title">Riduzione Costi</span></h3>
+                    <p data-translate="advantages-cost-text">
+                        I robot sono più economici delle missioni umane a lungo termine.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== SVANTAGGI ========== -->
+        <div class="page" id="disadvantages">
+            <h1 data-translate="disadvantages-title">Svantaggi e Questioni Etiche</h1>
+            
+            <div class="pro-con-container">
+                <div class="con-box">
+                    <h3><i class="fas fa-money-bill-wave"></i> <span data-translate="disadvantages-costs-title">Costi Iniziali Altissimi</span></h3>
+                    <p data-translate="disadvantages-costs-text">
+                        Lo sviluppo di robot spaziali richiede investimenti miliardari.
+                    </p>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-tools"></i> <span data-translate="disadvantages-maintenance-title">Manutenzione Difficile</span></h3>
+                    <p data-translate="disadvantages-maintenance-text">
+                        Un guasto su Marte significa fine missione. Non è possibile inviare tecnici.
+                    </p>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-microchip"></i> <span data-translate="disadvantages-dependency-title">Dipendenza Tecnologica</span></h3>
+                    <p data-translate="disadvantages-dependency-text">
+                        L'eccessivo affidamento sulla robotica potrebbe ridurre le competenze umane.
+                    </p>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-balance-scale"></i> <span data-translate="disadvantages-ethics-title">Questioni Etiche</span></h3>
+                    <p data-translate="disadvantages-ethics-text">
+                        Chi è responsabile delle decisioni autonome? Come gestiamo la contaminazione planetaria?
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== FUTURO ========== -->
+        <div class="page" id="future">
+            <h1 data-translate="future-title">Il Futuro della Robotica Aerospaziale</h1>
+            
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> <span data-translate="future-swarm-title">Swarm Robotics</span></h2>
+                <p data-translate="future-swarm-text">
+                    La robotica a sciame prevede l'utilizzo di decine o centinaia di piccoli robot che lavorano insieme.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-cubes"></i> <span data-translate="future-modular-title">Robot Modulari</span></h2>
+                <p data-translate="future-modular-text">
+                    Robot costituiti da unità intercambiabili che possono essere riconfigurate per diverse missioni.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-brain"></i> <span data-translate="future-ai-title">IA Autonoma Avanzata</span></h2>
+                <p data-translate="future-ai-text">
+                    Robot con intelligenza artificiale generale, capaci di ragionamento complesso e creatività.
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=600&fit=crop" alt="Europa">
+                <div class="image-caption" data-translate="future-image-caption">Europa - Luna di Giove, obiettivo futuro dell'esplorazione robotica</div>
+            </div>
+        </div>
+
+        <!-- ========== LAVORO ========== -->
+        <div class="page" id="work">
+            <h1 data-translate="work-title">Impatto sul Mondo del Lavoro</h1>
+            
+            <div class="card">
+                <h2><i class="fas fa-briefcase"></i> <span data-translate="work-professions-title">Nuove Professioni Emergenti</span></h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-robot"></i> <span data-translate="work-engineer-title">Ingegnere Robotico Spaziale</span></h3>
+                        <p data-translate="work-engineer-text">
+                            Progettazione, sviluppo e test di sistemi robotici per applicazioni spaziali.
+                        </p>
+                        <span class="badge" data-translate="work-engineer-badge1">Ingegneria</span>
+                        <span class="badge" data-translate="work-engineer-badge2">Robotica</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-brain"></i> <span data-translate="work-ai-title">Programmatore IA</span></h3>
+                        <p data-translate="work-ai-text">
+                            Sviluppo algoritmi di intelligenza artificiale per navigazione autonoma e decision-making.
+                        </p>
+                        <span class="badge">AI/ML</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-gamepad"></i> <span data-translate="work-operator-title">Operatore Robotico</span></h3>
+                        <p data-translate="work-operator-text">
+                            Controllo e supervisione di robot spaziali dalla Terra.
+                        </p>
+                        <span class="badge" data-translate="work-operator-badge">Controllo Missione</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-alt"></i> <span data-translate="work-cyber-title">Cybersecurity Spaziale</span></h3>
+                        <p data-translate="work-cyber-text">
+                            Protezione sistemi robotici spaziali da minacce cyber.
+                        </p>
+                        <span class="badge">Cybersecurity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== CONCLUSIONE ========== -->
+        <div class="page" id="conclusion">
+            <h1 data-translate="conclusion-title">Conclusione</h1>
+            
+            <div class="hero" style="margin-top: 0;">
+                <div class="hero-content">
+                    <h1 data-translate="conclusion-hero-title">L'Era della Collaborazione Uomo-Robot</h1>
+                    <p data-translate="conclusion-hero-text">
+                        La robotica aerospaziale rappresenta uno dei campi tecnologici più affascinanti e promettenti del XXI secolo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> <span data-translate="conclusion-synthesis-title">Sintesi Finale</span></h2>
+                <p data-translate="conclusion-synthesis-text">
+                    La robotica aerospaziale non è semplicemente una branca dell'ingegneria, ma un catalizzatore fondamentale 
+                    per il futuro dell'esplorazione spaziale e dell'umanità stessa.
+                </p>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); color: white;">
+                <h2 style="color: white;"><i class="fas fa-rocket"></i> <span data-translate="conclusion-message-title">Il Messaggio Finale</span></h2>
+                <p style="color: rgba(255,255,255,0.95); font-size: 18px;" data-translate="conclusion-message-text">
+                    La robotica aerospaziale è molto più di circuiti e algoritmi: è l'incarnazione del sogno umano di esplorare l'ignoto.
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&h=600&fit=crop" alt="Earth from Space">
+                <div class="image-caption" data-translate="conclusion-image-caption">La Terra vista dallo spazio</div>
+            </div>
+        </div>
+
+        <!-- ========== SITOGRAFIA ========== -->
+        <div class="page" id="sitography">
+            <h1 data-translate="sitography-title">Sitografia e Risorse</h1>
+            
+            <div class="card">
+                <h2><i class="fas fa-flag"></i> <span data-translate="sitography-italian-title">Fonti Italiane</span></h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.tech4future.info/" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Tech4Future - Innovazione e tecnologia spaziale</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.asi.it/" target="_blank">
+                            <i class="fas fa-satellite"></i>
+                            <span>ASI - Agenzia Spaziale Italiana</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-globe-americas"></i> <span data-translate="sitography-international-title">Fonti Internazionali</span></h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.nasa.gov/" target="_blank">
+                            <i class="fas fa-rocket"></i>
+                            <span>NASA - National Aeronautics and Space Administration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://mars.nasa.gov/" target="_blank">
+                            <i class="fas fa-mars"></i>
+                            <span>NASA Mars Exploration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.esa.int/" target="_blank">
+                            <i class="fas fa-globe-europe"></i>
+                            <span>ESA - European Space Agency</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <p><strong data-translate="footer-title">Robotica Aerospaziale</strong> - <span data-translate="footer-subtitle">Esplorazione del Futuro</span></p>
+        <p data-translate="footer-description">Un viaggio attraverso la tecnologia che porta l'umanità oltre la Terra</p>
+        <p style="margin-top: 20px; font-size: 14px;">
+            <i class="fas fa-code"></i> <span data-translate="footer-developed">Sviluppato con passione</span> | 
+            <i class="fas fa-calendar"></i> 2024
+        </p>
+    </footer>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================
+         JAVASCRIPT - FUNZIONALITÀ E TRADUZIONI
+         ============================================ -->
+    <script>
+        // ==========================================
+        // SISTEMA DI TRADUZIONE IT/EN
+        // ==========================================
+        
+        const translations = {
+            it: {
+                'header-title': 'Robotica Aerospaziale',
+                'menu-home': 'Home',
+                'menu-about': 'Cos\'è',
+                'menu-tech': 'Tecnologie',
+                'submenu-sensors': 'Sensori',
+                'submenu-actuators': 'Attuatori',
+                'submenu-navigation': 'Navigazione',
+                'submenu-ai': 'IA',
+                'submenu-materials': 'Materiali',
+                'menu-applications': 'Applicazioni',
+                'menu-advantages': 'Vantaggi',
+                'menu-disadvantages': 'Svantaggi',
+                'menu-future': 'Futuro',
+                'menu-work': 'Lavoro',
+                'menu-conclusion': 'Conclusione',
+                'menu-sitography': 'Sitografia',
+                'hero-title': 'Robotica Aerospaziale',
+                'hero-subtitle': 'Portare l\'umanità oltre la Terra attraverso la tecnologia robotica avanzata',
+                'hero-caption': 'Mars Rover Perseverance - Un esempio di eccellenza nella robotica aerospaziale',
+                'home-intro-title': 'Introduzione Generale',
+                'home-intro-p1': 'La robotica aerospaziale porta i robot oltre la Terra, in ambienti dove l\'uomo non può sopravvivere. È la tecnologia che rende possibili missioni su Marte, manutenzione di satelliti, e attività sulla Stazione Spaziale Internazionale (ISS).',
+                'home-intro-p2': 'Questa disciplina nasce per rispondere a due esigenze fondamentali:',
+                'home-need1-title': 'Ridurre i rischi per gli astronauti:',
+                'home-need1-desc': 'Operare in ambienti ostili senza mettere a repentaglio vite umane',
+                'home-need2-title': 'Estendere le capacità umane:',
+                'home-need2-desc': 'Raggiungere luoghi e compiere operazioni impossibili per l\'uomo',
+                'home-quote': '"Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."',
+                'home-why-title': 'Perché è importante?',
+                'home-why-text': 'L\'esplorazione spaziale rappresenta il futuro dell\'umanità. La robotica aerospaziale ci permette di esplorare pianeti lontani, studiare fenomeni cosmici, e sviluppare tecnologie che migliorano anche la vita sulla Terra.',
+                'home-applications-title': 'Applicazioni Concrete',
+                'home-applications-text': 'Dalla manutenzione di satelliti in orbita alla ricerca di forme di vita su Marte, dalla costruzione di strutture lunari all\'assistenza agli astronauti sulla ISS, la robotica aerospaziale è già realtà.',
+                'about-title': 'Cos\'è la Robotica Aerospaziale',
+                'about-intro': 'La robotica aerospaziale è un ramo specializzato dell\'ingegneria che progetta, sviluppa e implementa sistemi robotici destinati all\'esplorazione e alle operazioni nello spazio. Questi robot devono operare in condizioni estreme: temperature che variano da -150°C a +120°C, radiazioni intense, vuoto assoluto, e comunicazioni con ritardi di diversi minuti.',
+                'about-characteristics-title': 'Caratteristiche Fondamentali',
+                'about-autonomy-title': 'Autonomia',
+                'about-autonomy-text': 'I robot spaziali devono essere in grado di prendere decisioni autonome a causa dei ritardi nelle comunicazioni con la Terra (fino a 22 minuti per Marte).',
+                'about-resistance-title': 'Resistenza',
+                'about-resistance-text': 'Materiali e componenti devono resistere a radiazioni cosmiche, micro-meteoriti, variazioni termiche estreme e assenza di atmosfera.',
+                'about-efficiency-title': 'Efficienza Energetica',
+                'about-efficiency-text': 'Utilizzo ottimizzato dell\'energia proveniente da pannelli solari o generatori termoelettrici a radioisotopi (RTG) per missioni di lunga durata.',
+                'about-image-caption': 'Stazione Spaziale Internazionale - Un laboratorio orbitante dove la robotica è essenziale',
+                'sensors-title': 'Sensori Avanzati',
+                'sensors-intro': 'I sensori sono gli "occhi e le orecchie" dei robot spaziali. Permettono di raccogliere dati sull\'ambiente circostante, navigare autonomamente, e compiere analisi scientifiche dettagliate.',
+                'sensors-cameras-title': 'Telecamere HD e Multispettrali',
+                'sensors-cameras-text': 'Telecamere ad alta definizione catturano immagini dettagliate del terreno. Le telecamere multispettrali analizzano la luce in diverse bande dello spettro elettromagnetico.',
+                'sensors-lidar-title': 'LIDAR',
+                'sensors-lidar-text': 'Il LIDAR utilizza impulsi laser per misurare distanze e creare mappe 3D precise dell\'ambiente.',
+                'sensors-thermal-title': 'Sensori Termici',
+                'sensors-thermal-text': 'Misurano la temperatura superficiale di rocce, terreno e atmosfera.',
+                'sensors-spectrometers-title': 'Spettrometri',
+                'sensors-spectrometers-text': 'Analizzano la composizione chimica di rocce, suolo e atmosfera.',
+                'sensors-image-caption': 'Sensori avanzati per l\'esplorazione spaziale',
+                'actuators-title': 'Attuatori e Bracci Robotici',
+                'actuators-intro': 'Gli attuatori sono i "muscoli" dei robot spaziali. Convertono energia elettrica in movimento meccanico.',
+                'actuators-robotic-arms-title': 'Bracci Robotici Spaziali',
+                'actuators-canadarm-text': 'Il Canadarm2 sulla ISS è lungo 17,6 metri e può manipolare carichi fino a 116.000 kg.',
+                'actuators-canadarm-dof': '7 gradi di libertà',
+                'actuators-canadarm-precision': 'Precisione millimetrica',
+                'actuators-dextre-text': 'Robot "tuttofare" a due bracci che esegue riparazioni e manutenzione esterna della ISS.',
+                'actuators-dextre-arms': 'Due bracci a 7 gradi di libertà',
+                'actuators-dextre-cameras': 'Telecamere integrate',
+                'actuators-image-caption': 'Braccio robotico nello spazio',
+                'navigation-title': 'Navigazione Autonoma',
+                'navigation-intro': 'La navigazione autonoma permette ai robot spaziali di muoversi ed esplorare senza controllo umano costante.',
+                'navigation-systems-title': 'Sistemi di Navigazione',
+                'navigation-visual-text': 'Analisi continua di immagini per stimare la posizione del robot.',
+                'navigation-slam-text': 'Algoritmi che permettono al robot di costruire una mappa dell\'ambiente sconosciuto.',
+                'ai-title': 'Intelligenza Artificiale',
+                'ai-intro': 'L\'Intelligenza Artificiale è il cervello dei robot spaziali moderni.',
+                'ai-applications-title': 'Applicazioni dell\'IA',
+                'ai-vision-text': 'Analisi automatica di immagini per identificare rocce interessanti e formazioni geologiche.',
+                'ai-decision-text': 'Sistemi di IA che prendono decisioni complesse in modo autonomo.',
+                'ai-image-caption': 'Intelligenza Artificiale - Il futuro dell\'esplorazione autonoma',
+                'materials-title': 'Materiali Avanzati',
+                'materials-intro': 'I materiali avanzati sono essenziali per garantire che i robot spaziali sopravvivano in ambienti estremi.',
+                'materials-key-title': 'Materiali Chiave',
+                'materials-titanium-title': 'Titanio',
+                'materials-titanium-text': 'Eccellente rapporto resistenza/peso, resistenza alla corrosione e alle temperature estreme.',
+                'materials-carbon-title': 'Fibra di Carbonio',
+                'materials-carbon-text': 'Materiale composito ultra-leggero e resistente.',
+                'applications-title': 'Applicazioni nello Spazio',
+                'applications-rovers-title': 'Rover su Marte',
+                'applications-curiosity-text': 'Atterrato nel 2012, ha percorso oltre 28 km sul cratere Gale.',
+                'applications-curiosity-badge1': 'Attivo dal 2012',
+                'applications-perseverance-text': 'Atterrato nel 2021, rappresenta il culmine della tecnologia robotica.',
+                'applications-perseverance-badge1': 'Attivo dal 2021',
+                'applications-image-caption': 'Rover marziano sul Pianeta Rosso',
+                'advantages-title': 'Vantaggi della Robotica Aerospaziale',
+                'advantages-safety-title': 'Sicurezza degli Astronauti',
+                'advantages-safety-text': 'I robot possono operare in ambienti letali per l\'uomo: radiazioni intense, vuoto assoluto, temperature estreme.',
+                'advantages-247-title': 'Operazioni Continue 24/7',
+                'advantages-247-text': 'I robot non necessitano di riposo, cibo, o aria. Possono lavorare ininterrottamente per anni.',
+                'advantages-precision-title': 'Precisione Estrema',
+                'advantages-precision-text': 'I bracci robotici possono eseguire operazioni con precisione millimetrica.',
+                'advantages-cost-title': 'Riduzione Costi',
+                'advantages-cost-text': 'I robot sono più economici delle missioni umane a lungo termine.',
+                'disadvantages-title': 'Svantaggi e Questioni Etiche',
+                'disadvantages-costs-title': 'Costi Iniziali Altissimi',
+                'disadvantages-costs-text': 'Lo sviluppo di robot spaziali richiede investimenti miliardari.',
+                'disadvantages-maintenance-title': 'Manutenzione Difficile',
+                'disadvantages-maintenance-text': 'Un guasto su Marte significa fine missione. Non è possibile inviare tecnici.',
+                'disadvantages-dependency-title': 'Dipendenza Tecnologica',
+                'disadvantages-dependency-text': 'L\'eccessivo affidamento sulla robotica potrebbe ridurre le competenze umane.',
+                'disadvantages-ethics-title': 'Questioni Etiche',
+                'disadvantages-ethics-text': 'Chi è responsabile delle decisioni autonome? Come gestiamo la contaminazione planetaria?',
+                'future-title': 'Il Futuro della Robotica Aerospaziale',
+                'future-swarm-title': 'Swarm Robotics',
+                'future-swarm-text': 'La robotica a sciame prevede l\'utilizzo di decine o centinaia di piccoli robot che lavorano insieme.',
+                'future-modular-title': 'Robot Modulari',
+                'future-modular-text': 'Robot costituiti da unità intercambiabili che possono essere riconfigurate per diverse missioni.',
+                'future-ai-title': 'IA Autonoma Avanzata',
+                'future-ai-text': 'Robot con intelligenza artificiale generale, capaci di ragionamento complesso e creatività.',
+                'future-image-caption': 'Europa - Luna di Giove, obiettivo futuro dell\'esplorazione robotica',
+                'work-title': 'Impatto sul Mondo del Lavoro',
+                'work-professions-title': 'Nuove Professioni Emergenti',
+                'work-engineer-title': 'Ingegnere Robotico Spaziale',
+                'work-engineer-text': 'Progettazione, sviluppo e test di sistemi robotici per applicazioni spaziali.',
+                'work-engineer-badge1': 'Ingegneria',
+                'work-engineer-badge2': 'Robotica',
+                'work-ai-title': 'Programmatore IA',
+                'work-ai-text': 'Sviluppo algoritmi di intelligenza artificiale per navigazione autonoma e decision-making.',
+                'work-operator-title': 'Operatore Robotico',
+                'work-operator-text': 'Controllo e supervisione di robot spaziali dalla Terra.',
+                'work-operator-badge': 'Controllo Missione',
+                'work-cyber-title': 'Cybersecurity Spaziale',
+                'work-cyber-text': 'Protezione sistemi robotici spaziali da minacce cyber.',
+                'conclusion-title': 'Conclusione',
+                'conclusion-hero-title': 'L\'Era della Collaborazione Uomo-Robot',
+                'conclusion-hero-text': 'La robotica aerospaziale rappresenta uno dei campi tecnologici più affascinanti e promettenti del XXI secolo.',
+                'conclusion-synthesis-title': 'Sintesi Finale',
+                'conclusion-synthesis-text': 'La robotica aerospaziale non è semplicemente una branca dell\'ingegneria, ma un catalizzatore fondamentale per il futuro dell\'esplorazione spaziale e dell\'umanità stessa.',
+                'conclusion-message-title': 'Il Messaggio Finale',
+                'conclusion-message-text': 'La robotica aerospaziale è molto più di circuiti e algoritmi: è l\'incarnazione del sogno umano di esplorare l\'ignoto.',
+                'conclusion-image-caption': 'La Terra vista dallo spazio',
+                'sitography-title': 'Sitografia e Risorse',
+                'sitography-italian-title': 'Fonti Italiane',
+                'sitography-international-title': 'Fonti Internazionali',
+                'footer-title': 'Robotica Aerospaziale',
+                'footer-subtitle': 'Esplorazione del Futuro',
+                'footer-description': 'Un viaggio attraverso la tecnologia che porta l\'umanità oltre la Terra',
+                'footer-developed': 'Sviluppato con passione'
+            },
+            en: {
+                'header-title': 'Aerospace Robotics',
+                'menu-home': 'Home',
+                'menu-about': 'What is it',
+                'menu-tech': 'Technologies',
+                'submenu-sensors': 'Sensors',
+                'submenu-actuators': 'Actuators',
+                'submenu-navigation': 'Navigation',
+                'submenu-ai': 'AI',
+                'submenu-materials': 'Materials',
+                'menu-applications': 'Applications',
+                'menu-advantages': 'Advantages',
+                'menu-disadvantages': 'Disadvantages',
+                'menu-future': 'Future',
+                'menu-work': 'Work',
+                'menu-conclusion': 'Conclusion',
+                'menu-sitography': 'Sitography',
+                'hero-title': 'Aerospace Robotics',
+                'hero-subtitle': 'Taking humanity beyond Earth through advanced robotic technology',
+                'hero-caption': 'Mars Rover Perseverance - An example of excellence in aerospace robotics',
+                'home-intro-title': 'General Introduction',
+                'home-intro-p1': 'Aerospace robotics takes robots beyond Earth, into environments where humans cannot survive. It is the technology that makes missions to Mars, satellite maintenance, and activities on the International Space Station (ISS) possible.',
+                'home-intro-p2': 'This discipline was born to meet two fundamental needs:',
+                'home-need1-title': 'Reduce risks for astronauts:',
+                'home-need1-desc': 'Operate in hostile environments without endangering human lives',
+                'home-need2-title': 'Extend human capabilities:',
+                'home-need2-desc': 'Reach places and perform operations impossible for humans',
+                'home-quote': '"Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."',
+                'home-why-title': 'Why is it important?',
+                'home-why-text': 'Space exploration represents the future of humanity. Aerospace robotics allows us to explore distant planets, study cosmic phenomena, and develop technologies that also improve life on Earth.',
+                'home-applications-title': 'Concrete Applications',
+                'home-applications-text': 'From satellite maintenance in orbit to the search for life on Mars, from building lunar structures to assisting astronauts on the ISS, aerospace robotics is already a reality.',
+                'about-title': 'What is Aerospace Robotics',
+                'about-intro': 'Aerospace robotics is a specialized branch of engineering that designs, develops and implements robotic systems for space exploration and operations. These robots must operate in extreme conditions: temperatures ranging from -150°C to +120°C, intense radiation, absolute vacuum, and communications with delays of several minutes.',
+                'about-characteristics-title': 'Fundamental Characteristics',
+                'about-autonomy-title': 'Autonomy',
+                'about-autonomy-text': 'Space robots must be able to make autonomous decisions due to delays in communications with Earth (up to 22 minutes for Mars).',
+                'about-resistance-title': 'Resistance',
+                'about-resistance-text': 'Materials and components must resist cosmic radiation, micro-meteorites, extreme thermal variations and absence of atmosphere.',
+                'about-efficiency-title': 'Energy Efficiency',
+                'about-efficiency-text': 'Optimized use of energy from solar panels or radioisotope thermoelectric generators (RTG) for long-duration missions.',
+                'about-image-caption': 'International Space Station - An orbiting laboratory where robotics is essential',
+                'sensors-title': 'Advanced Sensors',
+                'sensors-intro': 'Sensors are the "eyes and ears" of space robots. They allow collecting data on the surrounding environment, navigating autonomously, and performing detailed scientific analyses.',
+                'sensors-cameras-title': 'HD and Multispectral Cameras',
+                'sensors-cameras-text': 'High-definition cameras capture detailed images of the terrain. Multispectral cameras analyze light in different bands of the electromagnetic spectrum.',
+                'sensors-lidar-title': 'LIDAR',
+                'sensors-lidar-text': 'LIDAR uses laser pulses to measure distances and create precise 3D maps of the environment.',
+                'sensors-thermal-title': 'Thermal Sensors',
+                'sensors-thermal-text': 'They measure the surface temperature of rocks, soil and atmosphere.',
+                'sensors-spectrometers-title': 'Spectrometers',
+                'sensors-spectrometers-text': 'They analyze the chemical composition of rocks, soil and atmosphere.',
+                'sensors-image-caption': 'Advanced sensors for space exploration',
+                'actuators-title': 'Actuators and Robotic Arms',
+                'actuators-intro': 'Actuators are the "muscles" of space robots. They convert electrical energy into mechanical movement.',
+                'actuators-robotic-arms-title': 'Space Robotic Arms',
+                'actuators-canadarm-text': 'The Canadarm2 on the ISS is 17.6 meters long and can manipulate loads up to 116,000 kg.',
+                'actuators-canadarm-dof': '7 degrees of freedom',
+                'actuators-canadarm-precision': 'Millimeter precision',
+                'actuators-dextre-text': 'Two-arm "handyman" robot that performs external ISS repairs and maintenance.',
+                'actuators-dextre-arms': 'Two 7-degree-of-freedom arms',
+                'actuators-dextre-cameras': 'Integrated cameras',
+                'actuators-image-caption': 'Robotic arm in space',
+                'navigation-title': 'Autonomous Navigation',
+                'navigation-intro': 'Autonomous navigation allows space robots to move and explore without constant human control.',
+                'navigation-systems-title': 'Navigation Systems',
+                'navigation-visual-text': 'Continuous image analysis to estimate robot position.',
+                'navigation-slam-text': 'Algorithms that allow the robot to build a map of the unknown environment.',
+                'ai-title': 'Artificial Intelligence',
+                'ai-intro': 'Artificial Intelligence is the brain of modern space robots.',
+                'ai-applications-title': 'AI Applications',
+                'ai-vision-text': 'Automatic image analysis to identify interesting rocks and geological formations.',
+                'ai-decision-text': 'AI systems that make complex decisions autonomously.',
+                'ai-image-caption': 'Artificial Intelligence - The future of autonomous exploration',
+                'materials-title': 'Advanced Materials',
+                'materials-intro': 'Advanced materials are essential to ensure that space robots survive in extreme environments.',
+                'materials-key-title': 'Key Materials',
+                'materials-titanium-title': 'Titanium',
+                'materials-titanium-text': 'Excellent strength/weight ratio, resistance to corrosion and extreme temperatures.',
+                'materials-carbon-title': 'Carbon Fiber',
+                'materials-carbon-text': 'Ultra-lightweight and resistant composite material.',
+                'applications-title': 'Applications in Space',
+                'applications-rovers-title': 'Mars Rovers',
+                'applications-curiosity-text': 'Landed in 2012, it has traveled over 28 km in Gale crater.',
+                'applications-curiosity-badge1': 'Active since 2012',
+                'applications-perseverance-text': 'Landed in 2021, it represents the pinnacle of robotic technology.',
+                'applications-perseverance-badge1': 'Active since 2021',
+                'applications-image-caption': 'Mars rover on the Red Planet',
+                'advantages-title': 'Advantages of Aerospace Robotics',
+                'advantages-safety-title': 'Astronaut Safety',
+                'advantages-safety-text': 'Robots can operate in environments lethal to humans: intense radiation, absolute vacuum, extreme temperatures.',
+                'advantages-247-title': 'Continuous 24/7 Operations',
+                'advantages-247-text': 'Robots do not need rest, food, or air. They can work continuously for years.',
+                'advantages-precision-title': 'Extreme Precision',
+                'advantages-precision-text': 'Robotic arms can perform operations with millimeter precision.',
+                'advantages-cost-title': 'Cost Reduction',
+                'advantages-cost-text': 'Robots are cheaper than human missions in the long term.',
+                'disadvantages-title': 'Disadvantages and Ethical Issues',
+                'disadvantages-costs-title': 'Very High Initial Costs',
+                'disadvantages-costs-text': 'The development of space robots requires billions of dollars in investment.',
+                'disadvantages-maintenance-title': 'Difficult Maintenance',
+                'disadvantages-maintenance-text': 'A failure on Mars means mission end. It is not possible to send technicians.',
+                'disadvantages-dependency-title': 'Technological Dependence',
+                'disadvantages-dependency-text': 'Excessive reliance on robotics could reduce human skills.',
+                'disadvantages-ethics-title': 'Ethical Issues',
+                'disadvantages-ethics-text': 'Who is responsible for autonomous decisions? How do we manage planetary contamination?',
+                'future-title': 'The Future of Aerospace Robotics',
+                'future-swarm-title': 'Swarm Robotics',
+                'future-swarm-text': 'Swarm robotics involves using dozens or hundreds of small robots that work together.',
+                'future-modular-title': 'Modular Robots',
+                'future-modular-text': 'Robots made of interchangeable units that can be reconfigured for different missions.',
+                'future-ai-title': 'Advanced Autonomous AI',
+                'future-ai-text': 'Robots with general artificial intelligence, capable of complex reasoning and creativity.',
+                'future-image-caption': 'Europa - Jupiter\'s moon, future target of robotic exploration',
+                'work-title': 'Impact on the World of Work',
+                'work-professions-title': 'Emerging New Professions',
+                'work-engineer-title': 'Space Robotic Engineer',
+                'work-engineer-text': 'Design, development and testing of robotic systems for space applications.',
+                'work-engineer-badge1': 'Engineering',
+                'work-engineer-badge2': 'Robotics',
+                'work-ai-title': 'AI Programmer',
+                'work-ai-text': 'Development of artificial intelligence algorithms for autonomous navigation and decision-making.',
+                'work-operator-title': 'Robotic Operator',
+                'work-operator-text': 'Control and supervision of space robots from Earth.',
+                'work-operator-badge': 'Mission Control',
+                'work-cyber-title': 'Space Cybersecurity',
+                'work-cyber-text': 'Protection of space robotic systems from cyber threats.',
+                'conclusion-title': 'Conclusion',
+                'conclusion-hero-title': 'The Era of Human-Robot Collaboration',
+                'conclusion-hero-text': 'Aerospace robotics represents one of the most fascinating and promising technological fields of the 21st century.',
+                'conclusion-synthesis-title': 'Final Synthesis',
+                'conclusion-synthesis-text': 'Aerospace robotics is not simply a branch of engineering, but a fundamental catalyst for the future of space exploration and humanity itself.',
+                'conclusion-message-title': 'The Final Message',
+                'conclusion-message-text': 'Aerospace robotics is much more than circuits and algorithms: it is the embodiment of the human dream to explore the unknown.',
+                'conclusion-image-caption': 'Earth seen from space',
+                'sitography-title': 'Sitography and Resources',
+                'sitography-italian-title': 'Italian Sources',
+                'sitography-international-title': 'International Sources',
+                'footer-title': 'Aerospace Robotics',
+                'footer-subtitle': 'Exploring the Future',
+                'footer-description': 'A journey through the technology that takes humanity beyond Earth',
+                'footer-developed': 'Developed with passion'
+            }
+        };
+
+        // Funzione per cambiare lingua
+        function changeLanguage(lang) {
+            document.body.setAttribute('data-lang', lang);
+            
+            // Aggiorna tutti gli elementi con data-translate
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+            
+            // Aggiorna slider lingua
+            const langSlider = document.getElementById('langSlider');
+            langSlider.textContent = lang.toUpperCase();
+            
+            // Salva preferenza
+            localStorage.setItem('language', lang);
+        }
+
+        // ==========================================
+        // GESTIONE TEMA CHIARO/SCURO
+        // ==========================================
+        
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
+
+        // ==========================================
+        // GESTIONE TOGGLE LINGUA
+        // ==========================================
+        
+        const langToggle = document.getElementById('langToggle');
+        const savedLang = localStorage.getItem('language') || 'it';
+        changeLanguage(savedLang);
+
+        langToggle.addEventListener('click', () => {
+            const currentLang = document.body.getAttribute('data-lang');
+            const newLang = currentLang === 'it' ? 'en' : 'it';
+            changeLanguage(newLang);
+        });
+
+        // ==========================================
+        // NAVIGAZIONE TRA PAGINE
+        // ==========================================
+        
+        const menuItems = document.querySelectorAll('.menu-item[data-page], .submenu-item[data-page]');
+        const pages = document.querySelectorAll('.page');
+
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.getAttribute('data-page');
+                
+                pages.forEach(page => page.classList.remove('active'));
+                
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    if (item.classList.contains('menu-item')) {
+                        document.querySelectorAll('.menu-item').forEach(mi => mi.classList.remove('active'));
+                        item.classList.add('active');
+                    }
+                    
+                    if (window.innerWidth <= 968) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+        // ==========================================
+        // SOTTOMENU TECNOLOGIE
+        // ==========================================
+        
+        const techMenu = document.getElementById('techMenu');
+        const techSubmenu = document.getElementById('techSubmenu');
+        const techArrow = document.getElementById('techArrow');
+
+        techMenu.addEventListener('click', (e) => {
+            if (e.target === techArrow || techArrow.contains(e.target)) {
+                e.stopPropagation();
+            }
+            
+            techSubmenu.classList.toggle('open');
+            techArrow.classList.toggle('open');
+        });
+
+        // ==========================================
+        // MENU MOBILE
+        // ==========================================
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            
+            const icon = menuToggle.querySelector('i');
+            if (sidebar.classList.contains('open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 968) {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                    menuToggle.querySelector('i').className = 'fas fa-bars';
+                }
+            }
+        });
+
+        // ==========================================
+        // SCROLL TO TOP
+        // ==========================================
+        
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ==========================================
+        // RESPONSIVE
+        // ==========================================
+        
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 968) {
+                sidebar.classList.remove('open');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
+        });
+
+        // ==========================================
+        // ANIMAZIONI FADE-IN
+        // ==========================================
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // ==========================================
+        // CONSOLE EASTER EGG
+        // ==========================================
+        
+        console.log('%c🚀 AEROSPACE ROBOTICS CYBER EDITION', 'font-size: 28px; color: #00d4ff; font-weight: bold; text-shadow: 0 0 10px #00d4ff;');
+        console.log('%cWelcome to the gaming-futuristic edition! 🎮✨', 'font-size: 16px; color: #b400ff;');
+        console.log('%cFeatures: Animated Stars, Neon Glow Effects, IT/EN Toggle, Dark/Light Theme', 'font-size: 12px; color: #00ff88;');
+
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`⚡ Page loaded in ${loadTime.toFixed(2)}ms`);
+        });
+
+    </script>
+
+</body>
+</html>

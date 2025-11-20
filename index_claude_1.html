@@ -1,0 +1,2714 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotica Aerospaziale - Esplorazione del Futuro</title>
+    
+    <!-- Font Awesome per icone futuristiche -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts - Font futuristici -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           VARIABILI CSS PER GESTIONE TEMA CHIARO/SCURO
+           ============================================ */
+        :root {
+            /* Tema Chiaro (default) */
+            --bg-primary: #f0f4f8;
+            --bg-secondary: #ffffff;
+            --bg-sidebar: #1a1a2e;
+            --text-primary: #0f1419;
+            --text-secondary: #536471;
+            --text-sidebar: #e0e0e0;
+            --accent-primary: #0091ff;
+            --accent-secondary: #00d4ff;
+            --border-color: #e1e8ed;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --hover-bg: rgba(0, 145, 255, 0.1);
+            --card-bg: #ffffff;
+            --gradient-start: #0091ff;
+            --gradient-end: #00d4ff;
+        }
+
+        /* Tema Scuro */
+        [data-theme="dark"] {
+            --bg-primary: #0d1117;
+            --bg-secondary: #161b22;
+            --bg-sidebar: #0d1117;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-sidebar: #c9d1d9;
+            --accent-primary: #58a6ff;
+            --accent-secondary: #00d4ff;
+            --border-color: #30363d;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+            --hover-bg: rgba(88, 166, 255, 0.1);
+            --card-bg: #161b22;
+            --gradient-start: #58a6ff;
+            --gradient-end: #00d4ff;
+        }
+
+        /* ============================================
+           RESET E STILI GLOBALI
+           ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scroll per navigazione interna */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ============================================
+           HEADER E TOGGLE TEMA
+           ============================================ */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 1000;
+            box-shadow: 0 4px 12px var(--shadow-color);
+        }
+
+        .header-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-title i {
+            font-size: 32px;
+            animation: rotate 10s linear infinite;
+        }
+
+        /* Animazione rotazione icona robot */
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toggle Switch per Tema Chiaro/Scuro */
+        .theme-toggle {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            display: flex;
+            align-items: center;
+            padding: 3px;
+        }
+
+        .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        .toggle-slider {
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: #ffffff;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        [data-theme="dark"] .toggle-slider {
+            transform: translateX(30px);
+        }
+
+        /* ============================================
+           SIDEBAR MENU LATERALE
+           ============================================ */
+        .sidebar {
+            position: fixed;
+            top: 70px;
+            left: 0;
+            width: 280px;
+            height: calc(100vh - 70px);
+            background-color: var(--bg-sidebar);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            padding: 20px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            z-index: 999;
+        }
+
+        /* Scrollbar personalizzata per sidebar */
+        .sidebar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: var(--bg-sidebar);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--accent-primary);
+            border-radius: 3px;
+        }
+
+        /* Menu Items */
+        .menu-item {
+            padding: 12px 25px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 14px;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            background-color: var(--hover-bg);
+            border-left-color: var(--accent-primary);
+            padding-left: 30px;
+        }
+
+        .menu-item.active {
+            background-color: var(--hover-bg);
+            border-left-color: var(--accent-secondary);
+            font-weight: 500;
+            color: var(--accent-secondary);
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Sottomenu */
+        .submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .submenu.open {
+            max-height: 500px;
+        }
+
+        .submenu-item {
+            padding: 10px 25px 10px 60px;
+            color: var(--text-sidebar);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 13px;
+            opacity: 0.8;
+        }
+
+        .submenu-item:hover {
+            opacity: 1;
+            padding-left: 65px;
+            color: var(--accent-secondary);
+        }
+
+        .submenu-item i {
+            font-size: 12px;
+        }
+
+        /* Indicatore freccia per sottomenu */
+        .menu-arrow {
+            margin-left: auto;
+            transition: transform 0.3s ease;
+            font-size: 12px;
+        }
+
+        .menu-arrow.open {
+            transform: rotate(90deg);
+        }
+
+        /* ============================================
+           CONTENUTO PRINCIPALE
+           ============================================ */
+        .main-content {
+            margin-left: 280px;
+            margin-top: 70px;
+            padding: 40px;
+            min-height: calc(100vh - 70px);
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Sezioni/Pagine */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Animazione fade in */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ============================================
+           COMPONENTI UI
+           ============================================ */
+        
+        /* Titoli */
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 42px;
+            font-weight: 900;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin: 30px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        h2 i {
+            color: var(--accent-primary);
+        }
+
+        h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--accent-primary);
+            margin: 25px 0 15px;
+        }
+
+        /* Paragrafi */
+        p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            font-size: 16px;
+        }
+
+        /* Card container */
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+
+        /* Hero Section per Homepage */
+        .hero {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            border-radius: 16px;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            from { transform: translate(0, 0); }
+            to { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            color: #ffffff;
+            font-size: 48px;
+            -webkit-text-fill-color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+
+        /* Immagine hero */
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            margin: 30px auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Lista con icone */
+        .icon-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .icon-list li {
+            padding: 12px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: var(--text-secondary);
+        }
+
+        .icon-list li i {
+            color: var(--accent-primary);
+            font-size: 20px;
+            margin-top: 3px;
+        }
+
+        /* Grid per tecnologie e applicazioni */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        /* Tech card speciale */
+        .tech-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            transition: width 0.3s ease;
+        }
+
+        .tech-card:hover::before {
+            width: 100%;
+            opacity: 0.1;
+        }
+
+        .tech-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent-primary);
+        }
+
+        .tech-card h3 {
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tech-card i {
+            font-size: 28px;
+            color: var(--accent-primary);
+        }
+
+        /* Quote/Citazione */
+        .quote {
+            background: var(--card-bg);
+            border-left: 4px solid var(--accent-primary);
+            padding: 25px 30px;
+            margin: 30px 0;
+            font-style: italic;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .quote::before {
+            content: '"';
+            font-size: 60px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: var(--accent-primary);
+            opacity: 0.3;
+            font-family: 'Georgia', serif;
+        }
+
+        .quote p {
+            margin: 0;
+            padding-left: 30px;
+            font-size: 18px;
+            color: var(--text-primary);
+        }
+
+        /* Badge/Tag */
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            margin: 5px 5px 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Vantaggi/Svantaggi con icone colorate */
+        .pro-con-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .pro-box, .con-box {
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid;
+        }
+
+        .pro-box {
+            background: rgba(0, 255, 136, 0.05);
+            border-color: #00ff88;
+        }
+
+        .con-box {
+            background: rgba(255, 68, 68, 0.05);
+            border-color: #ff4444;
+        }
+
+        .pro-box h3 {
+            color: #00ff88;
+        }
+
+        .con-box h3 {
+            color: #ff4444;
+        }
+
+        .pro-box i {
+            color: #00ff88;
+        }
+
+        .con-box i {
+            color: #ff4444;
+        }
+
+        /* Link sitografia */
+        .link-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .link-list li {
+            margin: 15px 0;
+        }
+
+        .link-list a {
+            color: var(--accent-primary);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+
+        .link-list a:hover {
+            background: var(--hover-bg);
+            transform: translateX(5px);
+        }
+
+        .link-list a i {
+            font-size: 16px;
+        }
+
+        /* Footer */
+        footer {
+            margin-left: 280px;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 30px 40px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        /* Divider */
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-primary), transparent);
+            margin: 40px 0;
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        
+        /* Hamburger menu per mobile */
+        .menu-toggle {
+            display: none;
+            position: fixed;
+            top: 80px;
+            left: 20px;
+            z-index: 1001;
+            background: var(--accent-primary);
+            color: #ffffff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 968px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            footer {
+                margin-left: 0;
+            }
+
+            .header-title {
+                font-size: 18px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            h2 {
+                font-size: 26px;
+            }
+
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0 15px;
+            }
+
+            .header-title {
+                font-size: 14px;
+                letter-spacing: 1px;
+            }
+
+            .header-title i {
+                font-size: 24px;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+        }
+
+        /* ============================================
+           ANIMAZIONI EXTRA
+           ============================================ */
+        
+        /* Pulse effect per elementi importanti */
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        /* Floating animation */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Glow effect */
+        .glow {
+            box-shadow: 0 0 20px var(--accent-primary);
+        }
+
+        /* Sezione immagini */
+        .image-container {
+            width: 100%;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px var(--shadow-color);
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        /* Tabella comparativa */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        tr:hover {
+            background: var(--hover-bg);
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: #ffffff;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+
+        .scroll-top.visible {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         HEADER CON TITOLO E TOGGLE TEMA
+         ============================================ -->
+    <header>
+        <div class="header-title">
+            <i class="fas fa-robot"></i>
+            <span>Robotica Aerospaziale</span>
+        </div>
+        <div class="theme-toggle" id="themeToggle">
+            <div class="toggle-slider">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============================================
+         SIDEBAR MENU LATERALE
+         ============================================ -->
+    <aside class="sidebar" id="sidebar">
+        <!-- Homepage -->
+        <div class="menu-item active" data-page="home">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </div>
+
+        <!-- Cos'è la Robotica Aerospaziale -->
+        <div class="menu-item" data-page="about">
+            <i class="fas fa-rocket"></i>
+            <span>Cos'è la Robotica Aerospaziale</span>
+        </div>
+
+        <!-- Tecnologie Fondamentali con Sottomenu -->
+        <div class="menu-item" id="techMenu">
+            <i class="fas fa-microchip"></i>
+            <span>Tecnologie Fondamentali</span>
+            <i class="fas fa-chevron-right menu-arrow" id="techArrow"></i>
+        </div>
+        <div class="submenu" id="techSubmenu">
+            <div class="submenu-item" data-page="tech-sensori">
+                <i class="fas fa-satellite-dish"></i>
+                <span>Sensori</span>
+            </div>
+            <div class="submenu-item" data-page="tech-attuatori">
+                <i class="fas fa-cogs"></i>
+                <span>Attuatori</span>
+            </div>
+            <div class="submenu-item" data-page="tech-navigazione">
+                <i class="fas fa-compass"></i>
+                <span>Navigazione</span>
+            </div>
+            <div class="submenu-item" data-page="tech-ia">
+                <i class="fas fa-brain"></i>
+                <span>Intelligenza Artificiale</span>
+            </div>
+            <div class="submenu-item" data-page="tech-materiali">
+                <i class="fas fa-atom"></i>
+                <span>Materiali</span>
+            </div>
+        </div>
+
+        <!-- Applicazioni nello Spazio -->
+        <div class="menu-item" data-page="applications">
+            <i class="fas fa-space-shuttle"></i>
+            <span>Applicazioni nello Spazio</span>
+        </div>
+
+        <!-- Vantaggi -->
+        <div class="menu-item" data-page="advantages">
+            <i class="fas fa-check-circle"></i>
+            <span>Vantaggi</span>
+        </div>
+
+        <!-- Svantaggi e Questioni Etiche -->
+        <div class="menu-item" data-page="disadvantages">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>Svantaggi e Questioni Etiche</span>
+        </div>
+
+        <!-- Il Futuro -->
+        <div class="menu-item" data-page="future">
+            <i class="fas fa-satellite"></i>
+            <span>Il Futuro</span>
+        </div>
+
+        <!-- Impatto sul Lavoro -->
+        <div class="menu-item" data-page="work">
+            <i class="fas fa-user-astronaut"></i>
+            <span>Impatto sul Mondo del Lavoro</span>
+        </div>
+
+        <!-- Conclusione -->
+        <div class="menu-item" data-page="conclusion">
+            <i class="fas fa-flag-checkered"></i>
+            <span>Conclusione</span>
+        </div>
+
+        <!-- Sitografia -->
+        <div class="menu-item" data-page="sitography">
+            <i class="fas fa-link"></i>
+            <span>Sitografia</span>
+        </div>
+    </aside>
+
+    <!-- Toggle menu per mobile -->
+    <button class="menu-toggle" id="menuToggle">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- ============================================
+         CONTENUTO PRINCIPALE
+         ============================================ -->
+    <main class="main-content">
+
+        <!-- ========== HOMEPAGE ========== -->
+        <div class="page active" id="home">
+            <div class="hero">
+                <div class="hero-content">
+                    <h1 class="float">Robotica Aerospaziale</h1>
+                    <p>Portare l'umanità oltre la Terra attraverso la tecnologia robotica avanzata</p>
+                    
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&h=500&fit=crop" alt="Mars Rover Perseverance">
+                    </div>
+                    
+                    <div class="image-caption">
+                        Mars Rover Perseverance - Un esempio di eccellenza nella robotica aerospaziale
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-info-circle"></i> Introduzione Generale</h2>
+                <p>
+                    La <strong>robotica aerospaziale</strong> porta i robot oltre la Terra, in ambienti dove l'uomo non può sopravvivere. 
+                    È la tecnologia che rende possibili missioni su Marte, manutenzione di satelliti, e attività sulla Stazione Spaziale Internazionale (ISS).
+                </p>
+                <p>
+                    Questa disciplina nasce per rispondere a due esigenze fondamentali:
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong>Ridurre i rischi per gli astronauti:</strong> Operare in ambienti ostili senza mettere a repentaglio vite umane</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-expand-arrows-alt"></i>
+                        <span><strong>Estendere le capacità umane:</strong> Raggiungere luoghi e compiere operazioni impossibili per l'uomo</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3><i class="fas fa-globe"></i> Perché è importante?</h3>
+                    <p>
+                        L'esplorazione spaziale rappresenta il futuro dell'umanità. La robotica aerospaziale ci permette di esplorare 
+                        pianeti lontani, studiare fenomeni cosmici, e sviluppare tecnologie che migliorano anche la vita sulla Terra.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3><i class="fas fa-star"></i> Applicazioni Concrete</h3>
+                    <p>
+                        Dalla manutenzione di satelliti in orbita alla ricerca di forme di vita su Marte, dalla costruzione di 
+                        strutture lunari all'assistenza agli astronauti sulla ISS, la robotica aerospaziale è già realtà.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== COS'È LA ROBOTICA AEROSPAZIALE ========== -->
+        <div class="page" id="about">
+            <h1>Cos'è la Robotica Aerospaziale</h1>
+            
+            <div class="card">
+                <p>
+                    La <strong>robotica aerospaziale</strong> è un ramo specializzato dell'ingegneria che progetta, sviluppa e implementa 
+                    sistemi robotici destinati all'esplorazione e alle operazioni nello spazio. Questi robot devono operare in condizioni 
+                    estreme: temperature che variano da -150°C a +120°C, radiazioni intense, vuoto assoluto, e comunicazioni con ritardi di 
+                    diversi minuti.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> Caratteristiche Fondamentali</h2>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-robot"></i> Autonomia</h3>
+                        <p>
+                            I robot spaziali devono essere in grado di prendere decisioni autonome a causa dei ritardi nelle comunicazioni 
+                            con la Terra (fino a 22 minuti per Marte).
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-virus"></i> Resistenza</h3>
+                        <p>
+                            Materiali e componenti devono resistere a radiazioni cosmiche, micro-meteoriti, variazioni termiche estreme 
+                            e assenza di atmosfera.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-battery-full"></i> Efficienza Energetica</h3>
+                        <p>
+                            Utilizzo ottimizzato dell'energia proveniente da pannelli solari o generatori termoelettrici a radioisotopi 
+                            (RTG) per missioni di lunga durata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-history"></i> Storia e Evoluzione</h2>
+                <p>
+                    La robotica aerospaziale ha radici negli anni '60 con le prime sonde automatizzate. Il programma Luna sovietico 
+                    (1959-1976) ha portato i primi robot sulla Luna, mentre il programma Viking della NASA ha inviato i primi lander 
+                    su Marte nel 1976.
+                </p>
+                <p>
+                    Dagli anni 2000, la robotica aerospaziale ha vissuto un'evoluzione esponenziale: rover sempre più sofisticati su Marte 
+                    (Spirit, Opportunity, Curiosity, Perseverance), bracci robotici sulla ISS (Canadarm2, Dextre), e satelliti autonomi 
+                    per riparazione e rifornimento in orbita.
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&h=600&fit=crop" alt="Space Station">
+                <div class="image-caption">Stazione Spaziale Internazionale - Un laboratorio orbitante dove la robotica è essenziale</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: SENSORI ========== -->
+        <div class="page" id="tech-sensori">
+            <h1>Sensori Avanzati</h1>
+            
+            <div class="card">
+                <p>
+                    I <strong>sensori</strong> sono gli "occhi e le orecchie" dei robot spaziali. Permettono di raccogliere dati 
+                    sull'ambiente circostante, navigare autonomamente, e compiere analisi scientifiche dettagliate.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="tech-card">
+                    <h3><i class="fas fa-camera"></i> Telecamere HD e Multispettrali</h3>
+                    <p>
+                        <strong>Telecamere ad alta definizione</strong> catturano immagini dettagliate del terreno e dell'ambiente. 
+                        Le <strong>telecamere multispettrali</strong> analizzano la luce in diverse bande dello spettro elettromagnetico 
+                        (infrarosso, ultravioletto) per identificare minerali, ghiaccio d'acqua, e composti organici.
+                    </p>
+                    <span class="badge">Perseverance Mars Rover</span>
+                    <span class="badge">Mastcam-Z</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-broadcast-tower"></i> LIDAR (Light Detection and Ranging)</h3>
+                    <p>
+                        Il LIDAR utilizza impulsi laser per misurare distanze e creare mappe 3D precise dell'ambiente. 
+                        Essenziale per navigazione autonoma e evitamento ostacoli in tempo reale.
+                    </p>
+                    <span class="badge">Navigazione autonoma</span>
+                    <span class="badge">Mapping 3D</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-thermometer-half"></i> Sensori Termici</h3>
+                    <p>
+                        Misurano la temperatura superficiale di rocce, terreno e atmosfera. Cruciali per identificare zone con 
+                        attività geologica o potenziali depositi di ghiaccio sotterraneo.
+                    </p>
+                    <span class="badge">THEMIS</span>
+                    <span class="badge">Analisi termica</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-vial"></i> Spettrometri</h3>
+                    <p>
+                        Analizzano la composizione chimica di rocce, suolo e atmosfera. Identificano elementi e composti attraverso 
+                        l'analisi della luce riflessa o emessa.
+                    </p>
+                    <span class="badge">SHERLOC</span>
+                    <span class="badge">PIXL</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-wind"></i> Sensori Meteorologici</h3>
+                    <p>
+                        Monitorano condizioni atmosferiche: pressione, temperatura, velocità del vento, umidità relativa. 
+                        Fondamentali per comprendere il clima planetario.
+                    </p>
+                    <span class="badge">MEDA</span>
+                    <span class="badge">Mars Weather</span>
+                </div>
+
+                <div class="tech-card">
+                    <h3><i class="fas fa-magnet"></i> Magnetometri e Radar</h3>
+                    <p>
+                        I magnetometri misurano campi magnetici planetari. I radar penetrano nel sottosuolo per identificare 
+                        strati geologici, ghiaccio, e acqua sotterranea.
+                    </p>
+                    <span class="badge">RIMFAX</span>
+                    <span class="badge">GPR</span>
+                </div>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "I sensori avanzati trasformano i robot spaziali in veri e propri laboratori scientifici mobili, 
+                    capaci di analisi che richiederebbero intere équipe di ricercatori sulla Terra."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: ATTUATORI ========== -->
+        <div class="page" id="tech-attuatori">
+            <h1>Attuatori e Bracci Robotici</h1>
+            
+            <div class="card">
+                <p>
+                    Gli <strong>attuatori</strong> sono i "muscoli" dei robot spaziali. Convertono energia elettrica in movimento meccanico, 
+                    permettendo ai robot di muoversi, manipolare oggetti, e compiere operazioni complesse.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-hand-rock"></i> Bracci Robotici Spaziali</h2>
+                <p>
+                    I bracci robotici sono essenziali per manipolazione di carichi, manutenzione satelliti, e assistenza agli astronauti.
+                </p>
+                
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-satellite"></i> Canadarm2</h3>
+                        <p>
+                            Il <strong>Canadarm2</strong> sulla ISS è lungo 17,6 metri e può manipolare carichi fino a 116.000 kg. 
+                            Utilizzato per catturare veicoli spaziali in arrivo, spostare moduli, e assistere in passeggiate spaziali.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 7 gradi di libertà</li>
+                            <li><i class="fas fa-check"></i> Precisione millimetrica</li>
+                            <li><i class="fas fa-check"></i> Controllo da Terra o ISS</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-wrench"></i> Dextre (SPDM)</h3>
+                        <p>
+                            <strong>Dextre</strong> (Special Purpose Dexterous Manipulator) è un robot "tuttofare" a due bracci che 
+                            esegue riparazioni e manutenzione esterna della ISS, riducendo la necessità di EVA (passeggiate spaziali).
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Due bracci a 7 gradi di libertà ciascuno</li>
+                            <li><i class="fas fa-check"></i> Telecamere integrate</li>
+                            <li><i class="fas fa-check"></i> Sostituzione batterie e componenti</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-car"></i> Sistemi di Locomozione</h2>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-circle-notch"></i> Ruote</h3>
+                        <p>
+                            Utilizzate nei rover marziani. Progettate per terreni accidentati con materiali ultra-resistenti 
+                            (alluminio e titanio). Ciascuna ruota ha motore indipendente.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-running"></i> Gambe Articolate</h3>
+                        <p>
+                            Per terreni molto irregolari o esplorazione verticale (crateri, pareti). In fase di sviluppo 
+                            per future missioni.
+                        </p>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-rocket"></i> Propulsori</h3>
+                        <p>
+                            Per robot volanti o in orbita. Utilizzano gas compresso o propellenti per manovre precise 
+                            in assenza di gravità.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&h=600&fit=crop" alt="Robotic Arm">
+                <div class="image-caption">Rappresentazione artistica di braccio robotico nello spazio</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: NAVIGAZIONE ========== -->
+        <div class="page" id="tech-navigazione">
+            <h1>Navigazione Autonoma</h1>
+            
+            <div class="card">
+                <p>
+                    La <strong>navigazione autonoma</strong> permette ai robot spaziali di muoversi ed esplorare senza controllo umano 
+                    costante. Essenziale quando le comunicazioni con la Terra hanno ritardi di diversi minuti.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-route"></i> Sistemi di Navigazione</h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-eye"></i> Visual Odometry</h3>
+                        <p>
+                            Analisi continua di immagini per stimare la posizione del robot. Confronta foto successive per calcolare 
+                            distanza percorsa e direzione. Utilizzato da tutti i rover marziani.
+                        </p>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-map-marked-alt"></i> SLAM (Simultaneous Localization and Mapping)</h3>
+                        <p>
+                            Algoritmi che permettono al robot di costruire una mappa dell'ambiente sconosciuto mentre determina 
+                            simultaneamente la propria posizione all'interno di quella mappa.
+                        </p>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-star"></i> Navigazione Stellare</h3>
+                        <p>
+                            Utilizza la posizione delle stelle come sistema di riferimento assoluto. Particolarmente utile 
+                            nello spazio profondo dove GPS non è disponibile.
+                        </p>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-compass"></i> IMU (Inertial Measurement Unit)</h3>
+                        <p>
+                            Sensori che misurano accelerazione e velocità angolare per determinare orientamento e movimento 
+                            del robot nello spazio tridimensionale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-road"></i> Path Planning e Evitamento Ostacoli</h2>
+                <p>
+                    I robot spaziali devono pianificare percorsi ottimali evitando pericoli come rocce appuntite, sabbia profonda, 
+                    pendenze eccessive.
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-brain"></i>
+                        <span><strong>Algoritmi di path planning:</strong> A*, D*, RRT per calcolare percorsi ottimali</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong>Hazard avoidance:</strong> Identificazione automatica di pericoli e deviazione del percorso</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-chart-line"></i>
+                        <span><strong>Terrain analysis:</strong> Valutazione della navigabilità del terreno in tempo reale</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "Su Marte, un semplice comando 'vai avanti' può impiegare 22 minuti per arrivare. La navigazione autonoma 
+                    è quindi non un lusso, ma una necessità assoluta."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: IA ========== -->
+        <div class="page" id="tech-ia">
+            <h1>Intelligenza Artificiale</h1>
+            
+            <div class="card">
+                <p>
+                    L'<strong>Intelligenza Artificiale</strong> è il cervello dei robot spaziali moderni. Permette autonomia decisionale, 
+                    apprendimento dall'esperienza, e capacità di adattamento a situazioni impreviste.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-robot"></i> Applicazioni dell'IA nella Robotica Aerospaziale</h2>
+                
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-image"></i> Computer Vision</h3>
+                        <p>
+                            Analisi automatica di immagini per identificare rocce interessanti, formazioni geologiche, potenziali 
+                            campioni da raccogliere. Il rover Perseverance usa reti neurali per analisi autonoma.
+                        </p>
+                        <span class="badge">Deep Learning</span>
+                        <span class="badge">Object Detection</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-lightbulb"></i> Decision Making</h3>
+                        <p>
+                            Sistemi di IA che prendono decisioni complesse: quale campione raccogliere, dove perforare, 
+                            quando cercare riparo da tempesta di sabbia.
+                        </p>
+                        <span class="badge">Machine Learning</span>
+                        <span class="badge">Expert Systems</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Anomaly Detection</h3>
+                        <p>
+                            Identificazione automatica di malfunzionamenti o situazioni anomale. Può attivare procedure di sicurezza 
+                            o allertare il controllo missione sulla Terra.
+                        </p>
+                        <span class="badge">AI Monitoring</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-brain"></i> Adaptive Learning</h3>
+                        <p>
+                            Capacità del robot di migliorare le proprie prestazioni nel tempo, imparando dai successi e dagli errori. 
+                            Fondamentale per missioni di lunga durata.
+                        </p>
+                        <span class="badge">Reinforcement Learning</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> Sistemi di IA Avanzati</h2>
+                <p>
+                    <strong>AEGIS (Autonomous Exploration for Gathering Increased Science):</strong> Sistema autonomo di 
+                    Curiosity che seleziona bersagli scientifici interessanti senza intervento umano, aumentando drasticamente 
+                    la produttività scientifica del rover.
+                </p>
+                <p>
+                    <strong>AutoNav:</strong> Sistema di navigazione completamente autonoma che permette ai rover di percorrere 
+                    distanze maggiori in sicurezza, pianificando percorsi e evitando ostacoli in tempo reale.
+                </p>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "L'intelligenza artificiale trasforma i robot da semplici macchine telecomandate a esploratori autonomi 
+                    capaci di fare scienza indipendente a milioni di chilometri dalla Terra."
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&h=600&fit=crop" alt="AI Concept">
+                <div class="image-caption">Intelligenza Artificiale - Il futuro dell'esplorazione autonoma</div>
+            </div>
+        </div>
+
+        <!-- ========== TECNOLOGIE: MATERIALI ========== -->
+        <div class="page" id="tech-materiali">
+            <h1>Materiali Avanzati</h1>
+            
+            <div class="card">
+                <p>
+                    I <strong>materiali avanzati</strong> sono essenziali per garantire che i robot spaziali sopravvivano in ambienti 
+                    estremi. Devono resistere a temperature estreme, radiazioni, vuoto, e impatti di micro-meteoriti.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-atom"></i> Materiali Chiave</h2>
+                
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-alt"></i> Titanio e Leghe</h3>
+                        <p>
+                            <strong>Titanio</strong> offre eccellente rapporto resistenza/peso, resistenza alla corrosione e 
+                            alle temperature estreme. Utilizzato per strutture portanti, ruote dei rover, e componenti critici.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Resistenza termica: -200°C a +400°C</li>
+                            <li><i class="fas fa-check"></i> Bassa densità (4.5 g/cm³)</li>
+                            <li><i class="fas fa-check"></i> Resistenza alla fatica</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-feather"></i> Fibra di Carbonio</h3>
+                        <p>
+                            Materiale composito ultra-leggero e resistente. Utilizzato per strutture che devono essere 
+                            rigide ma leggere: pannelli solari, bracci robotici, chassis.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 5x più resistente dell'acciaio</li>
+                            <li><i class="fas fa-check"></i> 70% più leggero</li>
+                            <li><i class="fas fa-check"></i> Resistente alle radiazioni</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-thermometer-empty"></i> Aerogel</h3>
+                        <p>
+                            Materiale ultra-leggero con eccellenti proprietà isolanti. Utilizzato per protezione termica 
+                            e isolamento di componenti sensibili.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 99% aria, 1% silice</li>
+                            <li><i class="fas fa-check"></i> Miglior isolante conosciuto</li>
+                            <li><i class="fas fa-check"></i> Utilizzato su Perseverance</li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-sun"></i> MLI (Multi-Layer Insulation)</h3>
+                        <p>
+                            Isolamento multi-strato fatto di fogli di mylar alluminizzato. Protegge dall'escursione termica 
+                            nello spazio (-150°C a +120°C).
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Riflette il 97% della radiazione</li>
+                            <li><i class="fas fa-check"></i> Leggerissimo</li>
+                            <li><i class="fas fa-check"></i> Standard per veicoli spaziali</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-radiation"></i> Protezione dalle Radiazioni</h2>
+                <p>
+                    Nello spazio, senza protezione dell'atmosfera terrestre, le radiazioni cosmiche e solari sono una minaccia 
+                    costante per l'elettronica. Materiali speciali proteggono i componenti sensibili:
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-check"></i> <strong>Polietilene ad alta densità:</strong> Scherma radiazioni ad alta energia</li>
+                    <li><i class="fas fa-check"></i> <strong>Tantalio:</strong> Protegge circuiti critici</li>
+                    <li><i class="fas fa-check"></i> <strong>Piombo:</strong> Per componenti ultra-sensibili</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-industry"></i> Materiali del Futuro</h2>
+                <p>
+                    La ricerca sta sviluppando nuovi materiali rivoluzionari:
+                </p>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3>Grafene</h3>
+                        <p>200 volte più resistente dell'acciaio, conduttore eccellente, ultra-leggero.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Nanotubi di Carbonio</h3>
+                        <p>Strutture molecolari con proprietà meccaniche ed elettriche straordinarie.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Metamateriali</h3>
+                        <p>Materiali artificiali con proprietà non esistenti in natura (es. invisibilità a certe frequenze).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== APPLICAZIONI NELLO SPAZIO ========== -->
+        <div class="page" id="applications">
+            <h1>Applicazioni nello Spazio</h1>
+            
+            <div class="card">
+                <p>
+                    La robotica aerospaziale trova applicazioni concrete in molteplici ambiti dell'esplorazione e utilizzo dello spazio. 
+                    Dalle superfici planetarie all'orbita terrestre, i robot sono protagonisti indiscussi.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-mars"></i> Rover su Marte</h2>
+                <p>
+                    I <strong>rover marziani</strong> sono i robot spaziali più iconici. Esplorano la superficie del Pianeta Rosso, 
+                    cercano tracce di vita passata, e preparano il terreno per future missioni umane.
+                </p>
+                
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-microscope"></i> Curiosity</h3>
+                        <p>
+                            Atterrato nel 2012, <strong>Curiosity</strong> pesa 900 kg ed è grande come un'auto. Ha percorso oltre 
+                            28 km sul cratere Gale, analizzando rocce e scoprendo che Marte aveva condizioni favorevoli alla vita 
+                            miliardi di anni fa.
+                        </p>
+                        <span class="badge">Attivo dal 2012</span>
+                        <span class="badge">17 telecamere</span>
+                        <span class="badge">10 strumenti scientifici</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-dna"></i> Perseverance</h3>
+                        <p>
+                            Atterrato nel 2021, <strong>Perseverance</strong> rappresenta il culmine della tecnologia robotica. 
+                            Raccoglie campioni di roccia marziana che saranno riportati sulla Terra da future missioni. 
+                            Include anche Ingenuity, il primo elicottero marziano.
+                        </p>
+                        <span class="badge">Attivo dal 2021</span>
+                        <span class="badge">Sample Return</span>
+                        <span class="badge">23 telecamere</span>
+                    </div>
+                </div>
+
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1200&h=600&fit=crop" alt="Mars Rover">
+                    <div class="image-caption">Rover marziano che esplora la superficie del Pianeta Rosso</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-satellite"></i> Manutenzione Satelliti</h2>
+                <p>
+                    Robot orbitali eseguono riparazioni, rifornimento, e aggiornamento di satelliti in orbita, estendendone 
+                    la vita operativa e riducendo i costi di sostituzione.
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-wrench"></i>
+                        <span><strong>Satellite Servicing:</strong> Sostituzione batterie, riparazione pannelli solari, aggiornamento software</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-gas-pump"></i>
+                        <span><strong>Refueling:</strong> Rifornimento carburante per prolungare vita operativa</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-trash"></i>
+                        <span><strong>Debris Removal:</strong> Rimozione satelliti non funzionanti e detriti spaziali</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-space-shuttle"></i> Robot sulla ISS</h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-cube"></i> Astrobee</h3>
+                        <p>
+                            <strong>Astrobee</strong> sono robot volanti cubici che assistono gli astronauti sulla ISS. 
+                            Eseguono inventari, monitoraggio ambientale, e test di nuove tecnologie in microgravità.
+                        </p>
+                        <span class="badge">Volo autonomo</span>
+                        <span class="badge">AI assistenza</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-robot"></i> Robonaut 2</h3>
+                        <p>
+                            Robot umanoide progettato per lavorare fianco a fianco con gli astronauti. Può usare gli stessi 
+                            strumenti degli umani grazie a mani articolate.
+                        </p>
+                        <span class="badge">Umanoide</span>
+                        <span class="badge">42 gradi di libertà</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-moon"></i> Esplorazione Lunare</h2>
+                <p>
+                    La Luna è obiettivo di rinnovato interesse. Robot lunari preparano basi permanenti, estraggono risorse, 
+                    e assistono astronauti nelle missioni Artemis.
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-check"></i> <strong>VIPER:</strong> Rover che cercherà ghiaccio d'acqua ai poli lunari</li>
+                    <li><i class="fas fa-check"></i> <strong>Lunar Gateway:</strong> Stazione orbitale con bracci robotici per manutenzione</li>
+                    <li><i class="fas fa-check"></i> <strong>Construction Robots:</strong> Robot per costruzione habitat lunari</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-helicopter"></i> Droni e Velivoli Spaziali</h2>
+                <p>
+                    <strong>Ingenuity</strong>, l'elicottero marziano, ha dimostrato che il volo controllato è possibile su altri pianeti. 
+                    Ha completato oltre 50 voli, aprendo la strada a futuri droni esplorativi.
+                </p>
+                <div class="quote">
+                    <p>
+                        "Ingenuity ha trasformato la fantascienza in realtà, dimostrando che possiamo volare su altri mondi."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== VANTAGGI ========== -->
+        <div class="page" id="advantages">
+            <h1>Vantaggi della Robotica Aerospaziale</h1>
+            
+            <div class="card">
+                <p>
+                    La robotica aerospaziale offre vantaggi fondamentali che rendono possibile l'esplorazione spaziale moderna e 
+                    ne aumentano drasticamente l'efficienza e la sicurezza.
+                </p>
+            </div>
+
+            <div class="pro-con-container">
+                <div class="pro-box">
+                    <h3><i class="fas fa-shield-alt"></i> 1. Sicurezza degli Astronauti</h3>
+                    <p>
+                        I robot possono operare in ambienti letali per l'uomo: radiazioni intense, vuoto assoluto, temperature 
+                        estreme, atmosfere tossiche. Questo riduce drasticamente i rischi per gli astronauti.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Eliminazione rischi durante EVA pericolose</li>
+                        <li><i class="fas fa-check"></i> Esplorazione ambienti inaccessibili all'uomo</li>
+                        <li><i class="fas fa-check"></i> Test di nuove tecnologie senza rischio umano</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-clock"></i> 2. Operazioni Continue 24/7</h3>
+                    <p>
+                        I robot non necessitano di riposo, cibo, o aria. Possono lavorare ininterrottamente per anni, 
+                        massimizzando la produttività scientifica delle missioni.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Nessuna pausa per riposo o sonno</li>
+                        <li><i class="fas fa-check"></i> Operazioni durante tempeste o condizioni estreme</li>
+                        <li><i class="fas fa-check"></i> Missioni di durata decennale (Opportunity: 15 anni)</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-crosshairs"></i> 3. Precisione Estrema</h3>
+                    <p>
+                        I bracci robotici possono eseguire operazioni con precisione millimetrica, impossibili per l'uomo 
+                        anche con tute spaziali ingombranti.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Manipolazione componenti microscopici</li>
+                        <li><i class="fas fa-check"></i> Chirurgia robotica nello spazio</li>
+                        <li><i class="fas fa-check"></i> Assemblaggio strutture complesse</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-dollar-sign"></i> 4. Riduzione Costi</h3>
+                    <p>
+                        Anche se costosi da sviluppare, i robot sono molto più economici delle missioni umane. 
+                        Non richiedono sistemi di supporto vitale, cibo, protezione dalle radiazioni.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Nessun costo per ritorno sulla Terra</li>
+                        <li><i class="fas fa-check"></i> Sistemi di supporto vitale non necessari</li>
+                        <li><i class="fas fa-check"></i> Missioni più lunghe a costo inferiore</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-mountain"></i> 5. Accesso a Luoghi Impossibili</h3>
+                    <p>
+                        I robot possono raggiungere luoghi dove l'uomo non potrebbe mai andare: crateri profondi, 
+                        tunnel lavici, atmosfere corrosive di Venere, oceani sotterranei di Europa.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Esplorazione grotte e tunnel</li>
+                        <li><i class="fas fa-check"></i> Perforazione profonda</li>
+                        <li><i class="fas fa-check"></i> Ambienti ad alta pressione/temperatura</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-flask"></i> 6. Capacità Scientifiche Avanzate</h3>
+                    <p>
+                        I robot sono laboratori mobili completi, equipaggiati con strumenti scientifici sofisticati 
+                        per analisi chimiche, geologiche, atmosferiche in-situ.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Spettrometri di massa</li>
+                        <li><i class="fas fa-check"></i> Microscopi elettronici</li>
+                        <li><i class="fas fa-check"></i> Analizzatori chimici</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "I robot non sostituiscono gli esploratori umani, ma ne moltiplicano le capacità, permettendoci 
+                    di essere presenti contemporaneamente su più mondi."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== SVANTAGGI ========== -->
+        <div class="page" id="disadvantages">
+            <h1>Svantaggi e Questioni Etiche</h1>
+            
+            <div class="card">
+                <p>
+                    Nonostante i numerosi vantaggi, la robotica aerospaziale presenta anche sfide, limitazioni e 
+                    questioni etiche che devono essere considerate e affrontate.
+                </p>
+            </div>
+
+            <div class="pro-con-container">
+                <div class="con-box">
+                    <h3><i class="fas fa-money-bill-wave"></i> 1. Costi Iniziali Altissimi</h3>
+                    <p>
+                        Lo sviluppo di robot spaziali richiede investimenti miliardari. Il rover Perseverance è costato 
+                        2,7 miliardi di dollari, somma che potrebbe finanziare molti progetti terrestri.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> R&D estremamente costosa</li>
+                        <li><i class="fas fa-times"></i> Test rigorosi e ridondanza</li>
+                        <li><i class="fas fa-times"></i> Componenti space-grade ultra-costosi</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-tools"></i> 2. Manutenzione Difficile o Impossibile</h3>
+                    <p>
+                        Un guasto su Marte significa fine missione. Non è possibile inviare tecnici per riparazioni. 
+                        Questo richiede ridondanza estrema e design ultra-affidabile.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Nessuna riparazione possibile</li>
+                        <li><i class="fas fa-times"></i> Guasti catastrofici comuni</li>
+                        <li><i class="fas fa-times"></i> Ambiente degrada componenti</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-microchip"></i> 3. Dipendenza Tecnologica</h3>
+                    <p>
+                        L'eccessivo affidamento sulla robotica potrebbe ridurre le competenze umane nell'esplorazione diretta. 
+                        Inoltre, malfunzionamenti software possono compromettere intere missioni.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Bug software critici</li>
+                        <li><i class="fas fa-times"></i> Vulnerabilità cyber</li>
+                        <li><i class="fas fa-times"></i> Perdita competenze esplorazione umana</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-balance-scale"></i> 4. Questioni Etiche</h3>
+                    <p>
+                        L'automazione spaziale solleva dilemmi etici complessi: chi è responsabile di decisioni autonome? 
+                        È giusto inviare robot su mondi potenzialmente abitati? Come gestiamo la contaminazione planetaria?
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Responsabilità decisioni AI</li>
+                        <li><i class="fas fa-times"></i> Contaminazione biologica</li>
+                        <li><i class="fas fa-times"></i> Diritti su risorse estratte</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-user-times"></i> 5. Riduzione Ruoli Umani</h3>
+                    <p>
+                        L'automazione crescente potrebbe ridurre opportunità per astronauti. Missioni completamente robotiche 
+                        potrebbero eliminare la componente umana dell'esplorazione.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Meno missioni umane</li>
+                        <li><i class="fas fa-times"></i> Disoccupazione settore spaziale</li>
+                        <li><i class="fas fa-times"></i> Perdita aspetto "eroico" esplorazione</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-bolt"></i> 6. Limitazioni Energetiche</h3>
+                    <p>
+                        Nello spazio profondo o durante notti planetarie lunghe, l'energia diventa critica. 
+                        I pannelli solari sono inefficaci lontano dal Sole, richiedendo RTG costosi e controversi (plutonio).
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Dipendenza da luce solare</li>
+                        <li><i class="fas fa-times"></i> RTG costosi e radioattivi</li>
+                        <li><i class="fas fa-times"></i> Degrado batterie nel tempo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-gavel"></i> Planetary Protection</h2>
+                <p>
+                    La <strong>protezione planetaria</strong> è un insieme di linee guida internazionali per prevenire 
+                    contaminazione biologica tra Terra e altri corpi celesti. I robot devono essere sterilizzati per 
+                    non portare microbi terrestri su Marte o Europa, e non riportare potenziali forme di vita aliene sulla Terra.
+                </p>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "Con grande potere tecnologico viene grande responsabilità. Dobbiamo bilanciare esplorazione aggressiva 
+                    con protezione etica degli ambienti extraterrestri."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== IL FUTURO ========== -->
+        <div class="page" id="future">
+            <h1>Il Futuro della Robotica Aerospaziale</h1>
+            
+            <div class="card">
+                <p>
+                    Il futuro della robotica aerospaziale è straordinariamente promettente. Nuove tecnologie rivoluzioneranno 
+                    il modo in cui esploriamo e utilizziamo lo spazio nei prossimi decenni.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> Swarm Robotics</h2>
+                <p>
+                    La <strong>robotica a sciame</strong> prevede l'utilizzo di decine o centinaia di piccoli robot che lavorano 
+                    insieme come un organismo unico. Ispirati dal comportamento di api, formiche, e stormi di uccelli.
+                </p>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-users"></i> Vantaggi dello Swarm</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Ridondanza: guasto di un robot non compromette missione</li>
+                            <li><i class="fas fa-check"></i> Copertura area vasta simultaneamente</li>
+                            <li><i class="fas fa-check"></i> Compiti complessi attraverso collaborazione</li>
+                            <li><i class="fas fa-check"></i> Costo singola unità ridotto</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h3><i class="fas fa-tasks"></i> Applicazioni Future</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-rocket"></i> Mappatura rapida territori planetari</li>
+                            <li><i class="fas fa-rocket"></i> Costruzione habitat collaborativa</li>
+                            <li><i class="fas fa-rocket"></i> Ricerca risorse (acqua, minerali)</li>
+                            <li><i class="fas fa-rocket"></i> Monitoraggio ambientale distribuito</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-cubes"></i> Robot Modulari</h2>
+                <p>
+                    I <strong>robot modulari</strong> sono costituiti da unità intercambiabili che possono essere riconfigurate 
+                    per diverse missioni. Possono auto-ripararsi sostituendo moduli danneggiati, o combinarsi per formare 
+                    strutture più grandi.
+                </p>
+                <div class="tech-card">
+                    <h3><i class="fas fa-puzzle-piece"></i> Concetto Modulare</h3>
+                    <p>
+                        Immagina robot che possono trasformarsi da rover a braccio robotico, o combinarsi per creare ponti, 
+                        strutture di supporto, o configurazioni specializzate. NASA sta sviluppando RAMA (Reconstitutable 
+                        Assembly Modular Architecture).
+                    </p>
+                    <span class="badge">Adattabilità</span>
+                    <span class="badge">Auto-riparazione</span>
+                    <span class="badge">Multi-missione</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-hand-sparkles"></i> Soft Robotics</h2>
+                <p>
+                    La <strong>soft robotics</strong> utilizza materiali flessibili e deformabili invece di strutture rigide. 
+                    Questi robot possono adattarsi a superfici irregolari, comprimere attraverso aperture strette, e manipolare 
+                    oggetti delicati senza danneggiarli.
+                </p>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3>Materiali Intelligenti</h3>
+                        <p>Polimeri che cambiano forma con temperatura, luce, o campo elettrico.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Grip Adattivo</h3>
+                        <p>Pinze morbide che si adattano perfettamente a qualsiasi forma.</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Sicurezza</h3>
+                        <p>Interazione sicura con astronauti e strutture delicate.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-brain"></i> IA Autonoma Avanzata</h2>
+                <p>
+                    Il futuro vedrà robot spaziali con intelligenza artificiale generale (AGI), capaci di ragionamento complesso, 
+                    creatività, e adattamento a situazioni completamente nuove senza programmazione specifica.
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <span><strong>Decision-making autonomo:</strong> Robot che pianificano missioni scientifiche complete</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-comments"></i>
+                        <span><strong>Comunicazione naturale:</strong> Interazione vocale fluida con astronauti</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-lightbulb"></i>
+                        <span><strong>Problem solving creativo:</strong> Soluzioni innovative a problemi imprevisti</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Apprendimento continuo:</strong> Miglioramento costante delle prestazioni</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-industry"></i> Produzione In-Situ</h2>
+                <p>
+                    Robot che fabbricano altri robot, strutture, e componenti utilizzando risorse locali (regolite lunare, 
+                    ghiaccio marziano, minerali asteroidi). Stampa 3D robotica di habitat, pannelli solari, e ricambi.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-water"></i> Esplorazione Oceani Extraterrestri</h2>
+                <p>
+                    Lune come <strong>Europa</strong> (Giove) ed <strong>Encelado</strong> (Saturno) hanno oceani sotterranei che 
+                    potrebbero ospitare vita. Robot sottomarini autonomi esploreranno questi oceani alieni.
+                </p>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=600&fit=crop" alt="Europa Moon">
+                    <div class="image-caption">Europa - Luna di Giove con oceano sotterraneo, obiettivo futuro dell'esplorazione robotica</div>
+                </div>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "Il futuro dell'esplorazione spaziale non è umano VS robot, ma umano E robot, lavorando insieme 
+                    per spingere i confini della conoscenza sempre più lontano."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== IMPATTO SUL LAVORO ========== -->
+        <div class="page" id="work">
+            <h1>Impatto sul Mondo del Lavoro</h1>
+            
+            <div class="card">
+                <p>
+                    La robotica aerospaziale sta trasformando radicalmente il panorama occupazionale del settore spaziale, 
+                    creando nuove professioni altamente specializzate e ridefinendo ruoli esistenti.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-briefcase"></i> Nuove Professioni Emergenti</h2>
+                
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3><i class="fas fa-robot"></i> Ingegnere Robotico Spaziale</h3>
+                        <p>
+                            Progettazione, sviluppo e test di sistemi robotici per applicazioni spaziali. Richiede conoscenze 
+                            multidisciplinari: meccanica, elettronica, informatica, materiali avanzati.
+                        </p>
+                        <span class="badge">Laurea Ingegneria</span>
+                        <span class="badge">Robotica</span>
+                        <span class="badge">120K-200K€/anno</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-brain"></i> Programmatore IA per Robotica Spaziale</h3>
+                        <p>
+                            Sviluppo algoritmi di intelligenza artificiale per navigazione autonoma, decision-making, 
+                            computer vision, e machine learning applicati a missioni spaziali.
+                        </p>
+                        <span class="badge">Computer Science</span>
+                        <span class="badge">AI/ML</span>
+                        <span class="badge">100K-180K€/anno</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-chart-line"></i> Analista Dati Missioni Robotiche</h3>
+                        <p>
+                            Elaborazione e interpretazione enormi quantità di dati scientifici generati da robot spaziali. 
+                            Utilizzo di big data analytics e visualizzazione avanzata.
+                        </p>
+                        <span class="badge">Data Science</span>
+                        <span class="badge">Astrofisica</span>
+                        <span class="badge">80K-150K€/anno</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-gamepad"></i> Operatore/Pilota Robotico Remoto</h3>
+                        <p>
+                            Controllo e supervisione di robot spaziali dalla Terra. Richiede addestramento simile a piloti, 
+                            con capacità di gestione stress e problem-solving rapido.
+                        </p>
+                        <span class="badge">Training Specializzato</span>
+                        <span class="badge">Controllo Missione</span>
+                        <span class="badge">70K-120K€/anno</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-vr-cardboard"></i> Specialista Simulazione e Testing</h3>
+                        <p>
+                            Creazione ambienti virtuali per test pre-lancio, addestramento operatori, e simulazione missioni. 
+                            Utilizzo VR/AR e digital twins.
+                        </p>
+                        <span class="badge">VR/AR Development</span>
+                        <span class="badge">Simulation</span>
+                        <span class="badge">75K-140K€/anno</span>
+                    </div>
+
+                    <div class="tech-card">
+                        <h3><i class="fas fa-shield-alt"></i> Esperto Cybersecurity Spaziale</h3>
+                        <p>
+                            Protezione sistemi robotici spaziali da minacce cyber. Cruciale dato il controllo remoto e 
+                            l'importanza strategica delle missioni.
+                        </p>
+                        <span class="badge">Cybersecurity</span>
+                        <span class="badge">Aerospace</span>
+                        <span class="badge">90K-170K€/anno</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-graduation-cap"></i> Competenze Richieste</h2>
+                <p>
+                    Le professioni nella robotica aerospaziale richiedono un mix unico di competenze tecniche e soft skills:
+                </p>
+                <div class="grid-3">
+                    <div class="tech-card">
+                        <h3>Competenze Tecniche</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Programmazione (Python, C++, ROS)</li>
+                            <li><i class="fas fa-check"></i> Machine Learning & AI</li>
+                            <li><i class="fas fa-check"></i> Sistemi embedded</li>
+                            <li><i class="fas fa-check"></i> CAD/CAM 3D</li>
+                            <li><i class="fas fa-check"></i> Control theory</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Conoscenze Scientifiche</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Fisica spaziale</li>
+                            <li><i class="fas fa-check"></i> Meccanica orbitale</li>
+                            <li><i class="fas fa-check"></i> Scienza materiali</li>
+                            <li><i class="fas fa-check"></i> Astrogeologia</li>
+                            <li><i class="fas fa-check"></i> Termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Soft Skills</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Problem solving</li>
+                            <li><i class="fas fa-check"></i> Lavoro di squadra</li>
+                            <li><i class="fas fa-check"></i> Comunicazione</li>
+                            <li><i class="fas fa-check"></i> Gestione stress</li>
+                            <li><i class="fas fa-check"></i> Pensiero critico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-university"></i> Percorsi Formativi</h2>
+                <p>
+                    Per entrare nel settore della robotica aerospaziale, esistono diversi percorsi accademici e professionali:
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Laurea Magistrale in Ingegneria Aerospaziale</strong> con specializzazione in robotica</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Laurea in Ingegneria Robotica</strong> con focus su applicazioni spaziali</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Computer Science</strong> con specializzazione in AI e sistemi autonomi</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-certificate"></i>
+                        <span><strong>Master/PhD</strong> in Aerospace Robotics, Autonomous Systems, o Space Engineering</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-laptop-code"></i>
+                        <span><strong>Certificazioni professionali:</strong> ROS, AI/ML, Cybersecurity, Project Management</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-building"></i> Principali Datori di Lavoro</h2>
+                <div class="grid-2">
+                    <div class="tech-card">
+                        <h3>Agenzie Spaziali</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-flag-usa"></i> NASA (USA)</li>
+                            <li><i class="fas fa-flag"></i> ESA (Europa)</li>
+                            <li><i class="fas fa-flag"></i> ASI (Italia)</li>
+                            <li><i class="fas fa-flag"></i> JAXA (Giappone)</li>
+                            <li><i class="fas fa-flag"></i> Roscosmos (Russia)</li>
+                        </ul>
+                    </div>
+                    <div class="tech-card">
+                        <h3>Aziende Private</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-rocket"></i> SpaceX</li>
+                            <li><i class="fas fa-rocket"></i> Blue Origin</li>
+                            <li><i class="fas fa-rocket"></i> Northrop Grumman</li>
+                            <li><i class="fas fa-rocket"></i> Maxar Technologies</li>
+                            <li><i class="fas fa-rocket"></i> Thales Alenia Space</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "La robotica aerospaziale non toglie lavoro, ma lo trasforma, creando opportunità per professionisti 
+                    altamente qualificati in un settore in rapida crescita che plasmerà il futuro dell'umanità."
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== CONCLUSIONE ========== -->
+        <div class="page" id="conclusion">
+            <h1>Conclusione</h1>
+            
+            <div class="hero" style="margin-top: 0;">
+                <div class="hero-content">
+                    <h1>L'Era della Collaborazione Uomo-Robot</h1>
+                    <p>
+                        La robotica aerospaziale rappresenta uno dei campi tecnologici più affascinanti e promettenti del XXI secolo.
+                    </p>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-lightbulb"></i> Sintesi Finale</h2>
+                <p>
+                    Come abbiamo esplorato in questo viaggio attraverso la robotica aerospaziale, questa disciplina non è 
+                    semplicemente una branca dell'ingegneria, ma un catalizzatore fondamentale per il futuro dell'esplorazione 
+                    spaziale e dell'umanità stessa.
+                </p>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <h3><i class="fas fa-check-circle"></i> Cosa Abbiamo Imparato</h3>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-rocket"></i> I robot spaziali estendono la presenza umana oltre la Terra</li>
+                        <li><i class="fas fa-microchip"></i> Tecnologie avanzate rendono possibile l'impossibile</li>
+                        <li><i class="fas fa-shield-alt"></i> Proteggono gli astronauti e riducono i rischi</li>
+                        <li><i class="fas fa-flask"></i> Compiono scienza straordinaria su mondi lontani</li>
+                        <li><i class="fas fa-satellite"></i> Mantengono e migliorano infrastrutture orbitali</li>
+                        <li><i class="fas fa-brain"></i> IA e autonomia trasformano l'esplorazione</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-road"></i> La Strada Avanti</h3>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-moon"></i> Ritorno permanente sulla Luna</li>
+                        <li><i class="fas fa-mars"></i> Primi passi umani su Marte</li>
+                        <li><i class="fas fa-water"></i> Esplorazione oceani extraterrestri</li>
+                        <li><i class="fas fa-project-diagram"></i> Sciami robotici collaborativi</li>
+                        <li><i class="fas fa-industry"></i> Produzione e costruzione spaziale</li>
+                        <li><i class="fas fa-infinity"></i> Esplorazione spazio profondo</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-users"></i> Non Sostituzione, ma Amplificazione</h2>
+                <p>
+                    Un tema centrale emerso è che la robotica aerospaziale <strong>non sostituisce l'essere umano</strong>, 
+                    ma ne <strong>amplifica le capacità</strong>. I robot vanno dove l'uomo non può andare, lavorano quando 
+                    l'uomo deve riposare, e preparano il terreno per l'arrivo degli esploratori umani.
+                </p>
+                <p>
+                    Il futuro dell'esplorazione spaziale sarà caratterizzato da una <strong>sinergia profonda tra umani e 
+                    robot</strong>: astronauti e robot lavoreranno fianco a fianco, combinando l'intuizione, creatività e 
+                    adattabilità umana con la resistenza, precisione e capacità computazionale robotica.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-balance-scale"></i> La Sfida Etica</h2>
+                <p>
+                    Con il potere della robotica avanzata viene una grande responsabilità. Dobbiamo affrontare questioni etiche 
+                    complesse:
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-globe"></i> Come proteggiamo ambienti extraterrestri potenzialmente abitati?</li>
+                    <li><i class="fas fa-gavel"></i> Chi è responsabile delle decisioni di sistemi autonomi?</li>
+                    <li><i class="fas fa-balance-scale"></i> Come distribuiamo equamente i benefici dell'esplorazione spaziale?</li>
+                    <li><i class="fas fa-hand-holding-heart"></i> Come manteniamo l'elemento umano dell'esplorazione?</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-star"></i> Un Futuro Luminoso</h2>
+                <p>
+                    Nonostante le sfide, il futuro della robotica aerospaziale è straordinariamente promettente. Stiamo vivendo 
+                    l'alba di un'era in cui:
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-home"></i>
+                        <span>Robot costruiranno basi permanenti sulla Luna e Marte</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-swimming-pool"></i>
+                        <span>Sottomarini robotici esploreranno oceani alieni sotto croste ghiacciate</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-gem"></i>
+                        <span>Asteroidi saranno minati per risorse preziose</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-satellite"></i>
+                        <span>Fabbriche orbitali produrranno tecnologie impossibili sulla Terra</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-dna"></i>
+                        <span>Scopriremo se siamo soli nell'universo</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); color: white;">
+                <h2 style="color: white;"><i class="fas fa-rocket"></i> Il Messaggio Finale</h2>
+                <p style="color: rgba(255,255,255,0.95); font-size: 18px;">
+                    La robotica aerospaziale è molto più di circuiti e algoritmi: è l'incarnazione del sogno umano di esplorare 
+                    l'ignoto. Ogni rover che rotola su Marte, ogni braccio robotico che ripara la ISS, ogni drone che vola 
+                    nell'atmosfera marziana, è un passo verso un futuro in cui l'umanità diventerà una specie multiplanetaria.
+                </p>
+                <p style="color: rgba(255,255,255,0.95); font-size: 18px;">
+                    La sfida davanti a noi non è scegliere tra esplorazione umana o robotica, ma <strong>creare una collaborazione 
+                    perfetta</strong> che permetta all'umanità di spingersi più lontano di quanto mai pensato possibile.
+                </p>
+            </div>
+
+            <div class="quote">
+                <p style="font-size: 20px; color: var(--accent-primary);">
+                    "L'universo è vasto e misterioso, ma con la robotica aerospaziale come nostro alleato, 
+                    nessun segreto cosmico è al di fuori della nostra portata."
+                </p>
+            </div>
+
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&h=600&fit=crop" alt="Earth from Space">
+                <div class="image-caption">La Terra vista dallo spazio - Il nostro punto di partenza per l'esplorazione dell'universo</div>
+            </div>
+        </div>
+
+        <!-- ========== SITOGRAFIA ========== -->
+        <div class="page" id="sitography">
+            <h1>Sitografia e Risorse</h1>
+            
+            <div class="card">
+                <p>
+                    Questa sezione contiene tutte le fonti e risorse utilizzate per la creazione di questo sito, 
+                    oltre a collegamenti utili per approfondire la robotica aerospaziale.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-flag"></i> Fonti Italiane</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.tech4future.info/" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Tech4Future - Innovazione e tecnologia spaziale</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.esa.int/Space_in_Member_States/Italy" target="_blank">
+                            <i class="fas fa-rocket"></i>
+                            <span>ESA Italia - Agenzia Spaziale Europea</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.asi.it/" target="_blank">
+                            <i class="fas fa-satellite"></i>
+                            <span>ASI - Agenzia Spaziale Italiana</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.inaf.it/" target="_blank">
+                            <i class="fas fa-telescope"></i>
+                            <span>INAF - Istituto Nazionale di Astrofisica</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nasa.gov/international/italy" target="_blank">
+                            <i class="fas fa-flag-usa"></i>
+                            <span>NASA Italia - Sezione italiana NASA</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-globe-americas"></i> Fonti Internazionali</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.nasa.gov/" target="_blank">
+                            <i class="fas fa-rocket"></i>
+                            <span>NASA - National Aeronautics and Space Administration</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://mars.nasa.gov/" target="_blank">
+                            <i class="fas fa-mars"></i>
+                            <span>NASA Mars Exploration - Missioni marziane</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.jpl.nasa.gov/" target="_blank">
+                            <i class="fas fa-satellite-dish"></i>
+                            <span>JPL - Jet Propulsion Laboratory</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.esa.int/" target="_blank">
+                            <i class="fas fa-globe-europe"></i>
+                            <span>ESA - European Space Agency</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.mit.edu/research/space-exploration" target="_blank">
+                            <i class="fas fa-university"></i>
+                            <span>MIT - Space Exploration Research</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.ieee.org/topics/robotics.html" target="_blank">
+                            <i class="fas fa-robot"></i>
+                            <span>IEEE Robotics - Institute of Electrical and Electronics Engineers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.nature.com/subjects/robotics" target="_blank">
+                            <i class="fas fa-book"></i>
+                            <span>Nature Robotics - Pubblicazioni scientifiche</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-book-open"></i> Risorse Educative</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.coursera.org/courses?query=space%20robotics" target="_blank">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Coursera - Corsi online di robotica spaziale</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.edx.org/learn/robotics" target="_blank">
+                            <i class="fas fa-laptop-code"></i>
+                            <span>edX - Robotics and Autonomous Systems</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.ros.org/" target="_blank">
+                            <i class="fas fa-cogs"></i>
+                            <span>ROS - Robot Operating System (framework standard)</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-video"></i> Documentari e Video</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.youtube.com/nasa" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                            <span>NASA YouTube Channel - Video ufficiali missioni</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.youtube.com/user/ESA" target="_blank">
+                            <i class="fab fa-youtube"></i>
+                            <span>ESA YouTube Channel - European Space Agency</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-newspaper"></i> News e Aggiornamenti</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.space.com/" target="_blank">
+                            <i class="fas fa-newspaper"></i>
+                            <span>Space.com - Notizie spaziali quotidiane</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://spacenews.com/" target="_blank">
+                            <i class="fas fa-satellite"></i>
+                            <span>SpaceNews - Industry news and analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.universetoday.com/" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            <span>Universe Today - Space and astronomy news</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-users"></i> Community e Forum</h2>
+                <ul class="link-list">
+                    <li>
+                        <a href="https://www.reddit.com/r/space/" target="_blank">
+                            <i class="fab fa-reddit"></i>
+                            <span>Reddit r/space - Community appassionati spazio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://forum.nasaspaceflight.com/" target="_blank">
+                            <i class="fas fa-comments"></i>
+                            <span>NASA Spaceflight Forum - Discussioni tecniche</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="quote">
+                <p>
+                    "La conoscenza condivisa è la chiave per spingere l'umanità verso le stelle. 
+                    Queste risorse rappresentano decenni di ricerca, innovazione e passione per l'esplorazione spaziale."
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <p><strong>Robotica Aerospaziale</strong> - Esplorazione del Futuro</p>
+        <p>Un viaggio attraverso la tecnologia che porta l'umanità oltre la Terra</p>
+        <p style="margin-top: 20px; font-size: 14px;">
+            <i class="fas fa-code"></i> Sviluppato con passione per l'esplorazione spaziale | 
+            <i class="fas fa-calendar"></i> 2024
+        </p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ============================================
+         JAVASCRIPT - Funzionalità e Interattività
+         ============================================ -->
+    <script>
+        // ==========================================
+        // GESTIONE TEMA CHIARO/SCURO
+        // ==========================================
+        
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const html = document.documentElement;
+
+        // Carica tema salvato da localStorage, default: chiaro
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        html.setAttribute('data-theme', savedTheme);
+        updateThemeIcon(savedTheme);
+
+        // Event listener per toggle tema
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+
+        // Funzione per aggiornare icona in base al tema
+        function updateThemeIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-moon';
+            } else {
+                themeIcon.className = 'fas fa-sun';
+            }
+        }
+
+        // ==========================================
+        // NAVIGAZIONE TRA PAGINE
+        // ==========================================
+        
+        const menuItems = document.querySelectorAll('.menu-item[data-page], .submenu-item[data-page]');
+        const pages = document.querySelectorAll('.page');
+
+        // Event listener per ogni voce di menu
+        menuItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const pageId = item.getAttribute('data-page');
+                
+                // Nascondi tutte le pagine
+                pages.forEach(page => page.classList.remove('active'));
+                
+                // Mostra pagina selezionata
+                const targetPage = document.getElementById(pageId);
+                if (targetPage) {
+                    targetPage.classList.add('active');
+                    
+                    // Scroll a inizio pagina
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    
+                    // Aggiorna menu attivo (solo per menu-item principali, non submenu)
+                    if (item.classList.contains('menu-item')) {
+                        document.querySelectorAll('.menu-item').forEach(mi => mi.classList.remove('active'));
+                        item.classList.add('active');
+                    }
+                    
+                    // Chiudi sidebar su mobile dopo selezione
+                    if (window.innerWidth <= 968) {
+                        sidebar.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+        // ==========================================
+        // SOTTOMENU TECNOLOGIE
+        // ==========================================
+        
+        const techMenu = document.getElementById('techMenu');
+        const techSubmenu = document.getElementById('techSubmenu');
+        const techArrow = document.getElementById('techArrow');
+
+        techMenu.addEventListener('click', (e) => {
+            // Previeni navigazione se click su freccia
+            if (e.target === techArrow || techArrow.contains(e.target)) {
+                e.stopPropagation();
+            }
+            
+            // Toggle sottomenu
+            techSubmenu.classList.toggle('open');
+            techArrow.classList.toggle('open');
+        });
+
+        // ==========================================
+        // MENU MOBILE - HAMBURGER
+        // ==========================================
+        
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            
+            // Cambia icona hamburger/close
+            const icon = menuToggle.querySelector('i');
+            if (sidebar.classList.contains('open')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        });
+
+        // Chiudi sidebar quando si clicca fuori (solo mobile)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 968) {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                    menuToggle.querySelector('i').className = 'fas fa-bars';
+                }
+            }
+        });
+
+        // ==========================================
+        // SCROLL TO TOP BUTTON
+        // ==========================================
+        
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        // Mostra/nascondi bottone in base a scroll
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Scroll to top quando cliccato
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // ==========================================
+        // GESTIONE RESPONSIVE - AGGIUSTAMENTI
+        // ==========================================
+        
+        // Chiudi sidebar automaticamente quando si ridimensiona da mobile a desktop
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 968) {
+                sidebar.classList.remove('open');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
+        });
+
+        // ==========================================
+        // ANIMAZIONI AL CARICAMENTO
+        // ==========================================
+        
+        // Fade-in elements quando entrano viewport (opzionale)
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Osserva tutte le card per animazione fade-in
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(card);
+        });
+
+        // ==========================================
+        // CONSOLE LOG - Easter Egg per Developer
+        // ==========================================
+        
+        console.log('%c🚀 Robotica Aerospaziale', 'font-size: 24px; color: #0091ff; font-weight: bold;');
+        console.log('%cBenvenuto nel codice! Se stai leggendo questo messaggio, sei un vero esploratore digitale. 🌌', 'font-size: 14px; color: #00d4ff;');
+        console.log('%cQuesto sito è stato realizzato con passione per la tecnologia spaziale.', 'font-size: 12px; color: #8b949e;');
+        console.log('%cTecnologie utilizzate: HTML5, CSS3 (Grid, Flexbox, Custom Properties), JavaScript ES6+', 'font-size: 11px; color: #536471;');
+
+        // ==========================================
+        // PERFORMANCE MONITORING (opzionale)
+        // ==========================================
+        
+        // Log tempo di caricamento pagina
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`⚡ Pagina caricata in ${loadTime.toFixed(2)}ms`);
+        });
+
+    </script>
+
+</body>
+</html>
