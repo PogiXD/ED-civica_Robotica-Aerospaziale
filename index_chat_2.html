@@ -3,44 +3,40 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Robotica Aerospaziale · Modalità Videogioco</title>
+    <title>Robotica Aerospaziale · Interfaccia Spaziale</title>
 
-    <!-- ==========================================================
-         FONT & LIBRERIE ESTERNE
-         ========================================================== -->
-    <!-- Font gaming/futuristici -->
+    <!-- Font futuristici / space-age -->
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&family=Audiowide&family=Roboto+Mono:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
-    <!-- Icone futuristiche -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!-- Tailwind tramite CDN (richiesto, anche se usiamo soprattutto CSS custom) -->
+    <!-- Tailwind (richiesto, ma usiamo soprattutto CSS custom) -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <!-- ==========================================================
-         STILI GLOBALI - TEMA VIDEOGIOCO FUTURISTICO
-         ========================================================== -->
     <style>
-        /* ------------------------------------------------------
-           VARIABILI CSS PER TEMA CHIARO / SCURO
-           ------------------------------------------------------ */
+        /* =====================================================================
+           VARIABILI DI TEMA (SPACE AGE, SOBRIO, DUE TEMI BEN DIVERSI)
+           ===================================================================== */
         :root {
-            /* Tema scuro (predefinito) - stile videogioco spaziale */
-            --bg-primary: #030617;          /* sfondo principale molto scuro */
-            --bg-secondary: rgba(6, 12, 40, 0.96);
-            --bg-sidebar: rgba(4, 10, 35, 0.98);
-            --bg-card: rgba(10, 18, 60, 0.95);
+            /* Tema scuro: plancia di controllo nello spazio */
+            --bg-primary: #020617;        /* sfondo generale (blu quasi nero) */
+            --bg-secondary: #020817;      /* pannelli */
+            --bg-card: #050b1d;           /* card e moduli */
+            --bg-elevated: #070f26;       /* elementi leggermente rialzati */
 
-            --text-primary: #e5f5ff;
-            --text-secondary: #9ca9d9;
+            --text-primary: #e5e7eb;      /* testo principale */
+            --text-secondary: #9ca3af;    /* testo secondario */
 
-            --accent-primary: #22d3ee;      /* ciano neon */
-            --accent-secondary: #a855f7;    /* viola neon */
-            --accent-tertiary: #4ade80;     /* verde lime */
+            --accent-primary: #38bdf8;    /* ciano spaziale */
+            --accent-secondary: #818cf8;  /* indaco morbido */
+            --accent-soft: #7dd3fc;       /* ciano soft per dettagli */
 
-            --border-soft: rgba(148, 163, 184, 0.35);
-            --shadow-strong: 0 18px 45px rgba(15, 23, 42, 0.9);
-            --shadow-soft: 0 14px 35px rgba(15, 23, 42, 0.7);
+            --border-soft: rgba(148, 163, 184, 0.4);
+            --border-strong: rgba(148, 163, 184, 0.65);
+
+            --shadow-strong: 0 18px 45px rgba(3, 7, 18, 0.9);
+            --shadow-soft: 0 14px 35px rgba(3, 7, 18, 0.7);
 
             --sidebar-width: 280px;
 
@@ -48,24 +44,62 @@
             --transition-med: 0.28s ease-out;
         }
 
-        /* Tema chiaro: mantiene il feeling futuristico ma con fondi chiari */
+        /* Tema chiaro: sala controllo / laboratorio spaziale */
         [data-theme="light"] {
-            --bg-primary: #f1f5f9;
-            --bg-secondary: rgba(255, 255, 255, 0.92);
-            --bg-sidebar: rgba(15, 23, 42, 0.97);
-            --bg-card: rgba(255, 255, 255, 0.96);
+            --bg-primary: #edf1f7;        /* grigio azzurrato molto chiaro */
+            --bg-secondary: #ffffff;      /* sfondo pannelli */
+            --bg-card: #ffffff;           /* card chiare */
+            --bg-elevated: #e2e8f0;       /* elementi leggermente risaltati */
 
-            --text-primary: #020617;
-            --text-secondary: #475569;
+            --text-primary: #020617;      /* testo principale scuro */
+            --text-secondary: #4b5563;    /* testo secondario grigio */
 
-            --border-soft: rgba(148, 163, 184, 0.5);
-            --shadow-strong: 0 18px 45px rgba(15, 23, 42, 0.35);
-            --shadow-soft: 0 14px 35px rgba(15, 23, 42, 0.25);
+            --accent-primary: #2563eb;    /* blu più saturo per il tema chiaro */
+            --accent-secondary: #7c3aed;  /* viola */
+            --accent-soft: #38bdf8;
+
+            --border-soft: rgba(148, 163, 184, 0.6);
+            --border-strong: rgba(148, 163, 184, 0.7);
+
+            --shadow-strong: 0 18px 45px rgba(15, 23, 42, 0.22);
+            --shadow-soft: 0 14px 35px rgba(15, 23, 42, 0.18);
         }
 
-        /* ------------------------------------------------------
+        /* Sfondo nebuloso animato (diverso per il tema chiaro) */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            z-index: 1;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.2) 0, transparent 55%),
+                radial-gradient(circle at 80% 0%, rgba(129, 140, 248, 0.16) 0, transparent 55%),
+                radial-gradient(circle at 50% 100%, rgba(15, 23, 42, 0.8) 0, transparent 55%);
+            opacity: 0.8;
+            mix-blend-mode: screen;
+            filter: blur(3px);
+            animation: orbitGlow 40s linear infinite alternate;
+            pointer-events: none;
+        }
+
+        [data-theme="light"] body::before {
+            background:
+                radial-gradient(circle at 10% 20%, rgba(191, 219, 254, 0.6) 0, transparent 55%),
+                radial-gradient(circle at 80% 0%, rgba(221, 214, 254, 0.6) 0, transparent 55%),
+                radial-gradient(circle at 50% 100%, rgba(167, 243, 208, 0.5) 0, transparent 55%);
+            opacity: 0.9;
+            mix-blend-mode: normal;
+        }
+
+        @keyframes orbitGlow {
+            0% { transform: translate3d(0, 0, 0) scale(1); }
+            50% { transform: translate3d(-30px, -20px, 0) scale(1.03); }
+            100% { transform: translate3d(20px, 30px, 0) scale(1.02); }
+        }
+
+        /* =====================================================================
            RESET DI BASE
-           ------------------------------------------------------ */
+           ===================================================================== */
         *, *::before, *::after {
             margin: 0;
             padding: 0;
@@ -102,53 +136,30 @@
             list-style: none;
         }
 
-        /* ------------------------------------------------------
-           SFONDO DINAMICO: STARFIELD SU CANVAS
-           ------------------------------------------------------ */
+        :focus-visible {
+            outline: 2px solid var(--accent-primary);
+            outline-offset: 3px;
+        }
+
+        /* =====================================================================
+           CANVAS SFONDO STELLARE
+           ===================================================================== */
         #bg-canvas {
             position: fixed;
             inset: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* tutti i contenuti principali avranno z-index superiore */
-            pointer-events: none; /* lo sfondo non deve intercettare click */
-        }
-
-        /* Overlay di gradiente animato per dare profondità in stile videogioco */
-        body::before {
-            content: "";
-            position: fixed;
-            inset: -20%;
-            z-index: 1;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.22) 0, transparent 55%),
-                radial-gradient(circle at 80% 0%, rgba(168, 85, 247, 0.24) 0, transparent 55%),
-                radial-gradient(circle at 50% 100%, rgba(74, 222, 128, 0.16) 0, transparent 55%);
-            opacity: 0.75;
-            mix-blend-mode: screen;
-            filter: blur(2px);
-            animation: orbitGlow 32s linear infinite alternate;
+            z-index: 0;
             pointer-events: none;
         }
 
-        @keyframes orbitGlow {
-            0% {
-                transform: translate3d(0, 0, 0) scale(1);
-            }
-            50% {
-                transform: translate3d(-40px, -30px, 0) scale(1.08);
-            }
-            100% {
-                transform: translate3d(40px, 40px, 0) scale(1.04);
-            }
-        }
-
-        /* ------------------------------------------------------
-           LAYOUT PRINCIPALE: HEADER, SIDEBAR, CONTENUTO
-           ------------------------------------------------------ */
+        /* =====================================================================
+           STRUTTURA LAYOUT: HEADER, SIDEBAR, CONTENUTO, FOOTER
+           ===================================================================== */
         .app-shell {
             position: relative;
-            z-index: 2; /* sopra canvas e overlay */
+            z-index: 3; /* sopra starfield e overlay */
+            min-height: 100vh;
         }
 
         header {
@@ -157,21 +168,20 @@
             left: 0;
             right: 0;
             height: 72px;
-            padding: 0 24px;
+            padding: 0 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background:
-                linear-gradient(120deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.96)),
-                radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.35), transparent 60%);
-            backdrop-filter: blur(18px);
-            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.85);
-            border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+            background: linear-gradient(120deg, rgba(3, 7, 18, 0.96), rgba(15, 23, 42, 0.98));
+            border-bottom: 1px solid var(--border-soft);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 32px rgba(3, 7, 18, 0.9);
+            z-index: 40;
         }
 
         [data-theme="light"] header {
-            background:
-                linear-gradient(120deg, rgba(15, 23, 42, 0.96), rgba(30, 64, 175, 0.98));
+            background: linear-gradient(120deg, #e5e7eb, #dbeafe);
+            box-shadow: 0 10px 28px rgba(15, 23, 42, 0.3);
         }
 
         .header-left {
@@ -183,27 +193,19 @@
         .logo-orb {
             width: 42px;
             height: 42px;
-            border-radius: 999px;
+            border-radius: 50%;
             background:
-                radial-gradient(circle at 30% 20%, #e0f2fe 0, transparent 55%),
-                conic-gradient(from 220deg, #22d3ee, #a855f7, #4ade80, #22d3ee);
+                radial-gradient(circle at 30% 20%, #e5e7eb 0, transparent 55%),
+                conic-gradient(from 220deg, #38bdf8, #818cf8, #38bdf8);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #020617;
-            box-shadow:
-                0 0 22px rgba(34, 211, 238, 0.95),
-                0 0 44px rgba(168, 85, 247, 0.85);
-            animation: spinOrb 12s linear infinite;
-        }
-
-        @keyframes spinOrb {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            box-shadow: 0 0 14px rgba(15, 23, 42, 0.8);
         }
 
         .logo-orb i {
-            font-size: 20px;
+            font-size: 18px;
         }
 
         .header-title-group {
@@ -217,83 +219,109 @@
             font-size: 18px;
             letter-spacing: 0.13em;
             text-transform: uppercase;
-            color: #e5f5ff;
         }
 
         .site-subtitle {
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: rgba(148, 163, 184, 0.9);
+            letter-spacing: 0.16em;
+            color: var(--text-secondary);
         }
 
         .header-right {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 10px;
         }
 
-        /* Pulsante toggle lingua IT/EN in stile pillola neon */
+        /* ---------------------------------------------------------------------
+           TOGGLE LINGUA (IT/EN) - STILE SEGMENTED CONTROL
+           --------------------------------------------------------------------- */
         .lang-toggle {
             position: relative;
             display: inline-flex;
             align-items: center;
-            gap: 4px;
-            padding: 4px 8px;
+            justify-content: space-between;
+            gap: 0;
+            padding: 3px;
+            width: 96px;
             border-radius: 999px;
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.32), transparent 60%);
-            border: 1px solid rgba(148, 163, 184, 0.55);
-            box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.9);
+            /* Pannello in stile space‑age, più leggibile e sobrio */
+            background: linear-gradient(135deg, #020617, #0b1220);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            box-shadow: 0 8px 22px rgba(3, 7, 18, 0.85);
             font-size: 11px;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #e5f5ff;
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+            letter-spacing: 0.14em;
         }
 
-        .lang-toggle:hover {
-            transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 0 18px rgba(34, 211, 238, 0.7);
-            border-color: rgba(56, 189, 248, 0.85);
+        [data-theme="light"] .lang-toggle {
+            background: linear-gradient(135deg, #e5e7eb, #dbeafe);
+            border-color: rgba(148, 163, 184, 0.9);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
         }
 
         .lang-toggle span {
-            opacity: 0.7;
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            color: var(--text-secondary);
         }
 
-        .lang-separator {
-            opacity: 0.45;
+        .lang-toggle::before {
+            content: "";
+            position: absolute;
+            inset: 3px;
+            width: calc(50% - 3px);
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            transition: transform var(--transition-med);
+        }
+
+        [data-lang="it"] .lang-toggle::before {
+            transform: translateX(0);
+        }
+
+        [data-lang="en"] .lang-toggle::before {
+            transform: translateX(100%);
         }
 
         [data-lang="it"] .lang-label-it,
         [data-lang="en"] .lang-label-en {
-            opacity: 1;
-            color: #22d3ee;
+            color: #020617;
+            font-weight: 600;
         }
 
-        /* Toggle tema chiaro/scuro in stile interruttore gaming */
+        /* ---------------------------------------------------------------------
+           TOGGLE TEMA (LIGHT/DARK) - SLIDER CON ICONA
+           --------------------------------------------------------------------- */
         .theme-toggle {
             position: relative;
-            width: 64px;
+            display: inline-flex;
+            align-items: center;
+            padding: 3px;
+            width: 82px;
             height: 30px;
             border-radius: 999px;
-            padding: 3px;
-            background: radial-gradient(circle at 0 0, rgba(250, 250, 250, 0.24), transparent 55%);
-            border: 1px solid rgba(148, 163, 184, 0.65);
-            display: flex;
-            align-items: center;
-            box-shadow:
-                inset 0 0 0 1px rgba(15, 23, 42, 0.85),
-                0 0 0 1px rgba(15, 23, 42, 0.85);
-            cursor: pointer;
+            /* Slider in stile strumentazione spaziale, con contrasto chiaro/scuro ben visibile */
+            background: linear-gradient(135deg, #020617, #111827);
+            border: 1px solid rgba(148, 163, 184, 0.7);
+            box-shadow: 0 8px 22px rgba(3, 7, 18, 0.85);
             overflow: hidden;
+        }
+
+        [data-theme="light"] .theme-toggle {
+            background: linear-gradient(135deg, #e5e7eb, #dbeafe);
+            border-color: rgba(148, 163, 184, 0.9);
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
         }
 
         .theme-toggle-track {
             position: absolute;
             inset: 0;
             border-radius: inherit;
-            background: linear-gradient(120deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
+            background: radial-gradient(circle at 0 0, rgba(148, 163, 184, 0.25), transparent 60%);
         }
 
         .theme-toggle-handle {
@@ -308,73 +336,62 @@
             justify-content: center;
             color: #020617;
             box-shadow:
-                0 0 12px rgba(248, 250, 252, 0.9),
-                0 0 24px rgba(34, 211, 238, 0.75);
+                0 0 10px rgba(248, 250, 252, 0.9),
+                0 8px 18px rgba(15, 23, 42, 0.85);
+            transform: translateX(0);
             transition: transform var(--transition-med);
+        }
+
+        [data-theme="dark"] .theme-toggle-handle {
+            transform: translateX(48px);
         }
 
         .theme-toggle-handle i {
             font-size: 13px;
         }
 
-        [data-theme="dark"] .theme-toggle-handle {
-            transform: translateX(32px);
-        }
-
-        /* Pulsante hamburger per mobile */
+        /* ---------------------------------------------------------------------
+           MENU MOBILE (SOLO IN HEADER, NESSUNA SOVRAPPOSIZIONE CON LE HERO)
+           --------------------------------------------------------------------- */
         .menu-toggle {
-            position: fixed;
-            left: 16px;
-            top: 84px;
-            width: 46px;
-            height: 46px;
-            border-radius: 999px;
-            background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.38), transparent 50%),
-                linear-gradient(135deg, #0f172a, #111827);
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.95);
             display: none;
             align-items: center;
             justify-content: center;
-            color: #e5f5ff;
-            z-index: 40;
-            transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid var(--border-soft);
+            background: var(--bg-elevated);
+            box-shadow: 0 8px 18px rgba(3, 7, 18, 0.9);
         }
 
-        .menu-toggle:hover {
-            transform: translateY(-1px) scale(1.05);
-            box-shadow: 0 14px 38px rgba(15, 23, 42, 0.98);
+        .menu-toggle i {
+            font-size: 16px;
         }
 
-        /* Sidebar di navigazione stile HUD videogioco */
+        /* ---------------------------------------------------------------------
+           SIDEBAR DI NAVIGAZIONE
+           --------------------------------------------------------------------- */
         .sidebar {
             position: fixed;
             top: 72px;
             left: 0;
-            width: var(--sidebar-width);
             bottom: 0;
+            width: var(--sidebar-width);
             padding: 18px 14px 20px 18px;
-            background:
-                linear-gradient(180deg, rgba(15, 23, 42, 0.97), rgba(15, 23, 42, 0.98)),
-                radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.25), transparent 55%);
-            border-right: 1px solid rgba(148, 163, 184, 0.4);
-            box-shadow: 18px 0 42px rgba(15, 23, 42, 0.95);
-            backdrop-filter: blur(18px);
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.98), rgba(15, 23, 42, 0.98));
+            border-right: 1px solid var(--border-soft);
+            box-shadow: 18px 0 42px rgba(3, 7, 18, 0.95);
+            backdrop-filter: blur(16px);
             overflow-y: auto;
             z-index: 30;
-        }
-
-        .sidebar nav {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
         }
 
         .menu-section-label {
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.16em;
-            color: rgba(148, 163, 184, 0.8);
+            color: rgba(148, 163, 184, 0.85);
             padding: 6px 13px;
         }
 
@@ -387,23 +404,22 @@
             padding: 9px 12px;
             margin-bottom: 3px;
             border-radius: 12px;
-            color: rgba(226, 232, 240, 0.9);
-            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.4), transparent 60%);
+            color: rgba(226, 232, 240, 0.94);
+            background: rgba(15, 23, 42, 0.85);
             border: 1px solid transparent;
             text-align: left;
-            transition:
-                background var(--transition-fast),
-                transform var(--transition-fast),
-                box-shadow var(--transition-fast),
-                border-color var(--transition-fast),
-                color var(--transition-fast);
+            transition: background var(--transition-fast),
+                        transform var(--transition-fast),
+                        box-shadow var(--transition-fast),
+                        border-color var(--transition-fast),
+                        color var(--transition-fast);
         }
 
         .menu-item i {
             width: 22px;
             text-align: center;
             font-size: 15px;
-            color: rgba(148, 163, 184, 0.95);
+            color: rgba(148, 163, 184, 0.98);
         }
 
         .menu-item span {
@@ -411,46 +427,28 @@
             letter-spacing: 0.02em;
         }
 
-        .menu-item::after {
-            content: "";
-            position: absolute;
-            inset: 1px;
-            border-radius: inherit;
-            border: 1px solid rgba(34, 211, 238, 0.0);
-            pointer-events: none;
-            transition: border-color var(--transition-med);
-        }
-
         .menu-item:hover {
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.22), transparent 60%);
+            background: linear-gradient(120deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
             transform: translateX(3px);
-            box-shadow: 0 0 22px rgba(34, 211, 238, 0.55);
-            border-color: rgba(59, 130, 246, 0.7);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+            border-color: var(--border-soft);
         }
 
         .menu-item:hover i {
-            color: #22d3ee;
-        }
-
-        .menu-item:hover::after {
-            border-color: rgba(34, 211, 238, 0.7);
+            color: var(--accent-primary);
         }
 
         .menu-item.active {
-            background: linear-gradient(120deg, rgba(34, 211, 238, 0.24), rgba(168, 85, 247, 0.32));
-            border-color: rgba(94, 234, 212, 0.9);
-            box-shadow: 0 0 24px rgba(45, 212, 191, 0.85);
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.96), rgba(15, 23, 42, 0.98));
+            border-color: var(--accent-primary);
+            box-shadow: 0 14px 32px rgba(15, 23, 42, 0.96);
             transform: translateX(4px);
-        }
-
-        .menu-item.active i {
-            color: #a5b4fc;
         }
 
         .submenu-toggle-icon {
             margin-left: auto;
             font-size: 12px;
-            color: rgba(148, 163, 184, 0.95);
+            color: rgba(148, 163, 184, 0.9);
             transition: transform var(--transition-med);
         }
 
@@ -477,15 +475,14 @@
             padding: 7px 12px 7px 32px;
             border-radius: 9px;
             margin-bottom: 2px;
-            color: rgba(203, 213, 225, 0.9);
+            color: rgba(203, 213, 225, 0.96);
             font-size: 12px;
-            background: rgba(15, 23, 42, 0.1);
+            background: rgba(15, 23, 42, 0.8);
             border: 1px solid transparent;
-            transition:
-                background var(--transition-fast),
-                transform var(--transition-fast),
-                border-color var(--transition-fast),
-                color var(--transition-fast);
+            transition: background var(--transition-fast),
+                        transform var(--transition-fast),
+                        border-color var(--transition-fast),
+                        color var(--transition-fast);
         }
 
         .submenu-item i {
@@ -495,21 +492,21 @@
         }
 
         .submenu-item:hover {
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), transparent 60%);
+            background: linear-gradient(120deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
             transform: translateX(2px);
-            border-color: rgba(56, 189, 248, 0.6);
-            color: #e5f5ff;
+            border-color: var(--border-soft);
+            color: #e5e7eb;
         }
 
         .submenu-item.active {
-            background: radial-gradient(circle at 0 0, rgba(34, 197, 94, 0.24), transparent 60%);
-            border-color: rgba(74, 222, 128, 0.85);
-            color: #bbf7d0;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.96), rgba(15, 23, 42, 0.98));
+            border-color: var(--accent-primary);
+            color: #e5e7eb;
         }
 
-        /* ------------------------------------------------------
-           CONTENUTO PRINCIPALE
-           ------------------------------------------------------ */
+        /* ---------------------------------------------------------------------
+           CONTENUTO PRINCIPALE E PAGINE
+           --------------------------------------------------------------------- */
         .main-layout {
             display: flex;
             padding-top: 72px;
@@ -526,9 +523,7 @@
             display: none;
             opacity: 0;
             transform: translateY(16px);
-            transition:
-                opacity 0.28s ease-out,
-                transform 0.28s ease-out;
+            transition: opacity 0.28s ease-out, transform 0.28s ease-out;
         }
 
         .page.active {
@@ -537,33 +532,31 @@
             transform: translateY(0);
         }
 
-        /* Hero principale in stile schermata di gioco */
+        /* ---------------------------------------------------------------------
+           HERO PRINCIPALE / SEZIONI INTRODUTTIVE
+           --------------------------------------------------------------------- */
         .hero {
             position: relative;
-            padding: 28px 26px 26px;
+            padding: 26px 26px 22px;
             border-radius: 22px;
             background:
-                radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.26), transparent 60%),
-                radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.28), transparent 60%),
-                linear-gradient(135deg, rgba(15, 23, 42, 0.88), rgba(15, 23, 42, 0.96));
-            border: 1px solid rgba(148, 163, 184, 0.5);
+                radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.16) 0, transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.16) 0, transparent 55%),
+                linear-gradient(135deg, rgba(3, 7, 18, 0.96), rgba(15, 23, 42, 0.99));
+            border: 1px solid var(--border-soft);
             box-shadow: var(--shadow-strong);
+            margin-bottom: 28px;
             overflow: hidden;
-            margin-bottom: 30px;
         }
 
-        .hero::before {
-            content: "";
-            position: absolute;
-            inset: -1px;
-            border-radius: inherit;
-            border: 1px solid rgba(226, 232, 240, 0.08);
-            pointer-events: none;
+        [data-theme="light"] .hero {
+            background:
+                radial-gradient(circle at 0 0, rgba(191, 219, 254, 0.7) 0, transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(221, 214, 254, 0.7) 0, transparent 55%),
+                linear-gradient(135deg, #e5e7eb, #ffffff);
         }
 
         .hero-inner {
-            position: relative;
-            z-index: 1;
             display: grid;
             grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.4fr);
             gap: 22px;
@@ -574,45 +567,46 @@
             font-size: 11px;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: rgba(226, 232, 240, 0.82);
+            color: rgba(148, 163, 184, 0.9);
             margin-bottom: 10px;
         }
 
         .glow-title {
             font-family: 'Audiowide', 'Orbitron', system-ui, sans-serif;
-            font-size: clamp(26px, 3.1vw, 34px);
+            font-size: clamp(26px, 3vw, 34px);
             letter-spacing: 0.18em;
             text-transform: uppercase;
             margin-bottom: 10px;
             color: #f9fafb;
             text-shadow:
-                0 0 8px rgba(56, 189, 248, 0.85),
-                0 0 18px rgba(59, 130, 246, 0.9),
-                0 0 28px rgba(129, 140, 248, 0.9);
-            animation: neonPulse 3.6s ease-in-out infinite alternate;
+                0 0 4px rgba(15, 23, 42, 0.8),
+                0 0 12px rgba(30, 64, 175, 0.5);
+            animation: titlePulse 18s ease-in-out infinite alternate;
         }
 
-        @keyframes neonPulse {
+        @keyframes titlePulse {
             0% {
                 text-shadow:
-                    0 0 5px rgba(56, 189, 248, 0.85),
-                    0 0 12px rgba(59, 130, 246, 0.85),
-                    0 0 20px rgba(129, 140, 248, 0.9);
+                    0 0 4px rgba(15, 23, 42, 0.8),
+                    0 0 10px rgba(37, 99, 235, 0.4);
             }
             100% {
                 text-shadow:
-                    0 0 10px rgba(56, 189, 248, 1),
-                    0 0 22px rgba(59, 130, 246, 1),
-                    0 0 32px rgba(129, 140, 248, 1);
+                    0 0 10px rgba(15, 23, 42, 0.9),
+                    0 0 18px rgba(59, 130, 246, 0.6);
             }
         }
 
         .hero-subtitle {
             font-size: 14px;
             color: rgba(226, 232, 240, 0.9);
-            max-width: 520px;
+            max-width: 560px;
             line-height: 1.7;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
+        }
+
+        [data-theme="light"] .hero-subtitle {
+            color: #1f2937;
         }
 
         .hero-badges {
@@ -631,9 +625,13 @@
             font-size: 11px;
             letter-spacing: 0.08em;
             text-transform: uppercase;
-            background: linear-gradient(120deg, rgba(34, 211, 238, 0.14), rgba(168, 85, 247, 0.22));
-            border: 1px solid rgba(129, 140, 248, 0.85);
-            color: #e5f5ff;
+            background: linear-gradient(120deg, rgba(15, 23, 42, 0.96), rgba(15, 23, 42, 0.98));
+            border: 1px solid var(--border-strong);
+        }
+
+        [data-theme="light"] .badge {
+            background: linear-gradient(120deg, #020617, #020617);
+            color: #e5e7eb;
         }
 
         .badge i {
@@ -657,61 +655,102 @@
             padding: 8px 16px;
             border-radius: 999px;
             font-size: 13px;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
-            overflow: hidden;
-            transition:
-                transform var(--transition-fast),
-                box-shadow var(--transition-fast),
-                background var(--transition-fast),
-                color var(--transition-fast),
-                border-color var(--transition-fast);
+            transition: transform var(--transition-fast),
+                        box-shadow var(--transition-fast),
+                        background var(--transition-fast),
+                        color var(--transition-fast),
+                        border-color var(--transition-fast);
             white-space: nowrap;
         }
 
         .btn-primary {
-            background: linear-gradient(120deg, #22c55e, #22d3ee, #a855f7);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-            color: #020617;
-            box-shadow:
-                0 0 8px rgba(34, 211, 238, 0.85),
-                0 0 26px rgba(45, 212, 191, 0.9);
+            background: linear-gradient(135deg, #1d4ed8, #38bdf8);
+            border: 1px solid rgba(226, 232, 240, 0.95);
+            color: #f9fafb;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.9);
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px) scale(1.03);
-            box-shadow:
-                0 0 16px rgba(34, 211, 238, 0.95),
-                0 0 32px rgba(45, 212, 191, 0.95);
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 14px 32px rgba(15, 23, 42, 0.95);
         }
 
         .btn-ghost {
-            border: 1px solid rgba(148, 163, 184, 0.75);
-            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.4), transparent 60%);
-            color: rgba(226, 232, 240, 0.9);
+            border: 1px solid var(--border-soft);
+            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.85), transparent 60%);
+            color: rgba(226, 232, 240, 0.96);
+        }
+
+        [data-theme="light"] .btn-ghost {
+            background: radial-gradient(circle at 0 0, rgba(203, 213, 225, 0.9), transparent 60%);
+            color: #0f172a;
         }
 
         .btn-ghost:hover {
-            transform: translateY(-1px) scale(1.03);
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), transparent 60%);
-            border-color: rgba(129, 140, 248, 0.9);
-            box-shadow: 0 0 18px rgba(129, 140, 248, 0.9);
+            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.9);
+        }
+
+        /* Pulsanti pianeta per navigazione rapida (resteranno dentro la hero) */
+        .planet-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .planet-button {
+            position: relative;
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            border: 1px solid var(--border-soft);
+            background:
+                radial-gradient(circle at 30% 20%, rgba(248, 250, 252, 0.9), rgba(148, 163, 184, 0.6) 40%, transparent 65%),
+                radial-gradient(circle at 80% 110%, rgba(56, 189, 248, 0.35), transparent 60%),
+                #020617;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.9);
+        }
+
+        .planet-button i {
+            font-size: 20px;
+            color: var(--accent-primary);
+        }
+
+        .planet-button:hover {
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        .planet-button-label {
+            position: absolute;
+            bottom: -18px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            white-space: nowrap;
+            color: var(--text-secondary);
         }
 
         .hero-image {
             position: relative;
             border-radius: 18px;
-            border: 1px solid rgba(148, 163, 184, 0.65);
+            border: 1px solid var(--border-soft);
             padding: 6px;
             background:
-                radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.32), transparent 60%),
-                radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.3), transparent 60%),
+                radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.18), transparent 60%),
+                radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.2), transparent 60%),
                 #020617;
             box-shadow: var(--shadow-soft);
         }
 
         .hero-image-inner {
-            position: relative;
             border-radius: 14px;
             overflow: hidden;
         }
@@ -737,19 +776,21 @@
             font-size: 10px;
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            background: rgba(15, 23, 42, 0.84);
-            border: 1px solid rgba(148, 163, 184, 0.8);
-            color: rgba(226, 232, 240, 0.9);
+            background: rgba(3, 7, 18, 0.9);
+            border: 1px solid var(--border-soft);
+            color: rgba(226, 232, 240, 0.95);
         }
 
         .quote-small {
             margin-top: 8px;
             font-size: 12px;
-            color: rgba(203, 213, 225, 0.9);
+            color: rgba(203, 213, 225, 0.95);
             font-style: italic;
         }
 
-        /* Carte di contenuto stile moduli HUD */
+        /* ---------------------------------------------------------------------
+           CARD, GRIGLIE, LISTE, IMMAGINI, QUOTE
+           --------------------------------------------------------------------- */
         .card {
             position: relative;
             margin-bottom: 22px;
@@ -767,8 +808,8 @@
             inset: 0;
             border-radius: inherit;
             background:
-                linear-gradient(120deg, rgba(34, 211, 238, 0.24), transparent 55%),
-                radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.18), transparent 60%);
+                linear-gradient(120deg, rgba(56, 189, 248, 0.16), transparent 55%),
+                radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.14), transparent 60%);
             mix-blend-mode: soft-light;
             opacity: 0;
             transition: opacity var(--transition-med);
@@ -796,7 +837,6 @@
 
         .card h3 {
             font-size: 13px;
-            color: var(--accent-tertiary);
         }
 
         .card h2 i,
@@ -813,11 +853,10 @@
         }
 
         .card-highlight {
-            border-color: rgba(34, 211, 238, 0.8);
-            box-shadow: 0 0 18px rgba(34, 211, 238, 0.65);
+            border-color: var(--accent-primary);
+            box-shadow: 0 16px 40px rgba(15, 23, 42, 0.9);
         }
 
-        /* Layout a griglia per sezioni */
         .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -830,7 +869,6 @@
             gap: 16px;
         }
 
-        /* Liste con icone in stile UI di gioco */
         .icon-list {
             margin-top: 4px;
         }
@@ -854,15 +892,14 @@
             color: var(--text-primary);
         }
 
-        /* Immagini di sezione con cornice neon */
         .image-container {
             margin: 18px 0 10px;
             border-radius: 18px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
+            border: 1px solid var(--border-soft);
             padding: 6px;
             background:
-                radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.28), transparent 60%),
-                radial-gradient(circle at 100% 0, rgba(168, 85, 247, 0.28), transparent 60%),
+                radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.2), transparent 60%),
+                radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.22), transparent 60%),
                 #020617;
             box-shadow: var(--shadow-soft);
         }
@@ -888,40 +925,38 @@
         .image-caption {
             padding-top: 6px;
             font-size: 11px;
-            color: rgba(148, 163, 184, 0.9);
+            color: rgba(148, 163, 184, 0.95);
         }
 
-        /* Citazioni */
         .quote-box {
             position: relative;
             margin: 22px 0;
             padding: 18px 20px 16px 46px;
             border-radius: 18px;
-            background: linear-gradient(120deg, rgba(17, 24, 39, 0.96), rgba(15, 23, 42, 0.98));
-            border: 1px solid rgba(148, 163, 184, 0.7);
+            background: linear-gradient(120deg, rgba(15, 23, 42, 0.98), rgba(15, 23, 42, 0.98));
+            border: 1px solid var(--border-soft);
             box-shadow: var(--shadow-soft);
             font-style: italic;
-            color: rgba(226, 232, 240, 0.9);
+            color: rgba(226, 232, 240, 0.96);
         }
 
         .quote-box::before {
-            content: "\f10d"; /* icona quote-left */
+            content: "\f10d";
             font-family: "Font Awesome 6 Free";
             font-weight: 900;
             position: absolute;
             left: 16px;
             top: 16px;
-            color: rgba(56, 189, 248, 0.85);
+            color: rgba(148, 163, 184, 0.9);
             font-size: 18px;
         }
 
         .quote-author {
             margin-top: 6px;
             font-size: 12px;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
-        /* Box vantaggi / svantaggi con colori distinti */
         .pro-con-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -932,27 +967,22 @@
         .con-box {
             padding: 16px 16px 12px;
             border-radius: 16px;
-            border: 1px solid rgba(148, 163, 184, 0.6);
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.12), transparent 60%);
+            border: 1px solid var(--border-soft);
+            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), transparent 60%);
         }
 
         .pro-box {
-            border-color: rgba(74, 222, 128, 0.8);
-            box-shadow: 0 0 22px rgba(74, 222, 128, 0.5);
+            border-color: rgba(52, 211, 153, 0.7);
         }
 
         .con-box {
             border-color: rgba(248, 113, 113, 0.8);
-            box-shadow: 0 0 22px rgba(248, 113, 113, 0.45);
         }
 
         .pro-box h3 i { color: #4ade80; }
         .con-box h3 i { color: #f97373; }
 
-        /* Liste di link della sitografia */
-        .link-list li {
-            margin-bottom: 6px;
-        }
+        .link-list li { margin-bottom: 6px; }
 
         .link-pill {
             display: inline-flex;
@@ -961,37 +991,34 @@
             padding: 6px 11px;
             border-radius: 999px;
             font-size: 12px;
-            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.6), transparent 60%);
-            border: 1px solid rgba(148, 163, 184, 0.7);
-            color: rgba(226, 232, 240, 0.9);
-            transition:
-                background var(--transition-fast),
-                transform var(--transition-fast),
-                box-shadow var(--transition-fast),
-                border-color var(--transition-fast);
+            background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.85), transparent 60%);
+            border: 1px solid var(--border-soft);
+            color: rgba(226, 232, 240, 0.96);
+            transition: background var(--transition-fast),
+                        transform var(--transition-fast),
+                        box-shadow var(--transition-fast),
+                        border-color var(--transition-fast);
         }
 
         .link-pill i {
             font-size: 13px;
-            color: rgba(94, 234, 212, 0.85);
+            color: rgba(148, 163, 184, 0.95);
         }
 
         .link-pill:hover {
-            background: radial-gradient(circle at 0 0, rgba(34, 211, 238, 0.18), transparent 60%);
-            border-color: rgba(94, 234, 212, 0.95);
+            background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.9), transparent 60%);
+            border-color: var(--accent-soft);
             transform: translateY(-1px) scale(1.02);
-            box-shadow: 0 0 20px rgba(34, 211, 238, 0.75);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, 0.96);
         }
 
-        /* ------------------------------------------------------
-           ANIMAZIONI ON-SCROLL (REVEAL)
-           ------------------------------------------------------ */
+        /* ---------------------------------------------------------------------
+           ANIMAZIONI ON-SCROLL
+           --------------------------------------------------------------------- */
         .reveal-on-scroll {
             opacity: 0;
             transform: translateY(16px);
-            transition:
-                opacity 0.4s ease-out,
-                transform 0.4s ease-out;
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out;
         }
 
         .reveal-on-scroll.is-visible {
@@ -999,16 +1026,16 @@
             transform: translateY(0);
         }
 
-        /* ------------------------------------------------------
+        /* ---------------------------------------------------------------------
            FOOTER
-           ------------------------------------------------------ */
+           --------------------------------------------------------------------- */
         footer {
             margin-left: var(--sidebar-width);
             padding: 14px 32px 24px;
-            border-top: 1px solid rgba(148, 163, 184, 0.5);
-            background: rgba(15, 23, 42, 0.96);
+            border-top: 1px solid var(--border-soft);
+            background: rgba(3, 7, 18, 0.98);
             backdrop-filter: blur(16px);
-            color: rgba(148, 163, 184, 0.95);
+            color: rgba(148, 163, 184, 0.96);
             font-size: 12px;
         }
 
@@ -1016,9 +1043,9 @@
             margin-top: 4px;
         }
 
-        /* ------------------------------------------------------
+        /* ---------------------------------------------------------------------
            BOTTONE SCROLL TO TOP
-           ------------------------------------------------------ */
+           --------------------------------------------------------------------- */
         .scroll-top {
             position: fixed;
             right: 22px;
@@ -1026,21 +1053,19 @@
             width: 46px;
             height: 46px;
             border-radius: 999px;
-            border: 1px solid rgba(148, 163, 184, 0.85);
+            border: 1px solid var(--border-soft);
             background:
-                radial-gradient(circle at 50% 0, rgba(34, 211, 238, 0.3), transparent 60%),
-                linear-gradient(135deg, #020617, #0b1120);
+                radial-gradient(circle at 50% 0, rgba(148, 163, 184, 0.45), transparent 60%),
+                linear-gradient(135deg, #020617, #020617);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #e5f5ff;
-            box-shadow: 0 14px 36px rgba(15, 23, 42, 0.95);
+            color: #e5e7eb;
+            box-shadow: 0 14px 32px rgba(3, 7, 18, 0.96);
             opacity: 0;
             pointer-events: none;
             transform: translateY(12px);
-            transition:
-                opacity var(--transition-med),
-                transform var(--transition-med);
+            transition: opacity var(--transition-med), transform var(--transition-med);
             z-index: 40;
         }
 
@@ -1050,18 +1075,14 @@
             transform: translateY(0);
         }
 
-        .scroll-top i {
-            font-size: 16px;
-        }
-
         .scroll-top:hover {
-            box-shadow: 0 16px 42px rgba(15, 23, 42, 0.98);
+            box-shadow: 0 16px 40px rgba(3, 7, 18, 0.98);
             transform: translateY(-2px) scale(1.04);
         }
 
-        /* ------------------------------------------------------
+        /* ---------------------------------------------------------------------
            RESPONSIVE DESIGN
-           ------------------------------------------------------ */
+           --------------------------------------------------------------------- */
         @media (max-width: 1024px) {
             .hero-inner {
                 grid-template-columns: minmax(0, 1.2fr);
@@ -1093,7 +1114,7 @@
             }
 
             .menu-toggle {
-                display: flex;
+                display: inline-flex;
             }
         }
 
@@ -1123,6 +1144,10 @@
             .pro-con-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
+
+            .planet-nav {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 480px) {
@@ -1144,16 +1169,13 @@
     </style>
 </head>
 <body>
-    <!--
-        Canvas di sfondo per starfield animato.
-        Viene gestito interamente via JavaScript per creare l'effetto "spazio".
-    -->
+    <!-- Canvas di sfondo per campo stellare animato -->
     <canvas id="bg-canvas"></canvas>
 
     <div class="app-shell">
-        <!-- =====================================================
-             HEADER: LOGO, TITOLO, TOGGLE LINGUA, TOGGLE TEMA
-             ===================================================== -->
+        <!-- =============================================================== -->
+        <!-- HEADER: LOGO, TITOLO, TOGGLE LINGUA, TOGGLE TEMA, MENU MOBILE   -->
+        <!-- =============================================================== -->
         <header>
             <div class="header-left">
                 <div class="logo-orb" aria-hidden="true">
@@ -1166,33 +1188,32 @@
             </div>
 
             <div class="header-right">
-                <!-- Toggle lingua IT/EN -->
-                <button id="langToggle" class="lang-toggle" type="button" aria-label="Change language / Cambia lingua">
+                <!-- Toggle lingua IT / EN -->
+                <button id="langToggle" class="lang-toggle" type="button" aria-label="Cambia lingua / Change language">
                     <span class="lang-label-it">IT</span>
-                    <span class="lang-separator">/</span>
                     <span class="lang-label-en">EN</span>
                 </button>
 
                 <!-- Toggle tema chiaro/scuro -->
-                <div id="themeToggle" class="theme-toggle" role="button" aria-label="Toggle light / dark theme">
+                <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle light / dark theme">
                     <div class="theme-toggle-track"></div>
                     <div class="theme-toggle-handle">
                         <i id="themeIcon" class="fas fa-moon"></i>
                     </div>
-                </div>
+                </button>
+
+                <!-- Menu mobile (apre/chiude la sidebar) -->
+                <button id="menuToggle" class="menu-toggle" type="button" aria-label="Apri o chiudi il menù di navigazione">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </header>
 
-        <!-- Pulsante hamburger (mobile) -->
-        <button id="menuToggle" class="menu-toggle" type="button" aria-label="Apri o chiudi menù di navigazione">
-            <i class="fas fa-bars"></i>
-        </button>
-
-        <!-- =====================================================
-             SIDEBAR DI NAVIGAZIONE
-             ===================================================== -->
-        <aside id="sidebar" class="sidebar">
-            <nav aria-label="Main navigation">
+        <!-- =============================================================== -->
+        <!-- SIDEBAR DI NAVIGAZIONE                                         -->
+        <!-- =============================================================== -->
+        <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+            <nav>
                 <div class="menu-section-label">HUD · MENU</div>
 
                 <button class="menu-item active" data-page="home" type="button">
@@ -1205,7 +1226,6 @@
                     <span data-i18n="menu.about">Cos'è la Robotica Aerospaziale</span>
                 </button>
 
-                <!-- Sezione Tecnologie con sottomenu -->
                 <div class="menu-section-label">TECH</div>
 
                 <button class="menu-item" id="techMenu" type="button">
@@ -1237,7 +1257,6 @@
                     </button>
                 </div>
 
-                <!-- Altre sezioni -->
                 <div class="menu-section-label">MISSION</div>
 
                 <button class="menu-item" data-page="applications" type="button">
@@ -1277,11 +1296,9 @@
             </nav>
         </aside>
 
-        <!-- =====================================================
-             CONTENUTO PRINCIPALE
-             Ogni sezione .page viene riempita dinamicamente
-             in base alla lingua tramite JavaScript (i18n).
-             ===================================================== -->
+        <!-- =============================================================== -->
+        <!-- CONTENUTO PRINCIPALE: PAGINE "PSEUDO-MULTIPAGINA"               -->
+        <!-- =============================================================== -->
         <main class="main-layout">
             <section id="home" class="main-content page active" data-section="home"></section>
             <section id="about" class="main-content page" data-section="about"></section>
@@ -1299,9 +1316,9 @@
             <section id="sitography" class="main-content page" data-section="sitography"></section>
         </main>
 
-        <!-- =====================================================
-             FOOTER
-             ===================================================== -->
+        <!-- =============================================================== -->
+        <!-- FOOTER                                                          -->
+        <!-- =============================================================== -->
         <footer>
             <p data-i18n="footer.title">Robotica Aerospaziale · Esplorazione del Futuro</p>
             <p data-i18n="footer.subtitle">Un viaggio attraverso la tecnologia che porta l'umanità oltre la Terra</p>
@@ -1315,21 +1332,18 @@
         </footer>
     </div>
 
-    <!-- Bottone per tornare all'inizio pagina -->
+    <!-- Bottone per tornare all'inizio -->
     <button id="scrollTop" class="scroll-top" type="button" aria-label="Torna all'inizio">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <!-- ==========================================================
-         SCRIPT: TEMA, LINGUA, NAVIGAZIONE, STARFIELD, ANIMAZIONI
-         ========================================================== -->
+    <!-- =================================================================== -->
+    <!-- SCRIPT: TRADUZIONI, TEMA, NAVIGAZIONE, STARFIELD, ANIMAZIONI        -->
+    <!-- =================================================================== -->
     <script>
-        // ==========================================================
-        // CONFIGURAZIONE TRADUZIONI (ITALIANO / INGLESE)
-        // Ogni sezione principale è definita come blocco HTML
-        // per permettere un cambio lingua dinamico e completo.
-        // ==========================================================
-
+        // ===================================================================
+        // TRADUZIONI INTERFACCIA (UI) IT / EN
+        // ===================================================================
         const uiTranslations = {
             it: {
                 'site.title': 'Robotica Aerospaziale',
@@ -1379,10 +1393,13 @@
             },
         };
 
+        // ===================================================================
+        // TRADUZIONI DEI CONTENUTI DELLE SEZIONI (BLOCCHI HTML COMPLETI)
+        // ===================================================================
         const sectionTranslations = {
-            // ------------------------------------------------------
-            // HOMEPAGE
-            // ------------------------------------------------------
+            // --------------------------------------------------------------
+            // ITALIANO
+            // --------------------------------------------------------------
             it: {
                 home: `
                     <div class="hero">
@@ -1392,27 +1409,42 @@
                                 <h1 class="glow-title">Robotica Aerospaziale</h1>
                                 <p class="hero-subtitle">
                                     La robotica aerospaziale porta i robot oltre la Terra, in ambienti dove l’uomo non può sopravvivere.
-                                    È la tecnologia che rende possibili missioni su Marte, la manutenzione dei satelliti e le attività sulla Stazione Spaziale Internazionale (ISS).
+                                    È la tecnologia che rende possibili missioni su Marte, la manutenzione dei satelliti e le attività sulla
+                                    Stazione Spaziale Internazionale (ISS).
                                 </p>
                                 <div class="hero-badges">
                                     <span class="badge"><i class="fas fa-shield"></i> Ridurre i rischi per gli astronauti</span>
                                     <span class="badge"><i class="fas fa-arrows-alt"></i> Estendere le capacità umane</span>
                                 </div>
-                                <div class="hero-cta">
-                                    <button class="btn-primary" data-jump="applications">
-                                        <span>Applicazioni</span>
+
+                                <div class="planet-nav">
+                                    <button class="planet-button" type="button" data-jump="applications">
                                         <i class="fas fa-play"></i>
+                                        <span class="planet-button-label">Cos'è</span>
                                     </button>
-                                    <button class="btn-ghost" data-jump="future">
-                                        <span>Il futuro</span>
+                                    <button class="planet-button" type="button" data-jump="future">
                                         <i class="fas fa-forward"></i>
+                                        <span class="planet-button-label">Cos'è</span>
+                                    </button>
+                                    <button class="planet-button" type="button" data-jump="about">
+                                        <i class="fas fa-rocket"></i>
+                                        <span class="planet-button-label">Cos'è</span>
+                                    </button>
+                                    <button class="planet-button" type="button" data-jump="applications">
+                                        <i class="fas fa-satellite"></i>
+                                        <span class="planet-button-label">Applicazioni</span>
+                                    </button>
+                                    <button class="planet-button" type="button" data-jump="future">
+                                        <i class="fas fa-stars"></i>
+                                        <span class="planet-button-label">Futuro</span>
                                     </button>
                                 </div>
+                                <br>
                                 <p class="quote-small">
-                                    "Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."
+                                    "La robotica aerospaziale rende possibili missioni oltre la Terra, proteggendo gli astronauti ed estendendo le capacità umane."
                                 </p>
                             </div>
-                            <div class="hero-image reveal-on-scroll">
+                            <div class="hero-image">
                                 <div class="hero-image-inner image-frame">
                                     <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1200&auto=format&fit=crop&q=80" alt="Rover robotico che esplora la superficie di Marte" />
                                     <div class="hero-hud-tag">Mars Rover · Perseverance style</div>
@@ -1422,7 +1454,7 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-info-circle"></i> Introduzione generale</h2>
                             <p>
                                 La robotica aerospaziale combina <strong>ingegneria, informatica e scienze spaziali</strong> per creare sistemi in grado di
@@ -1440,7 +1472,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-gamepad"></i> Modalità videogioco</h2>
                             <p>
                                 Questo sito è pensato come un <strong>HUD di una missione spaziale</strong>: il menù laterale funziona come un pannello di bordo,
@@ -1454,9 +1486,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // COS'È LA ROBOTICA AEROSPAZIALE
-                // --------------------------------------------------
                 about: `
                     <div class="hero card-highlight">
                         <div class="hero-inner">
@@ -1469,7 +1498,7 @@
                                     lavorare in condizioni che nessun essere umano potrebbe sopportare a lungo.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&auto=format&fit=crop&q=80" alt="Stazione Spaziale Internazionale vista dall'esterno" />
                                 </div>
@@ -1480,7 +1509,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-screwdriver-wrench"></i> Caratteristiche fondamentali</h2>
                         <div class="grid-3">
                             <div>
@@ -1499,7 +1528,7 @@
                             <div>
                                 <h3><i class="fas fa-battery-full"></i> Efficienza energetica</h3>
                                 <p>
-                                    L’energia a disposizione è limitata: spesso proviene da <strong>pannelli solari</strong> o da generatori
+                                    L’energia a disposizione è limitata: spesso proviene da <strong>pannelli solali</strong> o da generatori
                                     termoelettrici a radioisotopi.
                                 </p>
                             </div>
@@ -1507,9 +1536,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // TECNOLOGIE FONDAMENTALI - SENSORI
-                // --------------------------------------------------
                 'tech-sensori': `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1521,7 +1547,7 @@
                                     misurare l’ambiente e raccogliere dati scientifici.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1580674280375-c10aeeb185d2?w=1200&auto=format&fit=crop&q=80" alt="Satellite con sensori e pannelli solari" />
                                 </div>
@@ -1531,7 +1557,7 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-camera"></i> Telecamere HD e multispettrali</h2>
                             <p>
                                 Telecamere ad alta definizione e sensori multispettrali permettono di vedere in bande diverse dello spettro
@@ -1543,7 +1569,7 @@
                                 <li><i class="fas fa-check"></i><span>Supporto alla navigazione autonoma del rover.</span></li>
                             </ul>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-broadcast-tower"></i> LIDAR e radar</h2>
                             <p>
                                 Il LIDAR utilizza impulsi laser per misurare distanze e costruire mappe 3D. I radar penetrano nel sottosuolo,
@@ -1557,9 +1583,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // TECNOLOGIE FONDAMENTALI - ATTUATORI
-                // --------------------------------------------------
                 'tech-attuatori': `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1571,7 +1594,7 @@
                                     di muoversi, afferrare oggetti e compiere operazioni delicate.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&auto=format&fit=crop&q=80" alt="Braccio robotico spaziale" />
                                 </div>
@@ -1580,7 +1603,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-hand-rock"></i> Bracci robotici in orbita</h2>
                         <p>
                             Sulla Stazione Spaziale Internazionale il <strong>Canadarm2</strong> e altri strumenti robotici spostano moduli,
@@ -1593,20 +1616,20 @@
                     </div>
 
                     <div class="grid-3">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-circle-notch"></i> Ruote dei rover</h3>
                             <p>
                                 Ruote indipendenti, spesso in titanio o alluminio speciale, permettono ai rover di affrontare terreni rocciosi,
                                 sabbia e pendenze.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-person-running"></i> Gambe e robot camminanti</h3>
                             <p>
                                 Prototipi di robot a sei o più zampe studiati per esplorare crateri profondi o grotte su altri pianeti.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-rocket"></i> Micro‑propulsori</h3>
                             <p>
                                 Utilizzati per robot in orbita o piccoli droni, consentono di eseguire manovre precise in assenza di gravità.
@@ -1615,9 +1638,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // TECNOLOGIE FONDAMENTALI - NAVIGAZIONE
-                // --------------------------------------------------
                 'tech-navigazione': `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1629,7 +1649,7 @@
                                     essere capaci di guidare quasi come in un videogioco <strong>in modalità automatica</strong>.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=1200&auto=format&fit=crop&q=80" alt="Rappresentazione grafica di traiettorie e orbite" />
                                 </div>
@@ -1638,7 +1658,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-route"></i> Come si orienta un rover</h2>
                         <ul class="icon-list">
                             <li>
@@ -1657,9 +1677,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // TECNOLOGIE FONDAMENTALI - IA
-                // --------------------------------------------------
                 'tech-ia': `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1671,7 +1688,7 @@
                                     scientifici e adattarsi a situazioni impreviste.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&auto=format&fit=crop&q=80" alt="Visualizzazione astratta di intelligenza artificiale" />
                                 </div>
@@ -1681,14 +1698,14 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-image"></i> Visione artificiale</h2>
                             <p>
                                 Algoritmi di <strong>computer vision</strong> analizzano le immagini in tempo reale, riconoscendo rocce interessanti,
                                 pericoli e sentieri più sicuri.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-lightbulb"></i> Decisioni autonome</h2>
                             <p>
                                 Sistemi intelligenti decidono quali esperimenti eseguire, quando perforare il terreno o quando cercare riparo da una
@@ -1698,9 +1715,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // TECNOLOGIE FONDAMENTALI - MATERIALI
-                // --------------------------------------------------
                 'tech-materiali': `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1712,7 +1726,7 @@
                                     resistenza meccanica e protezione dalle radiazioni.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1581091870630-f4480f102d08?w=1200&auto=format&fit=crop&q=80" alt="Dettaglio di struttura metallica ad alta tecnologia" />
                                 </div>
@@ -1722,24 +1736,21 @@
                     </div>
 
                     <div class="grid-3">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-shield-alt"></i> Titanio</h3>
                             <p>Ottimo rapporto resistenza/peso, resiste a forti sbalzi termici e alla corrosione.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-feather"></i> Fibra di carbonio</h3>
                             <p>Composito ultra‑leggero, ideale per bracci robotici e strutture che devono essere rigide ma leggere.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-thermometer-empty"></i> Isolanti</h3>
                             <p>Aerogel e isolamenti multistrato (MLI) mantengono temperature stabili attorno a componenti delicati.</p>
                         </div>
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // APPLICAZIONI NELLO SPAZIO
-                // --------------------------------------------------
                 applications: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1751,7 +1762,7 @@
                                     presente in quasi tutte le missioni moderne.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1200&auto=format&fit=crop&q=80" alt="Rover su un paesaggio marziano" />
                                 </div>
@@ -1761,7 +1772,7 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-mars"></i> Rover su Marte</h2>
                             <p>
                                 Curiosity e Perseverance sono laboratori mobili che analizzano rocce, atmosfera e suolo marziano alla ricerca di tracce
@@ -1772,7 +1783,7 @@
                                 <li><i class="fas fa-check"></i><span>Fotografie in alta risoluzione e panorami 3D.</span></li>
                             </ul>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-satellite"></i> Robotica orbitale</h2>
                             <p>
                                 In orbita, bracci robotici e veicoli autonomi si occupano di <strong>manutenzione satelliti</strong>, rifornimento
@@ -1782,14 +1793,14 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-space-shuttle"></i> Robot sulla ISS</h2>
                             <p>
                                 Sulla Stazione Spaziale Internazionale operano robot come <strong>Astrobee</strong> (piccoli droni interni) e<br />
                                 <strong>Robonaut</strong>, un robot umanoide progettato per lavorare a fianco degli astronauti.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-moon"></i> Missioni lunari e droni</h2>
                             <p>
                                 Rover e lander robotici preparano il ritorno dell’uomo sulla Luna, esplorando regioni polari e cercando ghiaccio d’acqua.
@@ -1799,9 +1810,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // VANTAGGI
-                // --------------------------------------------------
                 advantages: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1816,27 +1824,27 @@
                     </div>
 
                     <div class="pro-con-grid">
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-user-shield"></i> Sicurezza degli astronauti</h3>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>Riduzione delle attività extraveicolari pericolose.</span></li>
                                 <li><i class="fas fa-check"></i><span>Possibilità di esplorare ambienti estremi o tossici.</span></li>
                             </ul>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-clock"></i> Operazioni 24/7</h3>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>I robot non hanno bisogno di dormire.</span></li>
                                 <li><i class="fas fa-check"></i><span>Possono lavorare per anni consecutivi.</span></li>
                             </ul>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-crosshairs"></i> Precisione estrema</h3>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>Movimenti più precisi rispetto a un essere umano in tuta spaziale.</span></li>
                             </ul>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-coins"></i> Riduzione dei costi</h3>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>Meno massa dedicata al supporto vitale umano.</span></li>
@@ -1846,9 +1854,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // SVANTAGGI E QUESTIONI ETICHE
-                // --------------------------------------------------
                 disadvantages: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1864,26 +1869,26 @@
                     </div>
 
                     <div class="pro-con-grid">
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-money-bill-wave"></i> Costi iniziali altissimi</h3>
                             <p>
                                 Progettare, testare e lanciare un robot nello spazio richiede investimenti enormi e componenti altamente specializzati.
                             </p>
                         </div>
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-screwdriver-wrench"></i> Manutenzione difficile</h3>
                             <p>
                                 Un guasto su Marte o in orbita lontana è spesso <strong>irreversibile</strong>: serve quindi ridondanza e design ultra‑affidabile.
                             </p>
                         </div>
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-microchip"></i> Dipendenza tecnologica</h3>
                             <p>
                                 L’elevato grado di automazione può ridurre l’esperienza diretta degli astronauti e aumentare la dipendenza da software
                                 complessi, vulnerabili a bug o attacchi informatici.
                             </p>
                         </div>
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-scale-balanced"></i> Questioni etiche</h3>
                             <p>
                                 Bisogna considerare la <strong>contaminazione planetaria</strong>, i diritti sulle risorse estratte da altri corpi celesti e
@@ -1893,9 +1898,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // IL FUTURO DELLA ROBOTICA AEROSPAZIALE
-                // --------------------------------------------------
                 future: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1906,7 +1908,7 @@
                                     Il prossimo passo è una collaborazione sempre più stretta tra sciami di robot autonomi e astronauti umani.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&auto=format&fit=crop&q=80" alt="Illustrazione di più robot che collaborano nello spazio" />
                                 </div>
@@ -1916,28 +1918,28 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-layer-group"></i> Swarm robotics</h2>
                             <p>
                                 Gruppi di decine o centinaia di piccoli robot cooperano come un <strong>sciame di insetti</strong>, dividendo il lavoro
                                 e rendendo la missione più robusta ai guasti.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-cubes"></i> Robot modulari</h2>
                             <p>
                                 Robot composti da moduli che possono agganciarsi e sganciarsi, trasformandosi a seconda del compito: rover, bracci,
                                 strutture temporanee.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-hand-sparkles"></i> Soft robotics</h2>
                             <p>
                                 Robot morbidi, flessibili e sicuri per l’interazione con gli astronauti, ideali per manipolare oggetti delicati o
                                 muoversi in spazi stretti.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-brain"></i> IA autonoma avanzata</h2>
                             <p>
                                 Sistemi sempre più vicini a un’<strong>intelligenza artificiale generale</strong>, capaci di pianificare esperimenti scientifici
@@ -1947,9 +1949,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // IMPATTO SUL MONDO DEL LAVORO
-                // --------------------------------------------------
                 work: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1964,7 +1963,7 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-briefcase"></i> Nuove professioni</h2>
                             <ul class="icon-list">
                                 <li><i class="fas fa-robot"></i><span>Ingegneri robotici aerospaziali.</span></li>
@@ -1973,7 +1972,7 @@
                                 <li><i class="fas fa-vr-cardboard"></i><span>Tecnici di simulazione e realtà virtuale.</span></li>
                             </ul>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-graduation-cap"></i> Competenze richieste</h2>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>Programmazione (Python, C++, ROS).</span></li>
@@ -1984,9 +1983,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // CONCLUSIONE
-                // --------------------------------------------------
                 conclusion: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -1998,7 +1994,7 @@
                                     preparano e proteggono; gli esseri umani prendono le decisioni strategiche e più creative.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&auto=format&fit=crop&q=80" alt="La Terra vista dallo spazio" />
                                 </div>
@@ -2007,7 +2003,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-handshake"></i> La sfida principale</h2>
                         <p>
                             La vera sfida non è scegliere tra missioni umane o robotiche, ma progettare una <strong>collaborazione efficace</strong>
@@ -2016,9 +2012,6 @@
                     </div>
                 `,
 
-                // --------------------------------------------------
-                // SITOGRAFIA
-                // --------------------------------------------------
                 sitography: `
                     <div class="hero">
                         <div class="hero-inner">
@@ -2032,7 +2025,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-flag"></i> Fonti italiane</h2>
                         <ul class="link-list">
                             <li><a class="link-pill" href="https://www.tech4future.info/" target="_blank" rel="noreferrer"><i class="fas fa-globe"></i><span>Tech4Future</span></a></li>
@@ -2043,7 +2036,7 @@
                         </ul>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-globe-americas"></i> Fonti internazionali</h2>
                         <ul class="link-list">
                             <li><a class="link-pill" href="https://www.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>NASA</span></a></li>
@@ -2057,10 +2050,9 @@
                 `,
             },
 
-            // =====================================================
-            // TRADUZIONI INGLESI DELLE STESSE SEZIONI
-            // (testi più sintetici ma aderenti alla struttura)
-            // =====================================================
+            // --------------------------------------------------------------
+            // INGLESE
+            // --------------------------------------------------------------
             en: {
                 home: `
                     <div class="hero">
@@ -2086,11 +2078,25 @@
                                         <i class="fas fa-forward"></i>
                                     </button>
                                 </div>
+                                <div class="planet-nav">
+                                    <button class="planet-button" type="button" data-jump="about">
+                                        <i class="fas fa-rocket"></i>
+                                        <span class="planet-button-label">Overview</span>
+                                    </button>
+                                    <button class="planet-button" type="button" data-jump="applications">
+                                        <i class="fas fa-satellite"></i>
+                                        <span class="planet-button-label">Apps</span>
+                                    </button>
+                                    <button class="planet-button" type="button" data-jump="future">
+                                        <i class="fas fa-stars"></i>
+                                        <span class="planet-button-label">Future</span>
+                                    </button>
+                                </div>
                                 <p class="quote-small">
                                     "Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."
                                 </p>
                             </div>
-                            <div class="hero-image reveal-on-scroll">
+                            <div class="hero-image">
                                 <div class="hero-image-inner image-frame">
                                     <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1200&auto=format&fit=crop&q=80" alt="Robotic rover exploring Mars" />
                                     <div class="hero-hud-tag">Mars Rover · Perseverance style</div>
@@ -2100,14 +2106,14 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-info-circle"></i> General introduction</h2>
                             <p>
                                 Aerospace robotics combines <strong>engineering, computer science and space science</strong> to build systems that
                                 operate in orbit or on other planets. They must survive radiation, extreme temperatures and long communication delays.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-gamepad"></i> Game‑style interface</h2>
                             <p>
                                 This site behaves like a mission HUD: the side menu is your control panel and each section is a different
@@ -2128,7 +2134,7 @@
                                     other celestial bodies. Robots must be autonomous, ultra‑reliable and capable of working in harsh conditions.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&auto=format&fit=crop&q=80" alt="International Space Station view from outside" />
                                 </div>
@@ -2137,7 +2143,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-screwdriver-wrench"></i> Key features</h2>
                         <div class="grid-3">
                             <div>
@@ -2166,7 +2172,7 @@
                                     Sensors are the senses of space robots. They perceive terrain, measure the environment and collect science data.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1580674280375-c10aeeb185d2?w=1200&auto=format&fit=crop&q=80" alt="Satellite covered with instruments" />
                                 </div>
@@ -2176,13 +2182,13 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-camera"></i> HD & multispectral cameras</h2>
                             <p>
                                 They record high‑resolution images and see in infrared or ultraviolet to detect <strong>minerals and ice</strong>.
                             </p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-broadcast-tower"></i> LIDAR & radar</h2>
                             <p>
                                 LIDAR builds 3D maps while radar probes the subsurface to reveal hidden layers or water deposits.
@@ -2201,7 +2207,7 @@
                                     Actuators are the muscles of the robot, enabling movement, manipulation and precise operations in orbit.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&auto=format&fit=crop&q=80" alt="Robotic arm in space" />
                                 </div>
@@ -2210,7 +2216,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-hand-rock"></i> Orbital manipulators</h2>
                         <p>
                             On the ISS, arms like <strong>Canadarm2</strong> capture spacecraft, move modules and support astronauts during spacewalks.
@@ -2228,7 +2234,7 @@
                                     Because of long delays, rovers must drive almost by themselves, planning safe routes on unknown terrain.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=1200&auto=format&fit=crop&q=80" alt="Graph of orbits and trajectories" />
                                 </div>
@@ -2237,7 +2243,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-route"></i> How a rover knows where to go</h2>
                         <ul class="icon-list">
                             <li><i class="fas fa-eye"></i><span>Visual odometry and SLAM to estimate position.</span></li>
@@ -2256,7 +2262,7 @@
                                     AI is the brain of modern space robots, enabling perception, planning and adaptation to unexpected events.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&auto=format&fit=crop&q=80" alt="Abstract AI visualization" />
                                 </div>
@@ -2266,11 +2272,11 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-image"></i> Computer vision</h2>
                             <p>Automatic analysis of images to detect interesting rocks and obstacles.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-lightbulb"></i> Autonomous decisions</h2>
                             <p>Systems decide which targets to analyze and how to react to dust storms or anomalies.</p>
                         </div>
@@ -2287,7 +2293,7 @@
                                     Special materials keep robots light, strong and protected from radiation and temperature swings.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1581091870630-f4480f102d08?w=1200&auto=format&fit=crop&q=80" alt="High‑tech metallic structure" />
                                 </div>
@@ -2297,15 +2303,15 @@
                     </div>
 
                     <div class="grid-3">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-shield-alt"></i> Titanium</h3>
                             <p>Strong and relatively light, ideal for structural parts of rovers and arms.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-feather"></i> Carbon fiber</h3>
                             <p>Very light and stiff, used for booms, masts and instrument supports.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h3><i class="fas fa-thermometer-empty"></i> Thermal insulation</h3>
                             <p>Multi‑layer insulation and aerogels protect electronics from extreme cold or heat.</p>
                         </div>
@@ -2322,7 +2328,7 @@
                                     From Mars rovers to orbital servicing vehicles and ISS helpers, robots are key players of modern missions.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1200&auto=format&fit=crop&q=80" alt="Rover on Mars" />
                                 </div>
@@ -2332,11 +2338,11 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-mars"></i> Mars rovers</h2>
                             <p>Mobile laboratories searching for signs of past life and characterizing Martian geology.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-satellite"></i> Orbital robotics</h2>
                             <p>Robotic arms and servicing spacecraft refuel and repair satellites, or remove space debris.</p>
                         </div>
@@ -2357,19 +2363,19 @@
                     </div>
 
                     <div class="pro-con-grid">
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-user-shield"></i> Astronaut safety</h3>
                             <p>Robots take over the riskiest tasks, reducing exposure to radiation and hazards.</p>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-clock"></i> 24/7 operations</h3>
                             <p>They can work continuously for years, boosting scientific return.</p>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-crosshairs"></i> High precision</h3>
                             <p>Robotic arms and instruments perform extremely accurate maneuvers.</p>
                         </div>
-                        <div class="pro-box reveal-on-scroll">
+                        <div class="pro-box">
                             <h3><i class="fas fa-coins"></i> Lower cost per result</h3>
                             <p>No life‑support systems or return trip are required for robots.</p>
                         </div>
@@ -2390,15 +2396,15 @@
                     </div>
 
                     <div class="pro-con-grid">
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-money-bill-wave"></i> High upfront cost</h3>
                             <p>Space‑qualified hardware and testing are extremely expensive.</p>
                         </div>
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-screwdriver-wrench"></i> Hard to repair</h3>
                             <p>Many failures cannot be fixed once the robot is on Mars or deep space.</p>
                         </div>
-                        <div class="con-box reveal-on-scroll">
+                        <div class="con-box">
                             <h3><i class="fas fa-scale-balanced"></i> Ethics & responsibility</h3>
                             <p>Who is responsible for decisions made by autonomous systems? How do we avoid contaminating other worlds?</p>
                         </div>
@@ -2415,7 +2421,7 @@
                                     Swarm robots, modular bodies, soft robotics and more capable AI will transform exploration.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&auto=format&fit=crop&q=80" alt="Multiple robots collaborating" />
                                 </div>
@@ -2425,19 +2431,19 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-layer-group"></i> Swarm robotics</h2>
                             <p>Many small robots cooperate like insects, making missions more resilient and flexible.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-cubes"></i> Modular robots</h2>
                             <p>Robots built from modules that reconfigure depending on the task: rover, arm, bridge or structure.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-hand-sparkles"></i> Soft robotics</h2>
                             <p>Soft, flexible robots interact safely with astronauts and fragile equipment.</p>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-brain"></i> Advanced AI</h2>
                             <p>Increasingly general AI will plan entire science campaigns with minimal human supervision.</p>
                         </div>
@@ -2458,7 +2464,7 @@
                     </div>
 
                     <div class="grid-2">
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-briefcase"></i> New roles</h2>
                             <ul class="icon-list">
                                 <li><i class="fas fa-robot"></i><span>Aerospace robotics engineers.</span></li>
@@ -2467,7 +2473,7 @@
                                 <li><i class="fas fa-vr-cardboard"></i><span>Simulation and VR specialists.</span></li>
                             </ul>
                         </div>
-                        <div class="card reveal-on-scroll">
+                        <div class="card">
                             <h2><i class="fas fa-graduation-cap"></i> Skills</h2>
                             <ul class="icon-list">
                                 <li><i class="fas fa-check"></i><span>Programming (Python, C++, ROS).</span></li>
@@ -2489,7 +2495,7 @@
                                     humans decide and imagine new goals.
                                 </p>
                             </div>
-                            <div class="image-container reveal-on-scroll">
+                            <div class="image-container">
                                 <div class="image-frame">
                                     <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&auto=format&fit=crop&q=80" alt="Earth seen from space" />
                                 </div>
@@ -2498,7 +2504,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-handshake"></i> The main challenge</h2>
                         <p>
                             The real challenge is not choosing between human or robotic missions, but designing a <strong>powerful partnership</strong>
@@ -2520,7 +2526,7 @@
                         </div>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-flag"></i> Italian sources</h2>
                         <ul class="link-list">
                             <li><a class="link-pill" href="https://www.tech4future.info/" target="_blank" rel="noreferrer"><i class="fas fa-globe"></i><span>Tech4Future</span></a></li>
@@ -2531,7 +2537,7 @@
                         </ul>
                     </div>
 
-                    <div class="card reveal-on-scroll">
+                    <div class="card">
                         <h2><i class="fas fa-globe-americas"></i> International sources</h2>
                         <ul class="link-list">
                             <li><a class="link-pill" href="https://www.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>NASA</span></a></li>
@@ -2546,12 +2552,13 @@
             },
         };
 
-        // ==========================================================
-        // STATO GLOBALE (TEMA & LINGUA)
-        // ==========================================================
+        // ===================================================================
+        // STATO GLOBALE (TEMA, LINGUA, PAGINA CORRENTE)
+        // ===================================================================
         const state = {
             theme: localStorage.getItem('theme') || 'dark',
             lang: localStorage.getItem('lang') || 'it',
+            currentPage: localStorage.getItem('currentPage') || 'home',
         };
 
         const rootElement = document.documentElement;
@@ -2559,40 +2566,88 @@
         rootElement.setAttribute('data-lang', state.lang);
         rootElement.lang = state.lang;
 
-        // ==========================================================
-        // FUNZIONE: APPLICAZIONE LINGUA (UI + CONTENUTO SEZIONI)
-        // ==========================================================
+        // ===================================================================
+        // AGGIORNA IL TITOLO DEL DOCUMENTO IN BASE A PAGINA E LINGUA
+        // ===================================================================
+        function updateDocumentTitle(pageId) {
+            const lang = state.lang;
+            const pack = uiTranslations[lang] || uiTranslations.it;
+
+            const keyMap = {
+                home: 'menu.home',
+                about: 'menu.about',
+                'tech-sensori': 'menu.tech.sensors',
+                'tech-attuatori': 'menu.tech.actuators',
+                'tech-navigazione': 'menu.tech.navigation',
+                'tech-ia': 'menu.tech.ai',
+                'tech-materiali': 'menu.tech.materials',
+                applications: 'menu.applications',
+                advantages: 'menu.advantages',
+                disadvantages: 'menu.disadvantages',
+                future: 'menu.future',
+                work: 'menu.work',
+                conclusion: 'menu.conclusion',
+                sitography: 'menu.sitography',
+            };
+
+            const baseTitle = pack['site.title'] || 'Aerospace Robotics';
+            const sectionKey = keyMap[pageId];
+            const sectionTitle = sectionKey ? pack[sectionKey] : '';
+
+            if (sectionTitle) {
+                document.title = `${sectionTitle} · ${baseTitle}`;
+            } else {
+                document.title = baseTitle;
+            }
+        }
+
+        // ===================================================================
+        // APPLICAZIONE LINGUA (UI + CONTENUTI SEZIONI)
+        // ===================================================================
         function applyLanguage(lang) {
             state.lang = lang;
             localStorage.setItem('lang', lang);
             rootElement.setAttribute('data-lang', lang);
             rootElement.lang = lang;
 
-            // Aggiorna testi dell'interfaccia (header, menu, footer)
+            const pack = uiTranslations[lang];
+
+            // UI fissa
             document.querySelectorAll('[data-i18n]').forEach((el) => {
                 const key = el.getAttribute('data-i18n');
-                const pack = uiTranslations[lang];
                 if (pack && pack[key]) {
                     el.textContent = pack[key];
                 }
             });
 
-            // Aggiorna contenuto delle pagine
+            // Toggle lingua (accessibilità)
+            const langToggleBtn = document.getElementById('langToggle');
+            if (langToggleBtn) {
+                langToggleBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+                langToggleBtn.title = lang === 'it'
+                    ? 'Passa alla versione inglese'
+                    : 'Switch to Italian version';
+            }
+
+            // Contenuti delle pagine
+            const sectionPack = sectionTranslations[lang];
             document.querySelectorAll('.page[data-section]').forEach((pageEl) => {
                 const sectionKey = pageEl.getAttribute('data-section');
-                const sectionPack = sectionTranslations[lang];
                 if (sectionPack && sectionPack[sectionKey]) {
                     pageEl.innerHTML = sectionPack[sectionKey];
                 }
             });
 
-            // Dopo aver riscritto il contenuto, riattiviamo le animazioni on‑scroll
+            // Ricollega le animazioni on-scroll dopo aver riscritto il DOM
             setupScrollAnimations();
+
+            // Aggiorna titolo documento
+            updateDocumentTitle(state.currentPage || 'home');
         }
 
-        // ==========================================================
-        // FUNZIONE: APPLICAZIONE TEMA (CHIARO / SCURO)
-        // ==========================================================
+        // ===================================================================
+        // APPLICAZIONE TEMA (CHIARO / SCURO)
+        // ===================================================================
         function applyTheme(theme) {
             state.theme = theme;
             localStorage.setItem('theme', theme);
@@ -2604,13 +2659,22 @@
             }
         }
 
-        // ==========================================================
-        // NAVIGAZIONE TRA LE SEZIONI (PSEUDO-PAGINE)
-        // ==========================================================
-        const pages = () => Array.from(document.querySelectorAll('.page'));
+        // ===================================================================
+        // GESTIONE PAGINE (PSEUDO-NAVIGAZIONE)
+        // ===================================================================
+        function pages() {
+            return Array.from(document.querySelectorAll('.page'));
+        }
 
         function showPage(pageId) {
-            pages().forEach((pageEl) => {
+            const pageList = pages();
+            let target = pageList.find((p) => p.id === pageId);
+            if (!target) {
+                pageId = 'home';
+                target = pageList.find((p) => p.id === 'home');
+            }
+
+            pageList.forEach((pageEl) => {
                 if (pageEl.id === pageId) {
                     pageEl.classList.add('active');
                 } else {
@@ -2618,25 +2682,31 @@
                 }
             });
 
-            // Aggiorna evidenziazione nel menù principale e nel sottomenu
-            document.querySelectorAll('.menu-item[data-page], .submenu-item[data-page]').forEach((btn) => {
+            // Evidenziazione nel menù laterale e nel sottomenu
+            const navButtons = document.querySelectorAll('.menu-item[data-page], .submenu-item[data-page]');
+            navButtons.forEach((btn) => {
                 if (btn.getAttribute('data-page') === pageId) {
                     btn.classList.add('active');
+                    btn.setAttribute('aria-current', 'page');
                 } else {
                     btn.classList.remove('active');
+                    btn.removeAttribute('aria-current');
                 }
             });
+
+            state.currentPage = pageId;
+            localStorage.setItem('currentPage', pageId);
+            updateDocumentTitle(pageId);
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // ==========================================================
-        // ANIMAZIONI ON-SCROLL CON INTERSECTION OBSERVER
-        // ==========================================================
+        // ===================================================================
+        // ANIMAZIONI ON-SCROLL (INTERSECTION OBSERVER)
+        // ===================================================================
         let scrollObserver = null;
 
         function setupScrollAnimations() {
-            // Disconnetti eventuale observer precedente
             if (scrollObserver) scrollObserver.disconnect();
 
             scrollObserver = new IntersectionObserver(
@@ -2654,7 +2724,6 @@
                 },
             );
 
-            // Applica la classe reveal-on-scroll a carte, immagini e hero
             document
                 .querySelectorAll('.card, .image-container, .hero-image, .glow-title')
                 .forEach((el) => {
@@ -2663,9 +2732,9 @@
                 });
         }
 
-        // ==========================================================
+        // ===================================================================
         // SFONDO STARFIELD SU CANVAS
-        // ==========================================================
+        // ===================================================================
         function initStarfield() {
             const canvas = document.getElementById('bg-canvas');
             if (!canvas) return;
@@ -2686,7 +2755,7 @@
                 };
             }
 
-            for (let i = 0; i < STAR_COUNT; i++) {
+            for (let i = 0; i < STAR_COUNT; i += 1) {
                 stars.push(createStar());
             }
 
@@ -2701,11 +2770,11 @@
                 ctx.fillStyle = '#020617';
                 ctx.fillRect(0, 0, width, height);
 
-                ctx.fillStyle = 'rgba(56, 189, 248, 0.85)';
+                ctx.fillStyle = 'rgba(148, 163, 184, 0.9)';
 
-                for (let i = 0; i < STAR_COUNT; i++) {
+                for (let i = 0; i < STAR_COUNT; i += 1) {
                     const star = stars[i];
-                    star.z -= 1.1;
+                    star.z -= 0.8;
                     if (star.z <= 0) {
                         stars[i] = createStar();
                         continue;
@@ -2729,9 +2798,9 @@
             animate();
         }
 
-        // ==========================================================
+        // ===================================================================
         // INIZIALIZZAZIONE GENERALE
-        // ==========================================================
+        // ===================================================================
         window.addEventListener('DOMContentLoaded', () => {
             // Applica tema e lingua iniziali
             applyTheme(state.theme);
@@ -2740,7 +2809,10 @@
             // Inizializza starfield
             initStarfield();
 
-            // --- Toggle tema ---
+            // Mostra la pagina salvata
+            showPage(state.currentPage || 'home');
+
+            // Toggle tema
             const themeToggle = document.getElementById('themeToggle');
             if (themeToggle) {
                 themeToggle.addEventListener('click', () => {
@@ -2749,7 +2821,7 @@
                 });
             }
 
-            // --- Toggle lingua ---
+            // Toggle lingua
             const langToggle = document.getElementById('langToggle');
             if (langToggle) {
                 langToggle.addEventListener('click', () => {
@@ -2758,7 +2830,7 @@
                 });
             }
 
-            // --- Navigazione tramite menù laterale ---
+            // Navigazione menu laterale
             document.querySelectorAll('.menu-item[data-page], .submenu-item[data-page]').forEach((btn) => {
                 btn.addEventListener('click', () => {
                     const targetId = btn.getAttribute('data-page');
@@ -2778,19 +2850,24 @@
                 });
             });
 
-            // --- Sottomenu tecnologie ---
+            // Sottomenu tecnologie
             const techMenu = document.getElementById('techMenu');
             const techSubmenu = document.getElementById('techSubmenu');
             const techArrow = document.getElementById('techArrow');
 
             if (techMenu && techSubmenu && techArrow) {
+                if ((state.currentPage || 'home').startsWith('tech-')) {
+                    techSubmenu.classList.add('open');
+                    techArrow.classList.add('open');
+                }
+
                 techMenu.addEventListener('click', () => {
                     const isOpen = techSubmenu.classList.toggle('open');
                     techArrow.classList.toggle('open', isOpen);
                 });
             }
 
-            // --- Menù mobile ---
+            // Menù mobile (apertura/chiusura sidebar)
             const sidebar = document.getElementById('sidebar');
             const menuToggle = document.getElementById('menuToggle');
             if (menuToggle && sidebar) {
@@ -2802,7 +2879,6 @@
                     }
                 });
 
-                // Chiudi sidebar cliccando fuori (solo mobile)
                 document.addEventListener('click', (event) => {
                     if (window.innerWidth > 960) return;
                     if (!sidebar.contains(event.target) && !menuToggle.contains(event.target)) {
@@ -2813,7 +2889,7 @@
                 });
             }
 
-            // --- Link interni data-jump (es. pulsanti nella hero) ---
+            // Link interni data-jump (pulsanti nella hero)
             document.addEventListener('click', (event) => {
                 const jumpTarget = event.target.closest('[data-jump]');
                 if (!jumpTarget) return;
@@ -2823,7 +2899,7 @@
                 }
             });
 
-            // --- Bottone scroll to top ---
+            // Bottone scroll-to-top
             const scrollTopBtn = document.getElementById('scrollTop');
             if (scrollTopBtn) {
                 window.addEventListener('scroll', () => {
@@ -2839,12 +2915,11 @@
                 });
             }
 
-            // --- Aggiorna animazioni su primo caricamento ---
+            // Prima inizializzazione animazioni on-scroll
             setupScrollAnimations();
 
-            // --- Log di debug per /sviluppatori ---
-            console.log('%cAerospace Robotics HUD', 'color:#22d3ee;font-size:18px;font-weight:bold;');
-            console.log('%cTema videogioco attivo. Usa il toggle in alto a destra per cambiare tema e lingua.', 'color:#a855f7;');
+            console.log('%cAerospace Robotics HUD', 'color:#38bdf8;font-size:18px;font-weight:bold;');
+            console.log('%cTema space‑age attivo. Usa i toggle in alto a destra per cambiare tema e lingua.', 'color:#818cf8;');
         });
     </script>
 </body>
