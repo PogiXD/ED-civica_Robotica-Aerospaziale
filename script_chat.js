@@ -109,15 +109,15 @@ const sectionTranslations = {
                                 <span class="planet-button-label">Vantaggi</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="disadvantages">
-                                <i class="fas fa-stars"></i>
+                                <i class="fas fa-star"></i>
                                 <span class="planet-button-label">Svantaggi</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="future">
-                                <i class="fas fa-stars"></i>
+                                <i class="fas fa-circle-nodes"></i>
                                 <span class="planet-button-label">Futuro</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="work">
-                                <i class="fas fa-stars"></i>
+                                <i class="fas fa-meteor"></i>
                                 <span class="planet-button-label">Impatto</span>
                             </button>
                         </div>
@@ -713,7 +713,7 @@ const sectionTranslations = {
                     <li><a class="link-pill" href="https://www.tech4future.info/" target="_blank" rel="noreferrer"><i class="fas fa-globe"></i><span>Tech4Future</span></a></li>
                     <li><a class="link-pill" href="https://www.esa.int/Space_in_Member_States/Italy" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>ESA Italia</span></a></li>
                     <li><a class="link-pill" href="https://www.asi.it/" target="_blank" rel="noreferrer"><i class="fas fa-satellite"></i><span>ASI - Agenzia Spaziale Italiana</span></a></li>
-                    <li><a class="link-pill" href="https://www.inaf.it/" target="_blank" rel="noreferrer"><i class="fas fa-telescope"></i><span>INAF - Istituto Nazionale di Astrofisica</span></a></li>
+                    <li><a class="link-pill" href="https://www.inaf.it/" target="_blank" rel="noreferrer"><i class="fas fa-lightbulb"></i><span>INAF - Istituto Nazionale di Astrofisica</span></a></li>
                     <li><a class="link-pill" href="https://www.nasa.gov/international/italy" target="_blank" rel="noreferrer"><i class="fas fa-flag-usa"></i><span>NASA - Pagina Italia</span></a></li>
                 </ul>
             </div>
