@@ -28,7 +28,7 @@ const uiTranslations = {
         'menu.tech.sensors': 'Sensori',
         'menu.tech.actuators': 'Attuatori',
         'menu.tech.navigation': 'Navigazione',
-        'menu.tech.ai': 'Intelligenza Artificiale',
+        'menu.tech.ai': 'IA',
         'menu.tech.materials': 'Materiali',
         'menu.applications': 'Applicazioni nello Spazio',
         'menu.advantages': 'Vantaggi',
@@ -231,9 +231,9 @@ const sectionTranslations = {
                     </div>
                     <div class="image-container">
                         <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1580674280375-c10aeeb185d2?w=1200&auto=format&fit=crop&q=80" alt="Satellite con sensori e pannelli solari" />
+                            <img src="https://static.geoconnexion.com/uploads/images/Metop-Sensors.jpg?w=1200&auto=format&fit=crop&q=80" alt="Satellite con sensori e pannelli solari" />
                         </div>
-                        <p class="image-caption">Sensori e telecamere montati su satelliti e sonde spaziali.</p>
+                        <p class="image-caption">Sensorimontati su satelliti e sonde spaziali.</p>
                     </div>
                 </div>
             </div>
