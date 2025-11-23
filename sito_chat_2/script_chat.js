@@ -5,9 +5,13 @@ function openTechWindow(isButtonClick = false){
     if(isButtonClick && !techSubmenu.classList.contains('open')){
         techArrow.classList.add('open');
         techSubmenu.classList.add('open');
+        console.log("Apro il sottomenu delle tecnologie perché ho cliccato sul pulsante Sensori");
     }
-    const isOpen = techSubmenu.classList.toggle('open');
-    techArrow.classList.toggle('open', isOpen); 
+    else if(!isButtonClick){
+        const isOpen = techSubmenu.classList.toggle('open');
+        techArrow.classList.toggle('open', isOpen); 
+    }
+    
 
 }
 
@@ -1532,7 +1536,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
 
         techMenu.addEventListener('click', () => openTechWindow());
-        btnSensori.addEventListener('click', () => openTechWindow());
+        btnSensori.addEventListener('click', () => openTechWindow(true));
     }
     
     // Menù mobile (apertura/chiusura sidebar)
