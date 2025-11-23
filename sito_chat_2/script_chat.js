@@ -98,19 +98,27 @@ const sectionTranslations = {
                             </button>
                             <button class="planet-button" type="button" data-jump="tech-sensori" id="techBtnSensori">
                                 <i class="fas fa-forward"></i>
-                                <span class="planet-button-label">Cos'è</span>
-                            </button>
-                            <button class="planet-button" type="button" data-jump="about">
-                                <i class="fas fa-rocket"></i>
-                                <span class="planet-button-label">Cos'è</span>
+                                <span class="planet-button-label">Tecnologie</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="applications">
-                                <i class="fas fa-satellite"></i>
+                                <i class="fas fa-rocket"></i>
                                 <span class="planet-button-label">Applicazioni</span>
+                            </button>
+                            <button class="planet-button" type="button" data-jump="advantages">
+                                <i class="fas fa-satellite"></i>
+                                <span class="planet-button-label">Vantaggi</span>
+                            </button>
+                            <button class="planet-button" type="button" data-jump="disadvantages">
+                                <i class="fas fa-stars"></i>
+                                <span class="planet-button-label">Svantaggi</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="future">
                                 <i class="fas fa-stars"></i>
                                 <span class="planet-button-label">Futuro</span>
+                            </button>
+                            <button class="planet-button" type="button" data-jump="work">
+                                <i class="fas fa-stars"></i>
+                                <span class="planet-button-label">Impatto</span>
                             </button>
                         </div>
                         <br>
