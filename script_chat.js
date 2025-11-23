@@ -5,16 +5,13 @@ function openTechWindow(isButtonClick = false){
     if(isButtonClick && !techSubmenu.classList.contains('open')){
         techArrow.classList.add('open');
         techSubmenu.classList.add('open');
-        console.log("Apro il sottomenu delle tecnologie perché ho cliccato sul pulsante Sensori");
+        //console.log("Apro il sottomenu delle tecnologie perché ho cliccato sul pulsante Sensori");
     }
     else if(!isButtonClick){
         const isOpen = techSubmenu.classList.toggle('open');
         techArrow.classList.toggle('open', isOpen); 
     }
-    
-
 }
-
 // ===================================================================
 // TRADUZIONI INTERFACCIA (UI) IT / EN
 // ===================================================================
@@ -40,7 +37,7 @@ const uiTranslations = {
         'footer.title': 'Robotica Aerospaziale · Esplorazione del Futuro',
         'footer.subtitle': "Un viaggio attraverso la tecnologia che porta l'umanità oltre la Terra",
         'footer.credit': 'Sviluppato come progetto didattico',
-        'footer.year': '2024',
+        'footer.year': '2025',
     },
     en: {
         'site.title': 'Aerospace Robotics',
@@ -127,10 +124,31 @@ const sectionTranslations = {
                         </p>
                     </div>
                     <div class="hero-image">
-                        <div class="hero-image-inner image-frame">
-                            <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1200&auto=format&fit=crop&q=80" alt="Rover robotico che esplora la superficie di Marte" />
-                            <div class="hero-hud-tag">Mars Rover · Perseverance style</div>
+                        <div class="hero-image-inner image-frame plantet-div" id="sistema-solare">
+            
+            
+            
+                            <div class="container">
+                                <div class="sun">
+                                  <img src="./images/sun.png" alt="sun">
+                                </div>
+                                <div class="mercury"></div>
+                                <div class="venus"></div>
+                                <div class="earth">
+                                  <div class="moon"></div>
+                                </div>
+                                <div class="mars"></div>
+                                <div class="jupiter"></div>
+                                <div class="saturn"></div>
+                                <div class="uranus"></div>
+                                <div class="neptune"></div>
+                                <div class="pluto">
+                            </div>
+
                         </div>
+
+
+
                     </div>
                 </div>
             </div>
@@ -410,7 +428,7 @@ const sectionTranslations = {
                     </div>
                     <div class="image-container">
                         <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1581091870630-f4480f102d08?w=1200&auto=format&fit=crop&q=80" alt="Dettaglio di struttura metallica ad alta tecnologia" />
+                            <img src="https://www.bodytech.it/wp-content/uploads/2021/12/tecnologia-fibra-carbonio-carrozzine.png?w=1200&auto=format&fit=crop&q=80" alt="Dettaglio di struttura metallica ad alta tecnologia" />
                         </div>
                         <p class="image-caption">Strutture in titanio, fibra di carbonio e materiali compositi riducono il peso dei veicoli spaziali.</p>
                     </div>
