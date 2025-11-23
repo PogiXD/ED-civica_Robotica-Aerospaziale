@@ -93,31 +93,31 @@ const sectionTranslations = {
 
                         <div class="planet-nav">
                             <button class="planet-button" type="button" data-jump="about">
-                                <i class="fas fa-play"></i>
+                                <i class="fas fa-circle-info"></i>
                                 <span class="planet-button-label">Cos'è</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="tech-sensori" id="techBtnSensori">
-                                <i class="fas fa-forward"></i>
+                                <i class="fas fa-microchip"></i>
                                 <span class="planet-button-label">Tecnologie</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="applications">
-                                <i class="fas fa-rocket"></i>
+                                <i class="fas fa-diagram-project"></i>
                                 <span class="planet-button-label">Applicazioni</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="advantages">
-                                <i class="fas fa-satellite"></i>
+                                <i class="fas fa-thumbs-up"></i>
                                 <span class="planet-button-label">Vantaggi</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="disadvantages">
-                                <i class="fas fa-star"></i>
+                                <i class="fas fa-arrow-trend-down"></i>
                                 <span class="planet-button-label">Svantaggi</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="future">
-                                <i class="fas fa-circle-nodes"></i>
+                                <i class="fas fa-forward-fast"></i>
                                 <span class="planet-button-label">Futuro</span>
                             </button>
                             <button class="planet-button" type="button" data-jump="work">
-                                <i class="fas fa-meteor"></i>
+                                <i class="fas fa-earth-europe"></i>
                                 <span class="planet-button-label">Impatto</span>
                             </button>
                         </div>
