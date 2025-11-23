@@ -1,17 +1,14 @@
 // ===================================================================
 // FUNZIONI
 // ===================================================================
-function openTechWindow(letCloseSection){
-    if (letCloseSection ){
-        let c = techSubmenu.classList.find(() => "open");
-        console.log(c);
-        const isOpen = techSubmenu.classList.toggle('open');
-        //console.log(isOpen);
+function openTechWindow(isButtonClick = false){
+    if(isButtonClick && !techSubmenu.classList.contains('open')){
+        techArrow.classList.add('open');
+        techSubmenu.classList.add('open');
     }
+    const isOpen = techSubmenu.classList.toggle('open');
     techArrow.classList.toggle('open', isOpen); 
 
-    //else if(isOpen && !closeSection)
-    //console.log(isOpen);
 }
 
 // ===================================================================
@@ -95,7 +92,7 @@ const sectionTranslations = {
                                 <i class="fas fa-play"></i>
                                 <span class="planet-button-label">Cos'è</span>
                             </button>
-                            <button class="planet-button" type="button" data-jump="tech-sensori" onclick="openTechWindow(false)">
+                            <button class="planet-button" type="button" data-jump="tech-sensori" id="techBtnSensori">
                                 <i class="fas fa-forward"></i>
                                 <span class="planet-button-label">Cos'è</span>
                             </button>
@@ -1527,14 +1524,15 @@ window.addEventListener('DOMContentLoaded', () => {
     const techMenu = document.getElementById('techMenu');
     const techSubmenu = document.getElementById('techSubmenu');
     const techArrow = document.getElementById('techArrow');
-
+    const btnSensori = document.getElementById('techBtnSensori');
     if (techMenu && techSubmenu && techArrow) {
         if ((state.currentPage || 'home').startsWith('tech-')) {
             techSubmenu.classList.add('open');
             techArrow.classList.add('open');
         }
 
-        techMenu.addEventListener('click', () => openTechWindow(true));
+        techMenu.addEventListener('click', () => openTechWindow());
+        btnSensori.addEventListener('click', () => openTechWindow());
     }
     
     // Menù mobile (apertura/chiusura sidebar)
