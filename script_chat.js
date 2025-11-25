@@ -193,9 +193,10 @@ const sectionTranslations = {
                         <p class="hero-kicker">IT · Definizione</p>
                         <h1 class="glow-title">Cos'è la Robotica Aerospaziale</h1>
                         <p class="hero-subtitle">
-                            È il ramo della robotica che progetta sistemi in grado di operare nello spazio: in orbita, sulla Luna,
-                            su Marte o su altri corpi celesti. Questi robot devono essere autonomi, ultra‑affidabili e capaci di
-                            lavorare in condizioni che nessun essere umano potrebbe sopportare a lungo.
+                            La <strong>robotica aerospaziale</strong> è un ramo specializzato dell'ingegneria che progetta, sviluppa e implementa 
+                            sistemi robotici destinati all'esplorazione e alle operazioni nello spazio. Questi robot devono operare in condizioni 
+                            estreme: temperature che variano da -150°C a +120°C, radiazioni intense, vuoto assoluto, e comunicazioni con ritardi di 
+                            diversi minuti.
                         </p>
                     </div>
                     <div class="image-container">
@@ -210,29 +211,45 @@ const sectionTranslations = {
             </div>
 
             <div class="card">
-                <h2><i class="fas fa-screwdriver-wrench"></i> Caratteristiche fondamentali</h2>
+                <h2><i class="fas fa-lightbulb"></i> Caratteristiche Fondamentali</h2>
                 <div class="grid-3">
-                    <div>
+                    <div class="card">
                         <h3><i class="fas fa-robot"></i> Autonomia</h3>
                         <p>
-                            I robot devono prendere decisioni in autonomia perché il segnale da e verso la Terra può richiedere anche
-                            <strong>oltre 20 minuti</strong> (come nel caso di Marte).
+                            I robot spaziali devono essere in grado di prendere decisioni autonome a causa dei ritardi nelle comunicazioni 
+                            con la Terra (fino a 22 minuti per Marte).
                         </p>
                     </div>
-                    <div>
+                    <div class="card">
                         <h3><i class="fas fa-shield-virus"></i> Resistenza</h3>
                         <p>
-                            Devono resistere a vuoto, radiazioni cosmiche, micro‑meteoriti e sbalzi termici estremi.
+                            Materiali e componenti devono resistere a radiazioni cosmiche, micro-meteoriti, variazioni termiche estreme 
+                            e assenza di atmosfera.
                         </p>
                     </div>
-                    <div>
-                        <h3><i class="fas fa-battery-full"></i> Efficienza energetica</h3>
+                    <div class="card">
+                        <h3><i class="fas fa-battery-full"></i> Efficienza Energetica</h3>
                         <p>
-                            L’energia a disposizione è limitata: spesso proviene da <strong>pannelli solali</strong> o da generatori
-                            termoelettrici a radioisotopi.
+                            Utilizzo ottimizzato dell'energia proveniente da pannelli solari o generatori termoelettrici a radioisotopi 
+                            (RTG) per missioni di lunga durata.
                         </p>
                     </div>
                 </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-history"></i> Storia e Evoluzione</h2>
+                <p>
+                    La robotica aerospaziale ha radici negli anni '60 con le prime sonde automatizzate. Il programma Luna sovietico 
+                    (1959-1976) ha portato i primi robot sulla Luna, mentre il programma Viking della NASA ha inviato i primi lander 
+                    su Marte nel 1976.
+                </p>
+                <p>
+                    Dagli anni 2000, la robotica aerospaziale ha vissuto un'evoluzione esponenziale: rover sempre più sofisticati su Marte 
+                    (Spirit, Opportunity, Curiosity, Perseverance), bracci robotici sulla ISS (Canadarm2, Dextre), e satelliti autonomi 
+                    per riparazione e rifornimento in orbita.
+                </p>
+            </div>
             </div>
         `,
 
@@ -280,6 +297,53 @@ const sectionTranslations = {
                         <li><i class="fas fa-check"></i><span>Analisi della struttura interna del terreno.</span></li>
                     </ul>
                 </div>
+                <div class="card">
+                    <h3><i class="fas fa-thermometer-half"></i> Sensori Termici</h3>
+                    <p>
+                        Misurano la temperatura superficiale di rocce, terreno e atmosfera. Cruciali per identificare zone con 
+                        attività geologica o potenziali depositi di ghiaccio sotterraneo.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i><span>Individuano aree con anomalie di temperatura.</span></li>
+                        <li><i class="fas fa-check"></i><span>Aiutano a capire se sotto la superficie c’è ghiaccio o attività geologica.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-vial"></i> Spettrometri</h3>
+                    <p>
+                        Analizzano la composizione chimica di rocce, suolo e atmosfera. Identificano elementi e composti attraverso 
+                        l'analisi della luce riflessa o emessa.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i><span>Rilevano quali elementi chimici sono presenti nelle rocce.</span></li>
+                        <li><i class="fas fa-check"></i><span>Permettono di confrontare campioni diversi per capire l’evoluzione del terreno.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-wind"></i> Sensori Meteorologici</h3>
+                    <p>
+                        Monitorano condizioni atmosferiche: pressione, temperatura, velocità del vento, umidità relativa. 
+                        Fondamentali per comprendere il clima planetario.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i><span>Misurano in tempo reale le condizioni atmosferiche.</span></li>
+                        <li><i class="fas fa-check"></i><span>Rilevano variazioni improvvise utili alla sicurezza del rover.</span></li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h3><i class="fas fa-magnet"></i> Magnetometri e Radar</h3>
+                    <p>
+                        I magnetometri misurano campi magnetici planetari. I radar penetrano nel sottosuolo per identificare 
+                        strati geologici, ghiaccio, e acqua sotterranea.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i><span>Studiano eventuali campi magnetici residui.</span></li>
+                        <li><i class="fas fa-check"></i><span>Mappano strati sotterranei non visibili in superficie.</span></li>
+                    </ul>
+                </div>
             </div>
         `,
 
@@ -305,14 +369,33 @@ const sectionTranslations = {
 
             <div class="card">
                 <h2><i class="fas fa-hand-rock"></i> Bracci robotici in orbita</h2>
-                <p>
-                    Sulla Stazione Spaziale Internazionale il <strong>Canadarm2</strong> e altri strumenti robotici spostano moduli,
-                    catturano veicoli in arrivo e assistono gli astronauti durante le attività extraveicolari.
-                </p>
-                <ul class="icon-list">
-                    <li><i class="fas fa-check"></i><span>Altissima precisione nei movimenti.</span></li>
-                    <li><i class="fas fa-check"></i><span>Riduzione dei rischi per l’equipaggio.</span></li>
-                </ul>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-satellite"></i> Canadarm2</h3>
+                        <p>
+                            Il <strong>Canadarm2</strong> sulla ISS è lungo 17,6 metri e può manipolare carichi fino a 116.000 kg. 
+                            Utilizzato per catturare veicoli spaziali in arrivo, spostare moduli, e assistere in passeggiate spaziali.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 7 gradi di libertà</li>
+                            <li><i class="fas fa-check"></i> Precisione millimetrica</li>
+                            <li><i class="fas fa-check"></i> Controllo da Terra o ISS</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-wrench"></i> Dextre (SPDM)</h3>
+                        <p>
+                            <strong>Dextre</strong> (Special Purpose Dexterous Manipulator) è un robot "tuttofare" a due bracci che 
+                            esegue riparazioni e manutenzione esterna della ISS, riducendo la necessità di EVA (passeggiate spaziali).
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Due bracci a 7 gradi di libertà ciascuno</li>
+                            <li><i class="fas fa-check"></i> Telecamere integrate</li>
+                            <li><i class="fas fa-check"></i> Sostituzione batterie e componenti</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
             <div class="grid-3">
@@ -359,19 +442,60 @@ const sectionTranslations = {
             </div>
 
             <div class="card">
-                <h2><i class="fas fa-route"></i> Come si orienta un rover</h2>
+                <h2><i class="fas fa-route"></i> Sistemi di Navigazione</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-eye"></i> Visual Odometry</h3>
+                        <p>
+                            Analisi continua di immagini per stimare la posizione del robot. Confronta foto successive per calcolare 
+                            distanza percorsa e direzione. Utilizzato da tutti i rover marziani.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-map-marked-alt"></i> SLAM (Simultaneous Localization and Mapping)</h3>
+                        <p>
+                            Algoritmi che permettono al robot di costruire una mappa dell'ambiente sconosciuto mentre determina 
+                            simultaneamente la propria posizione all'interno di quella mappa.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-star"></i> Navigazione Stellare</h3>
+                        <p>
+                            Utilizza la posizione delle stelle come sistema di riferimento assoluto. Particolarmente utile 
+                            nello spazio profondo dove GPS non è disponibile.
+                        </p>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-compass"></i> IMU (Inertial Measurement Unit)</h3>
+                        <p>
+                            Sensori che misurano accelerazione e velocità angolare per determinare orientamento e movimento 
+                            del robot nello spazio tridimensionale.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-road"></i> Path Planning e Evitamento Ostacoli</h2>
+                <p>
+                    I robot spaziali devono pianificare percorsi ottimali evitando pericoli come rocce appuntite, sabbia profonda, 
+                    pendenze eccessive.
+                </p>
                 <ul class="icon-list">
                     <li>
-                        <i class="fas fa-eye"></i>
-                        <span><strong>Visual odometry:</strong> confronta immagini consecutive per stimare il movimento del rover.</span>
+                        <i class="fas fa-brain"></i>
+                        <span><strong>Algoritmi di path planning:</strong> A*, D*, RRT per calcolare percorsi ottimali</span>
                     </li>
                     <li>
-                        <i class="fas fa-map"></i>
-                        <span><strong>SLAM:</strong> costruisce una mappa dell’ambiente mentre il robot si localizza al suo interno.</span>
+                        <i class="fas fa-shield-alt"></i>
+                        <span><strong>Hazard avoidance:</strong> Identificazione automatica di pericoli e deviazione del percorso</span>
                     </li>
                     <li>
-                        <i class="fas fa-star"></i>
-                        <span><strong>Navigazione stellare:</strong> nelle missioni profonde si usano stelle e pulsar come punti di riferimento.</span>
+                        <i class="fas fa-chart-line"></i>
+                        <span><strong>Terrain analysis:</strong> Valutazione della navigabilità del terreno in tempo reale</span>
                     </li>
                 </ul>
             </div>
@@ -397,21 +521,61 @@ const sectionTranslations = {
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-image"></i> Visione artificiale</h2>
-                    <p>
-                        Algoritmi di <strong>computer vision</strong> analizzano le immagini in tempo reale, riconoscendo rocce interessanti,
-                        pericoli e sentieri più sicuri.
-                    </p>
+            <div class="card">
+                <h2><i class="fas fa-robot"></i> Applicazioni dell'IA nella Robotica Aerospaziale</h2>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-image"></i> Computer Vision</h3>
+                        <p>
+                            Analisi automatica di immagini per identificare rocce interessanti, formazioni geologiche, potenziali 
+                            campioni da raccogliere. Il rover Perseverance usa reti neurali per analisi autonoma.
+                        </p>
+                        <span class="badge">Deep Learning</span>
+                        <span class="badge">Object Detection</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-lightbulb"></i> Decision Making</h3>
+                        <p>
+                            Sistemi di IA che prendono decisioni complesse: quale campione raccogliere, dove perforare, 
+                            quando cercare riparo da tempesta di sabbia.
+                        </p>
+                        <span class="badge">Machine Learning</span>
+                        <span class="badge">Expert Systems</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-exclamation-triangle"></i> Anomaly Detection</h3>
+                        <p>
+                            Identificazione automatica di malfunzionamenti o situazioni anomale. Può attivare procedure di sicurezza 
+                            o allertare il controllo missione sulla Terra.
+                        </p>
+                        <span class="badge">AI Monitoring</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-brain"></i> Adaptive Learning</h3>
+                        <p>
+                            Capacità del robot di migliorare le proprie prestazioni nel tempo, imparando dai successi e dagli errori. 
+                            Fondamentale per missioni di lunga durata.
+                        </p>
+                        <span class="badge">Reinforcement Learning</span>
+                    </div>
                 </div>
-                <div class="card">
-                    <h2><i class="fas fa-lightbulb"></i> Decisioni autonome</h2>
-                    <p>
-                        Sistemi intelligenti decidono quali esperimenti eseguire, quando perforare il terreno o quando cercare riparo da una
-                        tempesta di sabbia.
-                    </p>
-                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> Sistemi di IA Avanzati</h2>
+                <p>
+                    <strong>AEGIS (Autonomous Exploration for Gathering Increased Science):</strong> Sistema autonomo di 
+                    Curiosity che seleziona bersagli scientifici interessanti senza intervento umano, aumentando drasticamente 
+                    la produttività scientifica del rover.
+                </p>
+                <p>
+                    <strong>AutoNav:</strong> Sistema di navigazione completamente autonoma che permette ai rover di percorrere 
+                    distanze maggiori in sicurezza, pianificando percorsi e evitando ostacoli in tempo reale.
+                </p>
             </div>
         `,
 
@@ -421,9 +585,9 @@ const sectionTranslations = {
                     <div>
                         <p class="hero-kicker">IT · Tecnologie</p>
                         <h1 class="glow-title">Materiali avanzati</h1>
-                        <p class="hero-subtitle">
-                            Senza materiali speciali i robot non sopravviverebbero nello spazio. Serve un equilibrio tra leggerezza,
-                            resistenza meccanica e protezione dalle radiazioni.
+                        <p>
+                            I <strong>materiali avanzati</strong> sono essenziali per garantire che i robot spaziali sopravvivano in ambienti 
+                            estremi. Devono resistere a temperature estreme, radiazioni, vuoto, e impatti di micro-meteoriti.
                         </p>
                     </div>
                     <div class="image-container">
@@ -435,18 +599,95 @@ const sectionTranslations = {
                 </div>
             </div>
 
-            <div class="grid-3">
-                <div class="card">
-                    <h3><i class="fas fa-shield-alt"></i> Titanio</h3>
-                    <p>Ottimo rapporto resistenza/peso, resiste a forti sbalzi termici e alla corrosione.</p>
+            <div class="card">
+                <h2><i class="fas fa-atom"></i> Materiali Chiave</h2>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-shield-alt"></i> Titanio e Leghe</h3>
+                        <p>
+                            <strong>Titanio</strong> offre eccellente rapporto resistenza/peso, resistenza alla corrosione e 
+                            alle temperature estreme. Utilizzato per strutture portanti, ruote dei rover, e componenti critici.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Resistenza termica: -200°C a +400°C</li>
+                            <li><i class="fas fa-check"></i> Bassa densità (4.5 g/cm³)</li>
+                            <li><i class="fas fa-check"></i> Resistenza alla fatica</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-feather"></i> Fibra di Carbonio</h3>
+                        <p>
+                            Materiale composito ultra-leggero e resistente. Utilizzato per strutture che devono essere 
+                            rigide ma leggere: pannelli solari, bracci robotici, chassis.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 5x più resistente dell'acciaio</li>
+                            <li><i class="fas fa-check"></i> 70% più leggero</li>
+                            <li><i class="fas fa-check"></i> Resistente alle radiazioni</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-thermometer-empty"></i> Aerogel</h3>
+                        <p>
+                            Materiale ultra-leggero con eccellenti proprietà isolanti. Utilizzato per protezione termica 
+                            e isolamento di componenti sensibili.
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> 99% aria, 1% silice</li>
+                            <li><i class="fas fa-check"></i> Miglior isolante conosciuto</li>
+                            <li><i class="fas fa-check"></i> Utilizzato su Perseverance</li>
+                        </ul>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-sun"></i> MLI (Multi-Layer Insulation)</h3>
+                        <p>
+                            Isolamento multi-strato fatto di fogli di mylar alluminizzato. Protegge dall'escursione termica 
+                            nello spazio (-150°C a +120°C).
+                        </p>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Riflette il 97% della radiazione</li>
+                            <li><i class="fas fa-check"></i> Leggerissimo</li>
+                            <li><i class="fas fa-check"></i> Standard per veicoli spaziali</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="card">
-                    <h3><i class="fas fa-feather"></i> Fibra di carbonio</h3>
-                    <p>Composito ultra‑leggero, ideale per bracci robotici e strutture che devono essere rigide ma leggere.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-thermometer-empty"></i> Isolanti</h3>
-                    <p>Aerogel e isolamenti multistrato (MLI) mantengono temperature stabili attorno a componenti delicati.</p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-radiation"></i> Protezione dalle Radiazioni</h2>
+                <p>
+                    Nello spazio, senza protezione dell'atmosfera terrestre, le radiazioni cosmiche e solari sono una minaccia 
+                    costante per l'elettronica. Materiali speciali proteggono i componenti sensibili:
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-check"></i> <strong>Polietilene ad alta densità:</strong> Scherma radiazioni ad alta energia</li>
+                    <li><i class="fas fa-check"></i> <strong>Tantalio:</strong> Protegge circuiti critici</li>
+                    <li><i class="fas fa-check"></i> <strong>Piombo:</strong> Per componenti ultra-sensibili</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-industry"></i> Materiali del Futuro</h2>
+                <p>
+                    La ricerca sta sviluppando nuovi materiali rivoluzionari:
+                </p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Grafene</h3>
+                        <p>200 volte più resistente dell'acciaio, conduttore eccellente, ultra-leggero.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Nanotubi di Carbonio</h3>
+                        <p>Strutture molecolari con proprietà meccaniche ed elettriche straordinarie.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Metamateriali</h3>
+                        <p>Materiali artificiali con proprietà non esistenti in natura (es. invisibilità a certe frequenze).</p>
+                    </div>
                 </div>
             </div>
         `,
@@ -470,43 +711,99 @@ const sectionTranslations = {
                     </div>
                 </div>
             </div>
+            <div class="card">
+                <h2><i class="fas fa-mars"></i> Rover su Marte</h2>
+                <p>
+                    I <strong>rover marziani</strong> sono i robot spaziali più iconici. Esplorano la superficie del Pianeta Rosso, 
+                    cercano tracce di vita passata, e preparano il terreno per future missioni umane.
+                </p>
+                <div class="grid-2">
+                        <div class="card">
+                            <h3><i class="fas fa-microscope"></i> Curiosity</h3>
+                            <p>
+                                Atterrato nel 2012, <strong>Curiosity</strong> pesa 900 kg ed è grande come un'auto. Ha percorso oltre 
+                                28 km sul cratere Gale, analizzando rocce e scoprendo che Marte aveva condizioni favorevoli alla vita 
+                                miliardi di anni fa.
+                            </p>
+                            <span class="badge">Attivo dal 2012</span>
+                            <span class="badge">17 telecamere</span>
+                            <span class="badge">10 strumenti scientifici</span>
+                        </div>
 
+                        <div class="card">
+                            <h3><i class="fas fa-dna"></i> Perseverance</h3>
+                            <p>
+                                Atterrato nel 2021, <strong>Perseverance</strong> rappresenta il culmine della tecnologia robotica. 
+                                Raccoglie campioni di roccia marziana che saranno riportati sulla Terra da future missioni. 
+                                Include anche Ingenuity, il primo elicottero marziano.
+                            </p>
+                            <span class="badge">Attivo dal 2021</span>
+                            <span class="badge">Sample Return</span>
+                            <span class="badge">23 telecamere</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="grid-2">
                 <div class="card">
-                    <h2><i class="fas fa-mars"></i> Rover su Marte</h2>
-                    <p>
-                        Curiosity e Perseverance sono laboratori mobili che analizzano rocce, atmosfera e suolo marziano alla ricerca di tracce
-                        di <strong>vita passata</strong>.
-                    </p>
-                    <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Campionamento del terreno e analisi chimiche.</span></li>
-                        <li><i class="fas fa-check"></i><span>Fotografie in alta risoluzione e panorami 3D.</span></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-satellite"></i> Robotica orbitale</h2>
-                    <p>
-                        In orbita, bracci robotici e veicoli autonomi si occupano di <strong>manutenzione satelliti</strong>, rifornimento
-                        di carburante e rimozione di detriti spaziali.
-                    </p>
+                <h2><i class="fas fa-satellite"></i> Manutenzione Satelliti</h2>
+                <p>
+                    Robot orbitali eseguono riparazioni, rifornimento, e aggiornamento di satelliti in orbita, estendendone 
+                    la vita operativa e riducendo i costi di sostituzione.
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-wrench"></i>
+                        <span><strong>Satellite Servicing:</strong> Sostituzione batterie, riparazione pannelli solari, aggiornamento software</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-gas-pump"></i>
+                        <span><strong>Refueling:</strong> Rifornimento carburante per prolungare vita operativa</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-trash"></i>
+                        <span><strong>Debris Removal:</strong> Rimozione satelliti non funzionanti e detriti spaziali</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-space-shuttle"></i> Robot sulla ISS</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-cube"></i> Astrobee</h3>
+                        <p>
+                            <strong>Astrobee</strong> sono robot volanti cubici che assistono gli astronauti sulla ISS. 
+                            Eseguono inventari, monitoraggio ambientale, e test di nuove tecnologie in microgravità.
+                        </p>
+                        <span class="badge">Volo autonomo</span>
+                        <span class="badge">AI assistenza</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-robot"></i> Robonaut 2</h3>
+                        <p>
+                            Robot umanoide progettato per lavorare fianco a fianco con gli astronauti. Può usare gli stessi 
+                            strumenti degli umani grazie a mani articolate.
+                        </p>
+                        <span class="badge">Umanoide</span>
+                        <span class="badge">42 gradi di libertà</span>
+                    </div>
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-space-shuttle"></i> Robot sulla ISS</h2>
-                    <p>
-                        Sulla Stazione Spaziale Internazionale operano robot come <strong>Astrobee</strong> (piccoli droni interni) e<br />
-                        <strong>Robonaut</strong>, un robot umanoide progettato per lavorare a fianco degli astronauti.
-                    </p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-moon"></i> Missioni lunari e droni</h2>
-                    <p>
-                        Rover e lander robotici preparano il ritorno dell’uomo sulla Luna, esplorando regioni polari e cercando ghiaccio d’acqua.
-                        Droni spaziali sperimentali testano il volo in ambienti rari o senza atmosfera.
-                    </p>
-                </div>
+            <div class="card">
+                <h2><i class="fas fa-moon"></i> Esplorazione Lunare</h2>
+                <p>
+                    La Luna è obiettivo di rinnovato interesse. Robot lunari preparano basi permanenti, estraggono risorse, 
+                    e assistono astronauti nelle missioni Artemis.
+                </p>
+                <ul class="icon-list">
+                    <li><i class="fas fa-check"></i> <strong>VIPER:</strong> Rover che cercherà ghiaccio d'acqua ai poli lunari</li>
+                    <li><i class="fas fa-check"></i> <strong>Lunar Gateway:</strong> Stazione orbitale con bracci robotici per manutenzione</li>
+                    <li><i class="fas fa-check"></i> <strong>Construction Robots:</strong> Robot per costruzione habitat lunari</li>
+                </ul>
+            </div>
             </div>
         `,
 
@@ -525,30 +822,80 @@ const sectionTranslations = {
 
             <div class="pro-con-grid">
                 <div class="pro-box">
-                    <h3><i class="fas fa-user-shield"></i> Sicurezza degli astronauti</h3>
+                    <h3><i class="fas fa-shield-alt"></i> 1. Sicurezza degli Astronauti</h3>
+                    <p>
+                        I robot possono operare in ambienti letali per l'uomo: radiazioni intense, vuoto assoluto, temperature 
+                        estreme, atmosfere tossiche. Questo riduce drasticamente i rischi per gli astronauti.
+                    </p>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Riduzione delle attività extraveicolari pericolose.</span></li>
-                        <li><i class="fas fa-check"></i><span>Possibilità di esplorare ambienti estremi o tossici.</span></li>
+                        <li><i class="fas fa-check"></i> Eliminazione rischi durante EVA pericolose</li>
+                        <li><i class="fas fa-check"></i> Esplorazione ambienti inaccessibili all'uomo</li>
+                        <li><i class="fas fa-check"></i> Test di nuove tecnologie senza rischio umano</li>
                     </ul>
                 </div>
+
                 <div class="pro-box">
-                    <h3><i class="fas fa-clock"></i> Operazioni 24/7</h3>
+                    <h3><i class="fas fa-clock"></i> 2. Operazioni Continue 24/7</h3>
+                    <p>
+                        I robot non necessitano di riposo, cibo, o aria. Possono lavorare ininterrottamente per anni, 
+                        massimizzando la produttività scientifica delle missioni.
+                    </p>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>I robot non hanno bisogno di dormire.</span></li>
-                        <li><i class="fas fa-check"></i><span>Possono lavorare per anni consecutivi.</span></li>
+                        <li><i class="fas fa-check"></i> Nessuna pausa per riposo o sonno</li>
+                        <li><i class="fas fa-check"></i> Operazioni durante tempeste o condizioni estreme</li>
+                        <li><i class="fas fa-check"></i> Missioni di durata decennale (Opportunity: 15 anni)</li>
                     </ul>
                 </div>
+
                 <div class="pro-box">
-                    <h3><i class="fas fa-crosshairs"></i> Precisione estrema</h3>
+                    <h3><i class="fas fa-crosshairs"></i> 3. Precisione Estrema</h3>
+                    <p>
+                        I bracci robotici possono eseguire operazioni con precisione millimetrica, impossibili per l'uomo 
+                        anche con tute spaziali ingombranti.
+                    </p>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Movimenti più precisi rispetto a un essere umano in tuta spaziale.</span></li>
+                        <li><i class="fas fa-check"></i> Manipolazione componenti microscopici</li>
+                        <li><i class="fas fa-check"></i> Chirurgia robotica nello spazio</li>
+                        <li><i class="fas fa-check"></i> Assemblaggio strutture complesse</li>
                     </ul>
                 </div>
+
                 <div class="pro-box">
-                    <h3><i class="fas fa-coins"></i> Riduzione dei costi</h3>
+                    <h3><i class="fas fa-dollar-sign"></i> 4. Riduzione Costi</h3>
+                    <p>
+                        Anche se costosi da sviluppare, i robot sono molto più economici delle missioni umane. 
+                        Non richiedono sistemi di supporto vitale, cibo, protezione dalle radiazioni.
+                    </p>
                     <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Meno massa dedicata al supporto vitale umano.</span></li>
-                        <li><i class="fas fa-check"></i><span>Nessuna necessità di riportare il robot a casa.</span></li>
+                        <li><i class="fas fa-check"></i> Nessun costo per ritorno sulla Terra</li>
+                        <li><i class="fas fa-check"></i> Sistemi di supporto vitale non necessari</li>
+                        <li><i class="fas fa-check"></i> Missioni più lunghe a costo inferiore</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-mountain"></i> 5. Accesso a Luoghi Impossibili</h3>
+                    <p>
+                        I robot possono raggiungere luoghi dove l'uomo non potrebbe mai andare: crateri profondi, 
+                        tunnel lavici, atmosfere corrosive di Venere, oceani sotterranei di Europa.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Esplorazione grotte e tunnel</li>
+                        <li><i class="fas fa-check"></i> Perforazione profonda</li>
+                        <li><i class="fas fa-check"></i> Ambienti ad alta pressione/temperatura</li>
+                    </ul>
+                </div>
+
+                <div class="pro-box">
+                    <h3><i class="fas fa-flask"></i> 6. Capacità Scientifiche Avanzate</h3>
+                    <p>
+                        I robot sono laboratori mobili completi, equipaggiati con strumenti scientifici sofisticati 
+                        per analisi chimiche, geologiche, atmosferiche in-situ.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-check"></i> Spettrometri di massa</li>
+                        <li><i class="fas fa-check"></i> Microscopi elettronici</li>
+                        <li><i class="fas fa-check"></i> Analizzatori chimici</li>
                     </ul>
                 </div>
             </div>
@@ -731,9 +1078,7 @@ const sectionTranslations = {
                     <li><a class="link-pill" href="https://www.tech4future.info/" target="_blank" rel="noreferrer"><i class="fas fa-globe"></i><span>Tech4Future</span></a></li>
                     <li><a class="link-pill" href="https://www.esa.int/Space_in_Member_States/Italy" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>ESA Italia</span></a></li>
                     <li><a class="link-pill" href="https://www.asi.it/" target="_blank" rel="noreferrer"><i class="fas fa-satellite"></i><span>ASI - Agenzia Spaziale Italiana</span></a></li>
-                    <li><a class="link-pill" href="https://www.inaf.it/" target="_blank" rel="noreferrer"><i class="fas fa-lightbulb"></i><span>INAF - Istituto Nazionale di Astrofisica</span></a></li>
-                    <li><a class="link-pill" href="https://www.nasa.gov/international/italy" target="_blank" rel="noreferrer"><i class="fas fa-flag-usa"></i><span>NASA - Pagina Italia</span></a></li>
-                </ul>
+                    <li><a class="link-pill" href="http://www.inaf.it/it" target="_blank" rel="noreferrer"><i class="fas fa-lightbulb"></i><span>INAF - Istituto Nazionale di Astrofisica</span></a></li>                </ul>
             </div>
 
             <div class="card">
@@ -743,8 +1088,7 @@ const sectionTranslations = {
                     <li><a class="link-pill" href="https://mars.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-mars"></i><span>NASA Mars Exploration</span></a></li>
                     <li><a class="link-pill" href="https://www.jpl.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-satellite-dish"></i><span>JPL - Jet Propulsion Laboratory</span></a></li>
                     <li><a class="link-pill" href="https://www.esa.int/" target="_blank" rel="noreferrer"><i class="fas fa-globe-europe"></i><span>ESA - European Space Agency</span></a></li>
-                    <li><a class="link-pill" href="https://www.mit.edu/research/space-exploration" target="_blank" rel="noreferrer"><i class="fas fa-university"></i><span>MIT - Space Exploration</span></a></li>
-                    <li><a class="link-pill" href="https://www.ieee.org/topics/robotics.html" target="_blank" rel="noreferrer"><i class="fas fa-robot"></i><span>IEEE Robotics</span></a></li>
+                    <li><a class="link-pill" href="https://www.ieee.org" target="_blank" rel="noreferrer"><i class="fas fa-robot"></i><span>IEEE Robotics</span></a></li>
                 </ul>
             </div>
         `,
@@ -1518,15 +1862,6 @@ window.addEventListener('DOMContentLoaded', () => {
         themeToggle.addEventListener('click', () => {
             const newTheme = state.theme === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
-        });
-    }
-
-    // Toggle lingua
-    const langToggle = document.getElementById('langToggle');
-    if (langToggle) {
-        langToggle.addEventListener('click', () => {
-            const newLang = state.lang === 'it' ? 'en' : 'it';
-            applyLanguage(newLang);
         });
     }
 
