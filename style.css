@@ -956,6 +956,7 @@
 
         .pro-box,
         .con-box {
+            margin: 16px;
             padding: 16px 16px 12px;
             border-radius: 16px;
             border: 1px solid var(--border-soft);
