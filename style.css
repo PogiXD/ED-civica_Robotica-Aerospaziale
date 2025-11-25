@@ -962,9 +962,9 @@
             border: 1px solid var(--border-soft);
             background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9), transparent 60%);
         }
-        [data-theme="light"] .pro-box,.con-box{
+        /* [data-theme="light"] .pro-box,.con-box{
             background: radial-gradient(circle at 0 0, rgba(242, 239, 255, 0.7), transparent 60%);
-        }
+        } */
         .pro-box {
             border-color: rgba(52, 211, 153, 0.7);
         }

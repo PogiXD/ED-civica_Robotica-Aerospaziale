@@ -1235,7 +1235,7 @@ const sectionTranslations = {
                             <li><i class="fas fa-check"></i> CAD/CAM 3D</li>
                             <li><i class="fas fa-check"></i> Control theory</li>
                         </ul>
-                    <
+                    </div>
                     <div class="card">
                         <h3>Conoscenze Scientifiche</h3>
                         <ul class="icon-list">
