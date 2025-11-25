@@ -915,32 +915,83 @@ const sectionTranslations = {
                 </div>
             </div>
 
-            <div class="pro-con-grid">
+                        <div class="pro-con-container">
                 <div class="con-box">
-                    <h3><i class="fas fa-money-bill-wave"></i> Costi iniziali altissimi</h3>
+                    <h3><i class="fas fa-money-bill-wave"></i> 1. Costi Iniziali Altissimi</h3>
                     <p>
-                        Progettare, testare e lanciare un robot nello spazio richiede investimenti enormi e componenti altamente specializzati.
+                        Lo sviluppo di robot spaziali richiede investimenti miliardari. Il rover Perseverance è costato 
+                        2,7 miliardi di dollari, somma che potrebbe finanziare molti progetti terrestri.
                     </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> R&D estremamente costosa</li>
+                        <li><i class="fas fa-times"></i> Test rigorosi e ridondanza</li>
+                        <li><i class="fas fa-times"></i> Componenti space-grade ultra-costosi</li>
+                    </ul>
                 </div>
+
                 <div class="con-box">
-                    <h3><i class="fas fa-screwdriver-wrench"></i> Manutenzione difficile</h3>
+                    <h3><i class="fas fa-tools"></i> 2. Manutenzione Difficile o Impossibile</h3>
                     <p>
-                        Un guasto su Marte o in orbita lontana è spesso <strong>irreversibile</strong>: serve quindi ridondanza e design ultra‑affidabile.
+                        Un guasto su Marte significa fine missione. Non è possibile inviare tecnici per riparazioni. 
+                        Questo richiede ridondanza estrema e design ultra-affidabile.
                     </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Nessuna riparazione possibile</li>
+                        <li><i class="fas fa-times"></i> Guasti catastrofici comuni</li>
+                        <li><i class="fas fa-times"></i> Ambiente degrada componenti</li>
+                    </ul>
                 </div>
+
                 <div class="con-box">
-                    <h3><i class="fas fa-microchip"></i> Dipendenza tecnologica</h3>
+                    <h3><i class="fas fa-microchip"></i> 3. Dipendenza Tecnologica</h3>
                     <p>
-                        L’elevato grado di automazione può ridurre l’esperienza diretta degli astronauti e aumentare la dipendenza da software
-                        complessi, vulnerabili a bug o attacchi informatici.
+                        L'eccessivo affidamento sulla robotica potrebbe ridurre le competenze umane nell'esplorazione diretta. 
+                        Inoltre, malfunzionamenti software possono compromettere intere missioni.
                     </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Bug software critici</li>
+                        <li><i class="fas fa-times"></i> Vulnerabilità cyber</li>
+                        <li><i class="fas fa-times"></i> Perdita competenze esplorazione umana</li>
+                    </ul>
                 </div>
+
                 <div class="con-box">
-                    <h3><i class="fas fa-scale-balanced"></i> Questioni etiche</h3>
+                    <h3><i class="fas fa-balance-scale"></i> 4. Questioni Etiche</h3>
                     <p>
-                        Bisogna considerare la <strong>contaminazione planetaria</strong>, i diritti sulle risorse estratte da altri corpi celesti e
-                        la responsabilità delle decisioni prese da IA autonome.
+                        L'automazione spaziale solleva dilemmi etici complessi: chi è responsabile di decisioni autonome? 
+                        È giusto inviare robot su mondi potenzialmente abitati? Come gestiamo la contaminazione planetaria?
                     </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Responsabilità decisioni AI</li>
+                        <li><i class="fas fa-times"></i> Contaminazione biologica</li>
+                        <li><i class="fas fa-times"></i> Diritti su risorse estratte</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-user-times"></i> 5. Riduzione Ruoli Umani</h3>
+                    <p>
+                        L'automazione crescente potrebbe ridurre opportunità per astronauti. Missioni completamente robotiche 
+                        potrebbero eliminare la componente umana dell'esplorazione.
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Meno missioni umane</li>
+                        <li><i class="fas fa-times"></i> Disoccupazione settore spaziale</li>
+                        <li><i class="fas fa-times"></i> Perdita aspetto "eroico" esplorazione</li>
+                    </ul>
+                </div>
+
+                <div class="con-box">
+                    <h3><i class="fas fa-bolt"></i> 6. Limitazioni Energetiche</h3>
+                    <p>
+                        Nello spazio profondo o durante notti planetarie lunghe, l'energia diventa critica. 
+                        I pannelli solari sono inefficaci lontano dal Sole, richiedendo RTG costosi e controversi (plutonio).
+                    </p>
+                    <ul class="icon-list">
+                        <li><i class="fas fa-times"></i> Dipendenza da luce solare</li>
+                        <li><i class="fas fa-times"></i> RTG costosi e radioattivi</li>
+                        <li><i class="fas fa-times"></i> Degrado batterie nel tempo</li>
+                    </ul>
                 </div>
             </div>
         `,
@@ -964,35 +1015,123 @@ const sectionTranslations = {
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-layer-group"></i> Swarm robotics</h2>
-                    <p>
-                        Gruppi di decine o centinaia di piccoli robot cooperano come un <strong>sciame di insetti</strong>, dividendo il lavoro
-                        e rendendo la missione più robusta ai guasti.
-                    </p>
+
+            <div class="card">
+                <h2><i class="fas fa-project-diagram"></i> Swarm Robotics</h2>
+                <p>
+                    La <strong>robotica a sciame</strong> prevede l'utilizzo di decine o centinaia di piccoli robot che lavorano 
+                    insieme come un organismo unico. Ispirati dal comportamento di api, formiche, e stormi di uccelli.
+                </p>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-users"></i> Vantaggi dello Swarm</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Ridondanza: guasto di un robot non compromette missione</li>
+                            <li><i class="fas fa-check"></i> Copertura area vasta simultaneamente</li>
+                            <li><i class="fas fa-check"></i> Compiti complessi attraverso collaborazione</li>
+                            <li><i class="fas fa-check"></i> Costo singola unità ridotto</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3><i class="fas fa-tasks"></i> Applicazioni Future</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-rocket"></i> Mappatura rapida territori planetari</li>
+                            <li><i class="fas fa-rocket"></i> Costruzione habitat collaborativa</li>
+                            <li><i class="fas fa-rocket"></i> Ricerca risorse (acqua, minerali)</li>
+                            <li><i class="fas fa-rocket"></i> Monitoraggio ambientale distribuito</li>
+                        </ul>
+                    </div>
                 </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-cubes"></i> Robot Modulari</h2>
+                <p>
+                    I <strong>robot modulari</strong> sono costituiti da unità intercambiabili che possono essere riconfigurate 
+                    per diverse missioni. Possono auto-ripararsi sostituendo moduli danneggiati, o combinarsi per formare 
+                    strutture più grandi.
+                </p>
                 <div class="card">
-                    <h2><i class="fas fa-cubes"></i> Robot modulari</h2>
+                    <h3><i class="fas fa-puzzle-piece"></i> Concetto Modulare</h3>
                     <p>
-                        Robot composti da moduli che possono agganciarsi e sganciarsi, trasformandosi a seconda del compito: rover, bracci,
-                        strutture temporanee.
+                        Immagina robot che possono trasformarsi da rover a braccio robotico, o combinarsi per creare ponti, 
+                        strutture di supporto, o configurazioni specializzate. NASA sta sviluppando RAMA (Reconstitutable 
+                        Assembly Modular Architecture).
                     </p>
+                    <span class="badge">Adattabilità</span>
+                    <span class="badge">Auto-riparazione</span>
+                    <span class="badge">Multi-missione</span>
                 </div>
-                <div class="card">
-                    <h2><i class="fas fa-hand-sparkles"></i> Soft robotics</h2>
-                    <p>
-                        Robot morbidi, flessibili e sicuri per l’interazione con gli astronauti, ideali per manipolare oggetti delicati o
-                        muoversi in spazi stretti.
-                    </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-hand-sparkles"></i> Soft Robotics</h2>
+                <p>
+                    La <strong>soft robotics</strong> utilizza materiali flessibili e deformabili invece di strutture rigide. 
+                    Questi robot possono adattarsi a superfici irregolari, comprimere attraverso aperture strette, e manipolare 
+                    oggetti delicati senza danneggiarli.
+                </p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Materiali Intelligenti</h3>
+                        <p>Polimeri che cambiano forma con temperatura, luce, o campo elettrico.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Grip Adattivo</h3>
+                        <p>Pinze morbide che si adattano perfettamente a qualsiasi forma.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Sicurezza</h3>
+                        <p>Interazione sicura con astronauti e strutture delicate.</p>
+                    </div>
                 </div>
-                <div class="card">
-                    <h2><i class="fas fa-brain"></i> IA autonoma avanzata</h2>
-                    <p>
-                        Sistemi sempre più vicini a un’<strong>intelligenza artificiale generale</strong>, capaci di pianificare esperimenti scientifici
-                        completi e adattarsi a condizioni mai viste prima.
-                    </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-brain"></i> IA Autonoma Avanzata</h2>
+                <p>
+                    Il futuro vedrà robot spaziali con intelligenza artificiale generale (AGI), capaci di ragionamento complesso, 
+                    creatività, e adattamento a situazioni completamente nuove senza programmazione specifica.
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <span><strong>Decision-making autonomo:</strong> Robot che pianificano missioni scientifiche complete</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-comments"></i>
+                        <span><strong>Comunicazione naturale:</strong> Interazione vocale fluida con astronauti</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-lightbulb"></i>
+                        <span><strong>Problem solving creativo:</strong> Soluzioni innovative a problemi imprevisti</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Apprendimento continuo:</strong> Miglioramento costante delle prestazioni</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-industry"></i> Produzione In-Situ</h2>
+                <p>
+                    Robot che fabbricano altri robot, strutture, e componenti utilizzando risorse locali (regolite lunare, 
+                    ghiaccio marziano, minerali asteroidi). Stampa 3D robotica di habitat, pannelli solari, e ricambi.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-water"></i> Esplorazione Oceani Extraterrestri</h2>
+                <p>
+                    Lune come <strong>Europa</strong> (Giove) ed <strong>Encelado</strong> (Saturno) hanno oceani sotterranei che 
+                    potrebbero ospitare vita. Robot sottomarini autonomi esploreranno questi oceani alieni.
+                </p>
+                <div class="image-container">
+                    <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=600&fit=crop" alt="Europa Moon">
+                    <div class="image-caption">Europa - Luna di Giove con oceano sotterraneo, obiettivo futuro dell'esplorazione robotica</div>
                 </div>
+            </div>
             </div>
         `,
 
@@ -1009,25 +1148,172 @@ const sectionTranslations = {
                 </div>
             </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-briefcase"></i> Nuove professioni</h2>
-                    <ul class="icon-list">
-                        <li><i class="fas fa-robot"></i><span>Ingegneri robotici aerospaziali.</span></li>
-                        <li><i class="fas fa-brain"></i><span>Programmatori di intelligenza artificiale.</span></li>
-                        <li><i class="fas fa-database"></i><span>Analisti di dati provenienti dalle missioni.</span></li>
-                        <li><i class="fas fa-vr-cardboard"></i><span>Tecnici di simulazione e realtà virtuale.</span></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-graduation-cap"></i> Competenze richieste</h2>
-                    <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Programmazione (Python, C++, ROS).</span></li>
-                        <li><i class="fas fa-check"></i><span>Conoscenze di robotica, controllo e meccanica orbitale.</span></li>
-                        <li><i class="fas fa-check"></i><span>Capacità di lavorare in team multidisciplinari.</span></li>
-                    </ul>
+                        <div class="card">
+                <h2><i class="fas fa-briefcase"></i> Nuove Professioni Emergenti</h2>
+                
+                <div class="grid-2">
+                    <div class="card">
+                        <h3><i class="fas fa-robot"></i> Ingegnere Robotico Spaziale</h3>
+                        <p>
+                            Progettazione, sviluppo e test di sistemi robotici per applicazioni spaziali. Richiede conoscenze 
+                            multidisciplinari: meccanica, elettronica, informatica, materiali avanzati.
+                        </p>
+                        <span class="badge">Laurea Ingegneria</span>
+                        <span class="badge">Robotica</span>
+                        <span class="badge">120K-200K€/anno</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-brain"></i> Programmatore IA per Robotica Spaziale</h3>
+                        <p>
+                            Sviluppo algoritmi di intelligenza artificiale per navigazione autonoma, decision-making, 
+                            computer vision, e machine learning applicati a missioni spaziali.
+                        </p>
+                        <span class="badge">Computer Science</span>
+                        <span class="badge">AI/ML</span>
+                        <span class="badge">100K-180K€/anno</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-chart-line"></i> Analista Dati Missioni Robotiche</h3>
+                        <p>
+                            Elaborazione e interpretazione enormi quantità di dati scientifici generati da robot spaziali. 
+                            Utilizzo di big data analytics e visualizzazione avanzata.
+                        </p>
+                        <span class="badge">Data Science</span>
+                        <span class="badge">Astrofisica</span>
+                        <span class="badge">80K-150K€/anno</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-gamepad"></i> Operatore/Pilota Robotico Remoto</h3>
+                        <p>
+                            Controllo e supervisione di robot spaziali dalla Terra. Richiede addestramento simile a piloti, 
+                            con capacità di gestione stress e problem-solving rapido.
+                        </p>
+                        <span class="badge">Training Specializzato</span>
+                        <span class="badge">Controllo Missione</span>
+                        <span class="badge">70K-120K€/anno</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-vr-cardboard"></i> Specialista Simulazione e Testing</h3>
+                        <p>
+                            Creazione ambienti virtuali per test pre-lancio, addestramento operatori, e simulazione missioni. 
+                            Utilizzo VR/AR e digital twins.
+                        </p>
+                        <span class="badge">VR/AR Development</span>
+                        <span class="badge">Simulation</span>
+                        <span class="badge">75K-140K€/anno</span>
+                    </div>
+
+                    <div class="card">
+                        <h3><i class="fas fa-shield-alt"></i> Esperto Cybersecurity Spaziale</h3>
+                        <p>
+                            Protezione sistemi robotici spaziali da minacce cyber. Cruciale dato il controllo remoto e 
+                            l'importanza strategica delle missioni.
+                        </p>
+                        <span class="badge">Cybersecurity</span>
+                        <span class="badge">Aerospace</span>
+                        <span class="badge">90K-170K€/anno</span>
+                    </div>
                 </div>
             </div>
+
+            <div class="card">
+                <h2><i class="fas fa-graduation-cap"></i> Competenze Richieste</h2>
+                <p>
+                    Le professioni nella robotica aerospaziale richiedono un mix unico di competenze tecniche e soft skills:
+                </p>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>Competenze Tecniche</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Programmazione (Python, C++, ROS)</li>
+                            <li><i class="fas fa-check"></i> Machine Learning & AI</li>
+                            <li><i class="fas fa-check"></i> Sistemi embedded</li>
+                            <li><i class="fas fa-check"></i> CAD/CAM 3D</li>
+                            <li><i class="fas fa-check"></i> Control theory</li>
+                        </ul>
+                    <
+                    <div class="card">
+                        <h3>Conoscenze Scientifiche</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Fisica spaziale</li>
+                            <li><i class="fas fa-check"></i> Meccanica orbitale</li>
+                            <li><i class="fas fa-check"></i> Scienza materiali</li>
+                            <li><i class="fas fa-check"></i> Astrogeologia</li>
+                            <li><i class="fas fa-check"></i> Termodinamica</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Soft Skills</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-check"></i> Problem solving</li>
+                            <li><i class="fas fa-check"></i> Lavoro di squadra</li>
+                            <li><i class="fas fa-check"></i> Comunicazione</li>
+                            <li><i class="fas fa-check"></i> Gestione stress</li>
+                            <li><i class="fas fa-check"></i> Pensiero critico</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-university"></i> Percorsi Formativi</h2>
+                <p>
+                    Per entrare nel settore della robotica aerospaziale, esistono diversi percorsi accademici e professionali:
+                </p>
+                <ul class="icon-list">
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Laurea Magistrale in Ingegneria Aerospaziale</strong> con specializzazione in robotica</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Laurea in Ingegneria Robotica</strong> con focus su applicazioni spaziali</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-graduation-cap"></i>
+                        <span><strong>Computer Science</strong> con specializzazione in AI e sistemi autonomi</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-certificate"></i>
+                        <span><strong>Master/PhD</strong> in Aerospace Robotics, Autonomous Systems, o Space Engineering</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-laptop-code"></i>
+                        <span><strong>Certificazioni professionali:</strong> ROS, AI/ML, Cybersecurity, Project Management</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-building"></i> Principali Datori di Lavoro</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>Agenzie Spaziali</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-flag-usa"></i> NASA (USA)</li>
+                            <li><i class="fas fa-flag"></i> ESA (Europa)</li>
+                            <li><i class="fas fa-flag"></i> ASI (Italia)</li>
+                            <li><i class="fas fa-flag"></i> JAXA (Giappone)</li>
+                            <li><i class="fas fa-flag"></i> Roscosmos (Russia)</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Aziende Private</h3>
+                        <ul class="icon-list">
+                            <li><i class="fas fa-rocket"></i> SpaceX</li>
+                            <li><i class="fas fa-rocket"></i> Blue Origin</li>
+                            <li><i class="fas fa-rocket"></i> Northrop Grumman</li>
+                            <li><i class="fas fa-rocket"></i> Maxar Technologies</li>
+                            <li><i class="fas fa-rocket"></i> Thales Alenia Space</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
         `,
 
         conclusion: `
