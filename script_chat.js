@@ -360,9 +360,9 @@ const sectionTranslations = {
                     </div>
                     <div class="image-container">
                         <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&auto=format&fit=crop&q=80" alt="Braccio robotico spaziale" />
+                            <img src="https://www.asc-csa.gc.ca/images/recherche/tiles/dbe2d07f-b8a6-47a3-8cd9-75eef672f071.jpg?w=1200&auto=format&fit=crop&q=80" alt="Braccio robotico spaziale" />
                         </div>
-                        <p class="image-caption">Bracci robotici ispirati al Canadarm2 utilizzato sulla ISS.</p>
+                        <p class="image-caption">Canadarm2 utilizzato sulla ISS.</p>
                     </div>
                 </div>
             </div>
@@ -1008,7 +1008,7 @@ const sectionTranslations = {
                     </div>
                     <div class="image-container">
                         <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&auto=format&fit=crop&q=80" alt="Illustrazione di più robot che collaborano nello spazio" />
+                            <img src="https://www.ansa.it/webimages/news_base/2024/11/19/323d3fe14285c81248a574174113b923.jpg?w=1200&auto=format&fit=crop&q=80" alt="Illustrazione di più robot che collaborano nello spazio" />
                         </div>
                         <p class="image-caption">Sciami di piccoli robot potrebbero esplorare vaste aree in parallelo.</p>
                     </div>
@@ -1128,7 +1128,7 @@ const sectionTranslations = {
                     potrebbero ospitare vita. Robot sottomarini autonomi esploreranno questi oceani alieni.
                 </p>
                 <div class="image-container">
-                    <img src="https://images.unsplash.com/photo-1614732414444-096e5f1122d5?w=1200&h=600&fit=crop" alt="Europa Moon">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1c/Europa_in_natural_color.png?w=1200&h=600&fit=crop" alt="Europa Moon">
                     <div class="image-caption">Europa - Luna di Giove con oceano sotterraneo, obiettivo futuro dell'esplorazione robotica</div>
                 </div>
             </div>
@@ -1539,7 +1539,7 @@ const sectionTranslations = {
                     </div>
                     <div class="image-container">
                         <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1581822261290-991b38693d1b?w=1200&auto=format&fit=crop&q=80" alt="Robotic arm in space" />
+                            <img src="https://www.asc-csa.gc.ca/images/recherche/tiles/dbe2d07f-b8a6-47a3-8cd9-75eef672f071.jpg?w=1200&auto=format&fit=crop&q=80" alt="Robotic arm in space" />
                         </div>
                         <p class="image-caption">Robotic arms inspired by Canadarm2 on the ISS.</p>
                     </div>
