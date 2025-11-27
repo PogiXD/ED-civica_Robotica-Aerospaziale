@@ -195,7 +195,6 @@
                 margin: 0 auto;
                 /* non lasciare che il container venga compresso dal layout flex
                    mantiene dimensioni costanti per preservare l'animazione */
-                flex: 0 0 40em;
                 max-width: 96vw;
                 max-height: 96vw;
             flex-direction: column;
