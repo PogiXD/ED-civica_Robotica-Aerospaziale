@@ -1001,6 +1001,12 @@
             gap: 18px;
         }
 
+        [data-theme="light"] .pro-box,.con-box{
+            background: radial-gradient(circle at 0 0, rgba(242, 239, 255, 0.7));
+        } 
+        [data-theme="light"] .con-box{
+            background: radial-gradient(circle at 0 0, rgba(242, 239, 255, 0.7));
+        } 
         .pro-box,
         .con-box {
             margin: 16px;
@@ -1009,9 +1015,6 @@
             border: 1px solid var(--border-soft);
             background: radial-gradient(circle at 0 0, rgba(15, 23, 42, 0.9));
         }
-        [data-theme="light"] .pro-box,.con-box{
-            background: radial-gradient(circle at 0 0, rgba(242, 239, 255, 0.7));
-        } 
         .pro-box {
             border-color: rgba(52, 211, 153, 0.7);
         }
