@@ -101,6 +101,7 @@ const sectionTranslations = {
                             "La robotica aerospaziale rende possibili missioni oltre la Terra, proteggendo gli astronauti ed
                             estendendo le capacità umane."
                         </p>
+                        <br>
                     </div>
                     <div class="card">
                         <h2><i class="fas fa-info-circle"></i> Introduzione generale</h2>
@@ -128,7 +129,7 @@ const sectionTranslations = {
                 </div>
                 
                 <div class="grid-2-home">
-                    <div class="hero-image">
+                    <div class="hero-image-home">
                         <div class="hero-image-inner-home image-frame plantet-div" id="sistema-solare">
                             <div class="container">
                                 <div class="sun">
