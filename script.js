@@ -13,10 +13,10 @@ function openTechWindow(isButtonClick = false){
     }
 }
 // ===================================================================
-// TRADUZIONI INTERFACCIA (UI) IT / EN
+// INFORMAZIONI DELLE SIDEBAR
 // ===================================================================
-const uiTranslations = {
-    it: {
+const uiContent = {
+    content: {
         'site.title': 'Robotica Aerospaziale',
         'site.subtitle': 'Esplorazione del Futuro',
         'menu.home': 'Home',
@@ -39,39 +39,17 @@ const uiTranslations = {
         'footer.credit': 'Sviluppato come progetto didattico',
         'footer.year': '2025',
     },
-    en: {
-        'site.title': 'Aerospace Robotics',
-        'site.subtitle': 'Exploring the Future',
-        'menu.home': 'Home',
-        'menu.about': 'What is Aerospace Robotics',
-        'menu.tech': 'Core Technologies',
-        'menu.tech.sensors': 'Sensors',
-        'menu.tech.actuators': 'Actuators',
-        'menu.tech.navigation': 'Navigation',
-        'menu.tech.ai': 'Artificial Intelligence',
-        'menu.tech.materials': 'Materials',
-        'menu.applications': 'Applications in Space',
-        'menu.advantages': 'Advantages',
-        'menu.disadvantages': 'Limits & Ethics',
-        'menu.future': 'The Future',
-        'menu.work': 'Impact on Work',
-        'menu.conclusion': 'Conclusion',
-        'menu.sitography': 'References',
-        'footer.title': 'Aerospace Robotics · Exploring the Future',
-        'footer.subtitle': 'A journey through the technology that carries humanity beyond Earth',
-        'footer.credit': 'Developed as an educational project',
-        'footer.year': '2024',
-    },
 };
 
 // ===================================================================
-// TRADUZIONI DEI CONTENUTI DELLE SEZIONI (BLOCCHI HTML COMPLETI)
+// CONTENUTI DELLE SEZIONI (BLOCCHI HTML COMPLETI)
 // ===================================================================
+
 const sectionTranslations = {
     // --------------------------------------------------------------
-    // ITALIANO
+    // CONTENUTI
     // --------------------------------------------------------------
-    it: {
+    content: {
         home: `
             <div class="hero-home">
                 <div class="hero-inner-home">
@@ -238,7 +216,6 @@ const sectionTranslations = {
                     (Spirit, Opportunity, Curiosity, Perseverance), bracci robotici sulla ISS (Canadarm2, Dextre), e satelliti autonomi 
                     per riparazione e rifornimento in orbita.
                 </p>
-            </div>
             </div>
         `,
 
@@ -1368,529 +1345,29 @@ const sectionTranslations = {
             </div>
         `,
     },
-
-    // --------------------------------------------------------------
-    // INGLESE
-    // --------------------------------------------------------------
-    en: {
-        home: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Aerospace Robotics</p>
-                        <h1 class="glow-title">Aerospace Robotics</h1>
-                        <p class="hero-subtitle">
-                            Aerospace robotics brings robots beyond Earth, into environments where humans cannot survive.
-                            It enables missions to Mars, satellite servicing and operations on the International Space Station.
-                        </p>
-                        <div class="hero-badges">
-                            <span class="badge"><i class="fas fa-shield"></i> Protect astronauts</span>
-                            <span class="badge"><i class="fas fa-arrows-alt"></i> Extend human capabilities</span>
-                        </div>
-                        <div class="hero-cta">
-                            <button class="btn-primary" data-jump="applications">
-                                <span>Applications</span>
-                                <i class="fas fa-play"></i>
-                            </button>
-                            <button class="btn-ghost" data-jump="future">
-                                <span>Future</span>
-                                <i class="fas fa-forward"></i>
-                            </button>
-                        </div>
-                        <div class="planet-nav">
-                            <button class="planet-button" type="button" data-jump="about">
-                                <i class="fas fa-rocket"></i>
-                                <span class="planet-button-label">Overview</span>
-                            </button>
-                            <button class="planet-button" type="button" data-jump="applications">
-                                <i class="fas fa-satellite"></i>
-                                <span class="planet-button-label">Apps</span>
-                            </button>
-                            <button class="planet-button" type="button" data-jump="future">
-                                <i class="fas fa-stars"></i>
-                                <span class="planet-button-label">Future</span>
-                            </button>
-                        </div>
-                        <p class="quote-small">
-                            "Aerospace robotics enables missions beyond Earth, protecting astronauts and extending human capabilities."
-                        </p>
-                    </div>
-                    <div class="hero-image">
-                        <div class="hero-image-inner image-frame">
-                            <img src="https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1200&auto=format&fit=crop&q=80" alt="Robotic rover exploring Mars" />
-                            <div class="hero-hud-tag">Mars Rover · Perseverance style</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-info-circle"></i> General introduction</h2>
-                    <p>
-                        Aerospace robotics combines <strong>engineering, computer science and space science</strong> to build systems that
-                        operate in orbit or on other planets. They must survive radiation, extreme temperatures and long communication delays.
-                    </p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-gamepad"></i> Game‑style interface</h2>
-                    <p>
-                        This site behaves like a mission HUD: the side menu is your control panel and each section is a different
-                        level focused on technology, applications, pros, cons, future and jobs.
-                    </p>
-                </div>
-            </div>
-        `,
-
-        about: `
-            <div class="hero card-highlight">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Definition</p>
-                        <h1 class="glow-title">What is Aerospace Robotics</h1>
-                        <p class="hero-subtitle">
-                            It is the field that designs robotic systems able to operate in space: in orbit, on the Moon, on Mars or
-                            other celestial bodies. Robots must be autonomous, ultra‑reliable and capable of working in harsh conditions.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1200&auto=format&fit=crop&q=80" alt="International Space Station view from outside" />
-                        </div>
-                        <p class="image-caption">The ISS is a perfect lab to test advanced robotics in micro‑gravity.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-screwdriver-wrench"></i> Key features</h2>
-                <div class="grid-3">
-                    <div>
-                        <h3><i class="fas fa-robot"></i> Autonomy</h3>
-                        <p>Robots must take decisions without waiting for real‑time commands from Earth.</p>
-                    </div>
-                    <div>
-                        <h3><i class="fas fa-shield-virus"></i> Robustness</h3>
-                        <p>They face vacuum, radiation, dust and big temperature swings.</p>
-                    </div>
-                    <div>
-                        <h3><i class="fas fa-battery-full"></i> Energy efficiency</h3>
-                        <p>Limited energy from solar panels or radioisotope generators must be used carefully.</p>
-                    </div>
-                </div>
-            </div>
-        `,
-
-        'tech-sensori': `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Technologies</p>
-                        <h1 class="glow-title">Advanced sensors</h1>
-                        <p class="hero-subtitle">
-                            Sensors are the senses of space robots. They perceive terrain, measure the environment and collect science data.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1580674280375-c10aeeb185d2?w=1200&auto=format&fit=crop&q=80" alt="Satellite covered with instruments" />
-                        </div>
-                        <p class="image-caption">Cameras, spectrometers and radar onboard satellites and probes.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-camera"></i> HD & multispectral cameras</h2>
-                    <p>
-                        They record high‑resolution images and see in infrared or ultraviolet to detect <strong>minerals and ice</strong>.
-                    </p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-broadcast-tower"></i> LIDAR & radar</h2>
-                    <p>
-                        LIDAR builds 3D maps while radar probes the subsurface to reveal hidden layers or water deposits.
-                    </p>
-                </div>
-            </div>
-        `,
-
-        'tech-attuatori': `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Technologies</p>
-                        <h1 class="glow-title">Actuators & robotic arms</h1>
-                        <p class="hero-subtitle">
-                            Actuators are the muscles of the robot, enabling movement, manipulation and precise operations in orbit.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://www.asc-csa.gc.ca/images/recherche/tiles/dbe2d07f-b8a6-47a3-8cd9-75eef672f071.jpg?w=1200&auto=format&fit=crop&q=80" alt="Robotic arm in space" />
-                        </div>
-                        <p class="image-caption">Robotic arms inspired by Canadarm2 on the ISS.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-hand-rock"></i> Orbital manipulators</h2>
-                <p>
-                    On the ISS, arms like <strong>Canadarm2</strong> capture spacecraft, move modules and support astronauts during spacewalks.
-                </p>
-            </div>
-        `,
-
-        'tech-navigazione': `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Technologies</p>
-                        <h1 class="glow-title">Autonomous navigation</h1>
-                        <p class="hero-subtitle">
-                            Because of long delays, rovers must drive almost by themselves, planning safe routes on unknown terrain.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1523731407965-2430cd12f5e4?w=1200&auto=format&fit=crop&q=80" alt="Graph of orbits and trajectories" />
-                        </div>
-                        <p class="image-caption">Trajectory planning and hazard avoidance keep missions safe.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-route"></i> How a rover knows where to go</h2>
-                <ul class="icon-list">
-                    <li><i class="fas fa-eye"></i><span>Visual odometry and SLAM to estimate position.</span></li>
-                    <li><i class="fas fa-star"></i><span>Star trackers in deep‑space missions.</span></li>
-                </ul>
-            </div>
-        `,
-
-        'tech-ia': `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Technologies</p>
-                        <h1 class="glow-title">Artificial Intelligence</h1>
-                        <p class="hero-subtitle">
-                            AI is the brain of modern space robots, enabling perception, planning and adaptation to unexpected events.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1200&auto=format&fit=crop&q=80" alt="Abstract AI visualization" />
-                        </div>
-                        <p class="image-caption">Neural networks and machine learning guide exploration.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-image"></i> Computer vision</h2>
-                    <p>Automatic analysis of images to detect interesting rocks and obstacles.</p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-lightbulb"></i> Autonomous decisions</h2>
-                    <p>Systems decide which targets to analyze and how to react to dust storms or anomalies.</p>
-                </div>
-            </div>
-        `,
-
-        'tech-materiali': `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Technologies</p>
-                        <h1 class="glow-title">Advanced materials</h1>
-                        <p class="hero-subtitle">
-                            Special materials keep robots light, strong and protected from radiation and temperature swings.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1581091870630-f4480f102d08?w=1200&auto=format&fit=crop&q=80" alt="High‑tech metallic structure" />
-                        </div>
-                        <p class="image-caption">Titanium, carbon fiber and aerogels are common in spacecraft design.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-3">
-                <div class="card">
-                    <h3><i class="fas fa-shield-alt"></i> Titanium</h3>
-                    <p>Strong and relatively light, ideal for structural parts of rovers and arms.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-feather"></i> Carbon fiber</h3>
-                    <p>Very light and stiff, used for booms, masts and instrument supports.</p>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-thermometer-empty"></i> Thermal insulation</h3>
-                    <p>Multi‑layer insulation and aerogels protect electronics from extreme cold or heat.</p>
-                </div>
-            </div>
-        `,
-
-        applications: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Applications</p>
-                        <h1 class="glow-title">Robots in space</h1>
-                        <p class="hero-subtitle">
-                            From Mars rovers to orbital servicing vehicles and ISS helpers, robots are key players of modern missions.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1630694093867-4b947d812bf0?w=1200&auto=format&fit=crop&q=80" alt="Rover on Mars" />
-                        </div>
-                        <p class="image-caption">Curiosity and Perseverance have been exploring Mars for years.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-mars"></i> Mars rovers</h2>
-                    <p>Mobile laboratories searching for signs of past life and characterizing Martian geology.</p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-satellite"></i> Orbital robotics</h2>
-                    <p>Robotic arms and servicing spacecraft refuel and repair satellites, or remove space debris.</p>
-                </div>
-            </div>
-        `,
-
-        advantages: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Analysis</p>
-                        <h1 class="glow-title">Advantages</h1>
-                        <p class="hero-subtitle">
-                            Robots increase safety, extend mission duration and access places humans cannot reach.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pro-con-grid">
-                <div class="pro-box">
-                    <h3><i class="fas fa-user-shield"></i> Astronaut safety</h3>
-                    <p>Robots take over the riskiest tasks, reducing exposure to radiation and hazards.</p>
-                </div>
-                <div class="pro-box">
-                    <h3><i class="fas fa-clock"></i> 24/7 operations</h3>
-                    <p>They can work continuously for years, boosting scientific return.</p>
-                </div>
-                <div class="pro-box">
-                    <h3><i class="fas fa-crosshairs"></i> High precision</h3>
-                    <p>Robotic arms and instruments perform extremely accurate maneuvers.</p>
-                </div>
-                <div class="pro-box">
-                    <h3><i class="fas fa-coins"></i> Lower cost per result</h3>
-                    <p>No life‑support systems or return trip are required for robots.</p>
-                </div>
-            </div>
-        `,
-
-        disadvantages: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Critical view</p>
-                        <h1 class="glow-title">Limits & ethics</h1>
-                        <p class="hero-subtitle">
-                            High development costs, limited repair options and ethical questions about autonomy and planetary protection.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pro-con-grid">
-                <div class="con-box">
-                    <h3><i class="fas fa-money-bill-wave"></i> High upfront cost</h3>
-                    <p>Space‑qualified hardware and testing are extremely expensive.</p>
-                </div>
-                <div class="con-box">
-                    <h3><i class="fas fa-screwdriver-wrench"></i> Hard to repair</h3>
-                    <p>Many failures cannot be fixed once the robot is on Mars or deep space.</p>
-                </div>
-                <div class="con-box">
-                    <h3><i class="fas fa-scale-balanced"></i> Ethics & responsibility</h3>
-                    <p>Who is responsible for decisions made by autonomous systems? How do we avoid contaminating other worlds?</p>
-                </div>
-            </div>
-        `,
-
-        future: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Future</p>
-                        <h1 class="glow-title">Future evolution</h1>
-                        <p class="hero-subtitle">
-                            Swarm robots, modular bodies, soft robotics and more capable AI will transform exploration.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=1200&auto=format&fit=crop&q=80" alt="Multiple robots collaborating" />
-                        </div>
-                        <p class="image-caption">Swarms of robots could map huge areas in a short time.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-layer-group"></i> Swarm robotics</h2>
-                    <p>Many small robots cooperate like insects, making missions more resilient and flexible.</p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-cubes"></i> Modular robots</h2>
-                    <p>Robots built from modules that reconfigure depending on the task: rover, arm, bridge or structure.</p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-hand-sparkles"></i> Soft robotics</h2>
-                    <p>Soft, flexible robots interact safely with astronauts and fragile equipment.</p>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-brain"></i> Advanced AI</h2>
-                    <p>Increasingly general AI will plan entire science campaigns with minimal human supervision.</p>
-                </div>
-            </div>
-        `,
-
-        work: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Jobs</p>
-                        <h1 class="glow-title">Impact on work</h1>
-                        <p class="hero-subtitle">
-                            Aerospace robotics creates new, highly skilled professions rather than simply replacing existing ones.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-briefcase"></i> New roles</h2>
-                    <ul class="icon-list">
-                        <li><i class="fas fa-robot"></i><span>Aerospace robotics engineers.</span></li>
-                        <li><i class="fas fa-brain"></i><span>AI and autonomy software developers.</span></li>
-                        <li><i class="fas fa-database"></i><span>Mission data analysts.</span></li>
-                        <li><i class="fas fa-vr-cardboard"></i><span>Simulation and VR specialists.</span></li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-graduation-cap"></i> Skills</h2>
-                    <ul class="icon-list">
-                        <li><i class="fas fa-check"></i><span>Programming (Python, C++, ROS).</span></li>
-                        <li><i class="fas fa-check"></i><span>Robotics, control and orbital mechanics.</span></li>
-                        <li><i class="fas fa-check"></i><span>Teamwork and problem‑solving.</span></li>
-                    </ul>
-                </div>
-            </div>
-        `,
-
-        conclusion: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Conclusion</p>
-                        <h1 class="glow-title">Human + robot</h1>
-                        <p class="hero-subtitle">
-                            Aerospace robotics does not replace humans but <strong>amplifies</strong> what we can do. Robots explore and prepare,
-                            humans decide and imagine new goals.
-                        </p>
-                    </div>
-                    <div class="image-container">
-                        <div class="image-frame">
-                            <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1200&auto=format&fit=crop&q=80" alt="Earth seen from space" />
-                        </div>
-                        <p class="image-caption">Earth from orbit: starting point for our journey through the Solar System.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-handshake"></i> The main challenge</h2>
-                <p>
-                    The real challenge is not choosing between human or robotic missions, but designing a <strong>powerful partnership</strong>
-                    where both work together to explore further and safer.
-                </p>
-            </div>
-        `,
-
-        sitography: `
-            <div class="hero">
-                <div class="hero-inner">
-                    <div>
-                        <p class="hero-kicker">EN · Resources</p>
-                        <h1 class="glow-title">References</h1>
-                        <p class="hero-subtitle">
-                            A selection of websites and resources to go deeper into aerospace robotics and space exploration.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-flag"></i> Italian sources</h2>
-                <ul class="link-list">
-                    <li><a class="link-pill" href="https://www.tech4future.info/" target="_blank" rel="noreferrer"><i class="fas fa-globe"></i><span>Tech4Future</span></a></li>
-                    <li><a class="link-pill" href="https://www.esa.int/Space_in_Member_States/Italy" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>ESA Italy</span></a></li>
-                    <li><a class="link-pill" href="https://www.asi.it/" target="_blank" rel="noreferrer"><i class="fas fa-satellite"></i><span>ASI - Italian Space Agency</span></a></li>
-                    <li><a class="link-pill" href="https://www.inaf.it/" target="_blank" rel="noreferrer"><i class="fas fa-telescope"></i><span>INAF - National Institute for Astrophysics</span></a></li>
-                    <li><a class="link-pill" href="https://www.nasa.gov/international/italy" target="_blank" rel="noreferrer"><i class="fas fa-flag-usa"></i><span>NASA - Italy page</span></a></li>
-                </ul>
-            </div>
-
-            <div class="card">
-                <h2><i class="fas fa-globe-americas"></i> International sources</h2>
-                <ul class="link-list">
-                    <li><a class="link-pill" href="https://www.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-rocket"></i><span>NASA</span></a></li>
-                    <li><a class="link-pill" href="https://mars.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-mars"></i><span>NASA Mars Exploration</span></a></li>
-                    <li><a class="link-pill" href="https://www.jpl.nasa.gov/" target="_blank" rel="noreferrer"><i class="fas fa-satellite-dish"></i><span>JPL - Jet Propulsion Laboratory</span></a></li>
-                    <li><a class="link-pill" href="https://www.esa.int/" target="_blank" rel="noreferrer"><i class="fas fa-globe-europe"></i><span>ESA - European Space Agency</span></a></li>
-                    <li><a class="link-pill" href="https://www.mit.edu/research/space-exploration" target="_blank" rel="noreferrer"><i class="fas fa-university"></i><span>MIT - Space Exploration</span></a></li>
-                    <li><a class="link-pill" href="https://www.ieee.org/topics/robotics.html" target="_blank" rel="noreferrer"><i class="fas fa-robot"></i><span>IEEE Robotics</span></a></li>
-                </ul>
-            </div>
-        `,
-    },
 };
 
+
 // ===================================================================
-// STATO GLOBALE (TEMA, LINGUA, PAGINA CORRENTE)
+// STATO GLOBALE (TEMA, CONTENUTI, PAGINA CORRENTE)
 // ===================================================================
 const state = {
     theme: localStorage.getItem('theme') || 'dark',
-    lang: localStorage.getItem('lang') || 'it',
+    content: localStorage.getItem('content') || 'content',
     currentPage: localStorage.getItem('currentPage') || 'home',
 };
 
 const rootElement = document.documentElement;
 rootElement.setAttribute('data-theme', state.theme);
-rootElement.setAttribute('data-lang', state.lang);
-rootElement.lang = state.lang;
+rootElement.setAttribute('data-content', state.content);
+rootElement.content = state.content;
 
 // ===================================================================
-// AGGIORNA IL TITOLO DEL DOCUMENTO IN BASE A PAGINA E LINGUA
+// AGGIORNA IL TITOLO DEL DOCUMENTO IN BASE A PAGINA
 // ===================================================================
 function updateDocumentTitle(pageId) {
-    const lang = state.lang;
-    const pack = uiTranslations[lang] || uiTranslations.it;
+    const content = state.content;
+    const pack = uiContent[content] || uiContent.content;
 
     const keyMap = {
         home: 'menu.home',
@@ -1921,15 +1398,10 @@ function updateDocumentTitle(pageId) {
 }
 
 // ===================================================================
-// APPLICAZIONE LINGUA (UI + CONTENUTI SEZIONI)
+// APPLICAZIONE CONTENUTI (UI + CONTENUTI SEZIONI)
 // ===================================================================
-function applyLanguage(lang) {
-    state.lang = lang;
-    localStorage.setItem('lang', lang);
-    rootElement.setAttribute('data-lang', lang);
-    rootElement.lang = lang;
-
-    const pack = uiTranslations[lang];
+function applyPage(content) {
+    const pack = uiContent[content];
 
     // UI fissa
     document.querySelectorAll('[data-i18n]').forEach((el) => {
@@ -1939,17 +1411,8 @@ function applyLanguage(lang) {
         }
     });
 
-    // Toggle lingua (accessibilità)
-    const langToggleBtn = document.getElementById('langToggle');
-    if (langToggleBtn) {
-        langToggleBtn.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
-        langToggleBtn.title = lang === 'it'
-            ? 'Passa alla versione inglese'
-            : 'Switch to Italian version';
-    }
-
     // Contenuti delle pagine
-    const sectionPack = sectionTranslations[lang];
+    const sectionPack = sectionTranslations[content];
     document.querySelectorAll('.page[data-section]').forEach((pageEl) => {
         const sectionKey = pageEl.getAttribute('data-section');
         if (sectionPack && sectionPack[sectionKey]) {
@@ -2121,9 +1584,9 @@ function initStarfield() {
 // INIZIALIZZAZIONE GENERALE
 // ===================================================================
 window.addEventListener('DOMContentLoaded', () => {
-    // Applica tema e lingua iniziali
+    // Applica tema e contenuti iniziali
     applyTheme(state.theme);
-    applyLanguage(state.lang);
+    applyPage(state.content);
 
     // Inizializza starfield
     initStarfield();
