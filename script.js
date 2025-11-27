@@ -51,8 +51,8 @@ const sectionTranslations = {
     // --------------------------------------------------------------
     content: {
         home: `
-            <div class="hero">
-                <div class="hero-inner">
+            <div class="hero-home">
+                <div class="hero-inner-home">
                     <div>
                         <p class="hero-kicker">IT · Robotica Aerospaziale</p>
                         <h1 class="glow-title">Robotica Aerospaziale</h1>
@@ -98,22 +98,47 @@ const sectionTranslations = {
                         </div>
                         <br>
                         <p class="quote-small">
-                            "La robotica aerospaziale rende possibili missioni oltre la Terra, proteggendo gli astronauti ed estendendo le capacità umane."
+                            "La robotica aerospaziale rende possibili missioni oltre la Terra, proteggendo gli astronauti ed
+                            estendendo le capacità umane."
                         </p>
+                        <br>
                     </div>
-                    <div class="hero-image">
-                        <div class="hero-image-inner image-frame plantet-div" id="sistema-solare">
-            
-            
-            
+                    <div class="card">
+                        <h2><i class="fas fa-info-circle"></i> Introduzione generale</h2>
+                        <p>
+                            La robotica aerospaziale combina <strong>ingegneria, informatica e scienze spaziali</strong> per creare
+                            sistemi in grado di
+                            operare in orbita o su altri corpi celesti. A differenza dei robot industriali, questi sistemi devono
+                            sopravvivere a
+                            radiazioni, temperature estreme e comunicazioni con ritardo di diversi minuti.
+                        </p>
+                        <ul class="icon-list">
+                            <li>
+                                <i class="fas fa-user-shield"></i>
+                                <span><strong>Sicurezza:</strong> i robot sostituiscono l’uomo nelle fasi più rischiose di una
+                                    missione.</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-infinity"></i>
+                                <span><strong>Resistenza:</strong> possono lavorare per anni, 24 ore su 24, senza bisogno di
+                                    riposo.</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                
+                <div class="grid-2-home">
+                    <div class="hero-image-home">
+                        <div class="hero-image-inner-home image-frame plantet-div" id="sistema-solare">
                             <div class="container">
                                 <div class="sun">
-                                  <img src="./images/sun.png" alt="sun">
+                                    <img src="./images/sun.png" alt="sun">
                                 </div>
                                 <div class="mercury"></div>
                                 <div class="venus"></div>
                                 <div class="earth">
-                                  <div class="moon"></div>
+                                    <div class="moon"></div>
                                 </div>
                                 <div class="mars"></div>
                                 <div class="jupiter"></div>
@@ -121,47 +146,12 @@ const sectionTranslations = {
                                 <div class="uranus"></div>
                                 <div class="neptune"></div>
                                 <div class="pluto">
+                                </div>
                             </div>
-
                         </div>
-
-
-
                     </div>
                 </div>
-            </div>
 
-            <div class="grid-2">
-                <div class="card">
-                    <h2><i class="fas fa-info-circle"></i> Introduzione generale</h2>
-                    <p>
-                        La robotica aerospaziale combina <strong>ingegneria, informatica e scienze spaziali</strong> per creare sistemi in grado di
-                        operare in orbita o su altri corpi celesti. A differenza dei robot industriali, questi sistemi devono sopravvivere a
-                        radiazioni, temperature estreme e comunicazioni con ritardo di diversi minuti.
-                    </p>
-                    <ul class="icon-list">
-                        <li>
-                            <i class="fas fa-user-shield"></i>
-                            <span><strong>Sicurezza:</strong> i robot sostituiscono l’uomo nelle fasi più rischiose di una missione.</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-infinity"></i>
-                            <span><strong>Resistenza:</strong> possono lavorare per anni, 24 ore su 24, senza bisogno di riposo.</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="card">
-                    <h2><i class="fas fa-gamepad"></i> Modalità videogioco</h2>
-                    <p>
-                        Questo sito è pensato come un <strong>HUD di una missione spaziale</strong>: il menù laterale funziona come un pannello di bordo,
-                        le sezioni sono livelli diversi di gioco e le animazioni richiamano l’interfaccia dei videogiochi sci‑fi.
-                    </p>
-                    <p>
-                        Usa il menù a sinistra per navigare tra le aree: tecnologie fondamentali, applicazioni, vantaggi, limiti, futuro della robotica
-                        e impatto sul mondo del lavoro.
-                    </p>
-                </div>
-            </div>
         `,
 
         about: `
