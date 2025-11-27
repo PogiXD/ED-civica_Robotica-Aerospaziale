@@ -192,7 +192,12 @@
         }
 
         .header-title-group {
-            display: flex;
+                margin: 0 auto;
+                /* non lasciare che il container venga compresso dal layout flex
+                   mantiene dimensioni costanti per preservare l'animazione */
+                flex: 0 0 40em;
+                max-width: 96vw;
+                max-height: 96vw;
             flex-direction: column;
             gap: 2px;
         }
@@ -758,6 +763,9 @@
                 radial-gradient(circle at 100% 0, rgba(129, 140, 248, 0.2), transparent 60%),
                 #020617;
             box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .hero-image-home {
             position: relative;
@@ -1162,6 +1170,56 @@
             }
         }
 
+        /* Responsive specifico per la homepage con sistema solare animato
+           - su schermi stretti il blocco animato va in cima e diventa full-width
+           - impediamo al suo contenuto di restringersi troppo riducendo il layout a colonna
+        */
+        @media (max-width: 960px) {
+            .hero-home {
+                flex-direction: column;
+                gap: 12px;
+                align-items: stretch;
+            }
+
+            /* Porta il blocco animato in cima */
+            .grid-2-home {
+                order: -1;
+                width: 100%;
+                padding: 0;
+                margin: 0;
+            }
+
+            .hero-image-home {
+                width: 100%;
+                padding: 0;
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Mantieni il wrapper delle orbite con dimensione fissa per preservare le coordinate em */
+            .hero-image-inner-home {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex: 0 0 40em;
+                width: 40em;
+                height: 40em;
+                min-width: 24rem;
+                min-height: 24rem;
+                overflow: visible;
+                margin: 0 auto;
+            }
+
+            /* Adatta il contenitore del sistema solare per non ridursi troppo
+               mantiene un rapporto d'aspetto e consente lo scrolling orizzontale se necessario */
+            .hero-image-inner-home .container {
+                width: min(440px, 96vw);
+                height: min(440px, 96vw);
+            }
+        }
+
         @media (max-width: 720px) {
             header {
                 padding-inline: 14px;
@@ -1215,9 +1273,6 @@
    OVERRIDE TEMA CHIARO (LIGHT)
    ============================ */
 /* Sfrutta le variabili già definite in [data-theme="light"] */
-[data-theme="light"] {
-    /* nessuna regola aggiuntiva qui: le variabili sono già definite sopra */
-}
 
 /* Header, logo, toggle */
 [data-theme="light"] header {
@@ -1356,9 +1411,8 @@
     font-size: 6px;
     width: 40em;
     height: 40em;
-    position: relative;
-    
-}
+    position: relative; 
+    }
    .sun {
     display: flex;
     align-items: center;
