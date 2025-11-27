@@ -311,10 +311,9 @@ const sectionTranslations = {
                 </div>
 
                 <div class="card">
-                    <h3><i class="fas fa-magnet"></i> Magnetometri e Radar</h3>
+                    <h3><i class="fas fa-magnet"></i> Magnetometri</h3>
                     <p>
-                        I magnetometri misurano campi magnetici planetari. I radar penetrano nel sottosuolo per identificare 
-                        strati geologici, ghiaccio, e acqua sotterranea.
+                        I magnetometri misurano campi magnetici planetari.
                     </p>
                     <ul class="icon-list">
                         <li><i class="fas fa-check"></i><span>Studiano eventuali campi magnetici residui.</span></li>
