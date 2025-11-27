@@ -1214,11 +1214,6 @@
 /* ============================
    OVERRIDE TEMA CHIARO (LIGHT)
    ============================ */
-/* Sfrutta le variabili già definite in [data-theme="light"] */
-[data-theme="light"] {
-    /* nessuna regola aggiuntiva qui: le variabili sono già definite sopra */
-}
-
 /* Header, logo, toggle */
 [data-theme="light"] header {
     background: linear-gradient(120deg, var(--bg-primary), var(--bg-secondary));
